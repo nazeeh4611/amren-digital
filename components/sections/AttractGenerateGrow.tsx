@@ -59,9 +59,9 @@ const stages: Stage[] = [
  * A compact, always-rendered 3-card flow rather than a full-viewport
  * pinned scroll-jack — same story (Attract → Generate Leads → Grow), a
  * fraction of the page height, and no per-stage stock image to load.
- * Cards pop in with a slight overshoot and the connector arrows carry a
- * continuous drifting pulse, so the "one connected system" idea reads as
- * motion rather than three static boxes.
+ * The site-wide flight path (SitewideFlightPath, mounted once around all
+ * homepage sections below the hero) is what carries the plane/line motif
+ * through this section now, so this component just handles the cards.
  */
 export function AttractGenerateGrow() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -72,32 +72,19 @@ export function AttractGenerateGrow() {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: { trigger: ".stage-row", start: "top 82%", once: true },
-      });
-
-      tl.fromTo(
+      gsap.fromTo(
         ".stage-card",
         { opacity: 0, y: 32, scale: 0.9 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "back.out(1.6)", stagger: 0.15 }
-      ).fromTo(
-        ".stage-arrow",
-        { opacity: 0, x: -8 },
-        { opacity: 1, x: 0, duration: 0.4, ease: "power2.out", stagger: 0.15 },
-        "-=0.5"
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.6,
+          ease: "back.out(1.6)",
+          stagger: 0.15,
+          scrollTrigger: { trigger: ".stage-row", start: "top 82%", once: true },
+        }
       );
-
-      // A continuous, gentle drift on the arrows once they're in —
-      // reads as traffic/leads flowing left to right through the system.
-      gsap.to(".stage-arrow", {
-        x: 5,
-        duration: 0.9,
-        ease: "sine.inOut",
-        yoyo: true,
-        repeat: -1,
-        stagger: { each: 0.2, repeat: -1 },
-        delay: 1.2,
-      });
 
       gsap.to(".stage-dot", {
         scale: 1.4,
@@ -123,8 +110,8 @@ export function AttractGenerateGrow() {
           className="mt-5 max-w-3xl font-display text-4xl font-bold uppercase leading-[1.02] tracking-tight sm:text-6xl"
         />
 
-        <div className="stage-row mt-14 flex flex-col gap-6 lg:flex-row lg:items-stretch lg:gap-0">
-          {stages.flatMap((stage, i) => [
+        <div className="stage-row mt-14 flex flex-col gap-6 lg:flex-row lg:items-stretch lg:gap-6">
+          {stages.map((stage) => (
             <div key={stage.key} className="stage-card flex-1">
               <div className="relative flex h-full flex-col overflow-hidden rounded-[var(--radius-lg)] border border-cream/12 bg-navy-2 p-7 transition-colors duration-300 hover:border-cream/25 sm:p-8">
                 <span
@@ -146,13 +133,8 @@ export function AttractGenerateGrow() {
                   ))}
                 </ul>
               </div>
-            </div>,
-            i < stages.length - 1 ? (
-              <div key={`${stage.key}-arrow`} aria-hidden="true" className="hidden shrink-0 items-center justify-center px-3 lg:flex">
-                <span className="stage-arrow text-2xl text-gold/50">→</span>
-              </div>
-            ) : null,
-          ])}
+            </div>
+          ))}
         </div>
       </div>
     </section>

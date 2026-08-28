@@ -75,7 +75,7 @@ export function Hero() {
   return (
     <section ref={sectionRef} className="relative overflow-hidden bg-ink pb-20 pt-32 text-cream sm:pb-28 sm:pt-40">
       <Image
-        src="/dbhero.avif"
+        src="/bghero.avif"
         alt=""
         fill
         priority
@@ -107,18 +107,9 @@ export function Hero() {
       <div aria-hidden="true" className="accent-dot accent-dot-b absolute bottom-16 right-1/4 h-2 w-2 bg-gold-2" />
 
       <div className="wrap relative">
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease }}
-          className="inline-flex items-center gap-3 rounded-full border border-cream/25 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-gold"
-        >
-          {site.location.label} · {site.parent.name}
-        </motion.p>
-
         <h1
           ref={headingRef}
-          className="mt-6 max-w-6xl font-display text-[15vw] font-bold uppercase leading-[0.92] tracking-tight sm:text-[8rem] lg:text-[7rem] xl:text-[8.5rem]"
+          className="max-w-6xl font-display text-[15vw] font-bold uppercase leading-[0.92] tracking-tight sm:text-[8rem] lg:text-[7rem] xl:text-[8.5rem]"
           style={{ willChange: "transform" }}
         >
           <SplitReveal as="span" text={headlineLine1} trigger="mount" delay={0.15} stagger={0.06} className="block" />

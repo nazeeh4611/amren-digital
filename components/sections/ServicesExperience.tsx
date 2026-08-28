@@ -159,7 +159,16 @@ export function ServicesExperience() {
     .sort((a, b) => Number(cardStyle[b.key].size === "wide") - Number(cardStyle[a.key].size === "wide"));
 
   return (
-    <section id="what-we-build" className="section bg-cream-2">
+    <section id="what-we-build" className="section relative overflow-hidden bg-cream-2">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-[0.35] mix-blend-multiply"
+        style={{
+          backgroundImage:
+            "radial-gradient(ellipse 60% 45% at 15% 10%, var(--amren-blue-2), transparent 60%), radial-gradient(ellipse 55% 40% at 85% 25%, var(--amren-navy-3), transparent 65%), radial-gradient(ellipse 70% 50% at 40% 95%, var(--amren-navy-2), transparent 60%)",
+          filter: "blur(60px)",
+        }}
+      />
       <div className="wrap">
         <Eyebrow accent="gold">What We Build</Eyebrow>
         <SplitReveal

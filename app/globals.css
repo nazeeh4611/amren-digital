@@ -7,52 +7,52 @@
    ========================================================================== */
 
 :root {
-  /* Brand colors — a single teal→abyss tonal family (the "Seafoam …
-     Abyss" swatch ramp), replacing the previous multi-hue rainbow accent
-     system. Token names are kept stable (navy/blue/gold/coral/etc.) since
-     every component references these names as Tailwind utilities — only
-     the underlying hex values change, so the whole site re-themes from
-     here.
-     Dark anchors (navy/navy-2/navy-3/ink) map to the deep end of the ramp
-     (Atlantic/Petrol/Peacock/Abyss); light surfaces (cream/cream-2) map to
-     the pale end (near-white/Seafoam); "gold" — the primary CTA/pop
-     accent — takes the ramp's most vivid step (Turquoise) in place of the
-     old orange. Every other accent (blue/coral/lime/purple/orange) is a
-     distinct step or tint within the same teal family rather than an
-     unrelated hue, so nothing outside this palette appears anywhere. */
-  --amren-navy: #16324a; /* Atlantic */
-  --amren-navy-2: #1a4653; /* Petrol */
-  --amren-navy-3: #1b5f6b; /* Peacock */
-  --amren-ink: #0c1720; /* Abyss */
-  --amren-blue: #1f8080; /* Teal */
-  --amren-blue-2: #c3d6cb; /* Mint */
-  --amren-gold: #3fa6a6; /* Turquoise — primary accent */
-  --amren-gold-2: #9cc7c3; /* Aqua */
-  --amren-cream: #f7faf9; /* near-white, teal-tinted */
-  --amren-cream-2: #dce6df; /* Seafoam */
+  /* Brand colors — a warm-neutral + muted blue-teal interior palette
+     (5 hex values supplied directly: #C7B8A4, #CCB68E, #A88C6C, #5A7C83,
+     #2C444D), replacing the earlier teal-ramp theme. Token names stay
+     stable (navy/blue/gold/coral/etc.) since every component references
+     these names as Tailwind utilities — only the underlying hex values
+     change, so the whole site re-themes from here.
+     Dark anchor (navy/ink) = the palette's darkest step, #2C444D, with
+     navy-2/navy-3 derived between it and the muted teal #5A7C83; light
+     surfaces (cream/cream-2) are near-white/light tints of the taupe
+     #C7B8A4; "gold" — the primary CTA/pop accent — takes the warmest,
+     most saturated step (#CCB68E) in place of the old turquoise. Every
+     other accent is a tint/shade within this same warm-neutral + teal
+     family rather than an unrelated hue. */
+  --amren-navy: #2c444d; /* given — dark anchor */
+  --amren-navy-2: #3f5c66; /* between navy and the muted teal */
+  --amren-navy-3: #5a7c83; /* given — muted blue-teal */
+  --amren-ink: #202f35; /* deepened navy, body text */
+  --amren-blue: #5a7c83; /* given — muted blue-teal accent */
+  --amren-blue-2: #c7b8a4; /* given — light taupe, pale companion */
+  --amren-gold: #ccb68e; /* given — primary accent */
+  --amren-gold-2: #c7b8a4; /* given — lighter companion */
+  --amren-cream: #f8f5ef; /* near-white, taupe-tinted */
+  --amren-cream-2: #e3d9c9; /* light taupe tint — alternate section bg */
   --amren-white: #ffffff;
 
-  /* Secondary accents — further steps/tints within the same teal family,
-     used sparingly for per-category variety (service cards, eyebrows). */
-  --amren-coral: #2e7c74; /* Lagoon */
-  --amren-coral-2: #86bbb2; /* Lagoon, lightened */
-  --amren-lime: #4fa3a0; /* turquoise-teal variant */
-  --amren-lime-2: #acd8d2; /* lightened */
-  --amren-purple: #2c5f6e; /* deep teal-blue variant */
-  --amren-purple-2: #7fa9b4; /* lightened */
-  --amren-orange: #3a8f82; /* teal-green variant */
-  --amren-orange-2: #9bcfc0; /* lightened */
+  /* Secondary accents — tints/shades within the same warm-neutral + teal
+     family, used sparingly for per-category variety (service cards, eyebrows). */
+  --amren-coral: #a88c6c; /* given — medium warm brown */
+  --amren-coral-2: #c9b39a; /* lightened */
+  --amren-lime: #6b8d93; /* teal variant, shifted from blue */
+  --amren-lime-2: #a9c1c5; /* lightened */
+  --amren-purple: #3f5c66; /* deep teal-blue variant */
+  --amren-purple-2: #7c9ba1; /* lightened */
+  --amren-orange: #8c7355; /* darker brown/tan variant */
+  --amren-orange-2: #bfa989; /* lightened */
 
   /* Semantic */
-  --bg-page: #f7faf9;
+  --bg-page: #f8f5ef;
   --bg-surface: var(--amren-white);
   --bg-inverse: var(--amren-navy);
   --text-primary: var(--amren-ink);
   --text-inverse: var(--amren-cream);
-  --text-muted: #5c6e73;
-  --text-muted-inverse: #9db3b0;
-  --border-subtle: rgba(12, 23, 32, 0.1);
-  --border-subtle-inverse: rgba(220, 230, 223, 0.14);
+  --text-muted: #6e655a;
+  --text-muted-inverse: #b7ac9c;
+  --border-subtle: rgba(32, 47, 53, 0.1);
+  --border-subtle-inverse: rgba(227, 217, 201, 0.14);
 
   /* Radius */
   --radius-sm: 0.5rem;
