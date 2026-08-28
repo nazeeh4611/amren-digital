@@ -7,49 +7,52 @@
    ========================================================================== */
 
 :root {
-  /* Brand colors — vibrant, eye-catching hues kept light in value (high
-     lightness, real saturation — not muted/dusty), spanning a full rainbow
-     spread (orange, rose, sky, lime, violet, yellow) on a light beige-white
-     ground. Token names are kept stable (navy/blue/gold/coral/etc.) since
+  /* Brand colors — a single teal→abyss tonal family (the "Seafoam …
+     Abyss" swatch ramp), replacing the previous multi-hue rainbow accent
+     system. Token names are kept stable (navy/blue/gold/coral/etc.) since
      every component references these names as Tailwind utilities — only
      the underlying hex values change, so the whole site re-themes from
      here.
-     "navy"/"ink" (the dark-section-bg and body-text roles) stay a warm
-     neutral charcoal rather than any accent hue — every accent here is
-     deliberately light, so none of them can also serve as the dark anchor
-     color the rest of the site's contrast depends on. */
-  --amren-navy: #2b2620;
-  --amren-navy-2: #37312a;
-  --amren-navy-3: #453d33;
-  --amren-ink: #241f1a;
-  --amren-blue: #7dd3fc;
-  --amren-blue-2: #bae6fd;
-  --amren-gold: #fdba74;
-  --amren-gold-2: #fed7aa;
-  --amren-cream: #ffffff;
-  --amren-cream-2: #f6f3ec;
+     Dark anchors (navy/navy-2/navy-3/ink) map to the deep end of the ramp
+     (Atlantic/Petrol/Peacock/Abyss); light surfaces (cream/cream-2) map to
+     the pale end (near-white/Seafoam); "gold" — the primary CTA/pop
+     accent — takes the ramp's most vivid step (Turquoise) in place of the
+     old orange. Every other accent (blue/coral/lime/purple/orange) is a
+     distinct step or tint within the same teal family rather than an
+     unrelated hue, so nothing outside this palette appears anywhere. */
+  --amren-navy: #16324a; /* Atlantic */
+  --amren-navy-2: #1a4653; /* Petrol */
+  --amren-navy-3: #1b5f6b; /* Peacock */
+  --amren-ink: #0c1720; /* Abyss */
+  --amren-blue: #1f8080; /* Teal */
+  --amren-blue-2: #c3d6cb; /* Mint */
+  --amren-gold: #3fa6a6; /* Turquoise — primary accent */
+  --amren-gold-2: #9cc7c3; /* Aqua */
+  --amren-cream: #f7faf9; /* near-white, teal-tinted */
+  --amren-cream-2: #dce6df; /* Seafoam */
   --amren-white: #ffffff;
 
-  /* Secondary accents — vivid but light, used sparingly; warm orange (gold slot) stays the primary voice */
-  --amren-coral: #fda4af;
-  --amren-coral-2: #fecdd3;
-  --amren-lime: #bef264;
-  --amren-lime-2: #d9f99d;
-  --amren-purple: #c4b5fd;
-  --amren-purple-2: #ddd6fe;
-  --amren-orange: #fde047;
-  --amren-orange-2: #fef08a;
+  /* Secondary accents — further steps/tints within the same teal family,
+     used sparingly for per-category variety (service cards, eyebrows). */
+  --amren-coral: #2e7c74; /* Lagoon */
+  --amren-coral-2: #86bbb2; /* Lagoon, lightened */
+  --amren-lime: #4fa3a0; /* turquoise-teal variant */
+  --amren-lime-2: #acd8d2; /* lightened */
+  --amren-purple: #2c5f6e; /* deep teal-blue variant */
+  --amren-purple-2: #7fa9b4; /* lightened */
+  --amren-orange: #3a8f82; /* teal-green variant */
+  --amren-orange-2: #9bcfc0; /* lightened */
 
   /* Semantic */
-  --bg-page: #ffffff;
+  --bg-page: #f7faf9;
   --bg-surface: var(--amren-white);
   --bg-inverse: var(--amren-navy);
   --text-primary: var(--amren-ink);
   --text-inverse: var(--amren-cream);
-  --text-muted: #7a6f62;
-  --text-muted-inverse: #b8aea0;
-  --border-subtle: rgba(36, 31, 26, 0.1);
-  --border-subtle-inverse: rgba(250, 246, 239, 0.14);
+  --text-muted: #5c6e73;
+  --text-muted-inverse: #9db3b0;
+  --border-subtle: rgba(12, 23, 32, 0.1);
+  --border-subtle-inverse: rgba(220, 230, 223, 0.14);
 
   /* Radius */
   --radius-sm: 0.5rem;

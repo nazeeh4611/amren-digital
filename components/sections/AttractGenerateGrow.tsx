@@ -4,11 +4,7 @@ import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Eyebrow } from "@/components/typography/Eyebrow";
-import { AssetPlaceholder } from "@/components/assets/AssetPlaceholder";
-import type { Motif } from "@/components/assets/AssetPlaceholder";
 import { SplitReveal } from "@/components/animations/SplitReveal";
-import { FadeIn } from "@/components/animations/FadeIn";
-import { ImageReveal } from "@/components/animations/ImageReveal";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 
 type Stage = {
@@ -18,10 +14,9 @@ type Stage = {
   headline: string;
   description: string;
   visuals: string[];
-  motif: Motif;
-  tone: number;
   accentText: string;
   accentBorder: string;
+  accentBg: string;
 };
 
 const stages: Stage[] = [
@@ -32,10 +27,9 @@ const stages: Stage[] = [
     headline: "Get discovered. Get attention.",
     description: "Google search, Meta ads, organic social content, SEO and local search working together to earn the right attention.",
     visuals: ["Google Search", "Meta Ads", "Social Content", "SEO", "Local Search"],
-    motif: "search",
-    tone: 0,
     accentText: "text-blue-2",
     accentBorder: "border-blue-2/30",
+    accentBg: "bg-blue-2",
   },
   {
     key: "generate",
@@ -44,10 +38,9 @@ const stages: Stage[] = [
     headline: "Turn attention into enquiries.",
     description: "A website, landing page or WhatsApp conversation built to make enquiring the obvious next step — every time.",
     visuals: ["Website", "Landing Page", "WhatsApp", "Lead Form", "Enquiry"],
-    motif: "phone",
-    tone: 4,
     accentText: "text-coral-2",
     accentBorder: "border-coral-2/30",
+    accentBg: "bg-coral-2",
   },
   {
     key: "grow",
@@ -56,189 +49,111 @@ const stages: Stage[] = [
     headline: "Build systems that compound.",
     description: "Analytics, CRM, retargeting and automation that turn one enquiry into a repeatable, measurable growth system.",
     visuals: ["Analytics", "CRM", "Retargeting", "Automation", "Reporting"],
-    motif: "chart",
-    tone: 5,
     accentText: "text-lime",
     accentBorder: "border-lime/30",
+    accentBg: "bg-lime",
   },
 ];
 
+/**
+ * A compact, always-rendered 3-card flow rather than a full-viewport
+ * pinned scroll-jack — same story (Attract → Generate Leads → Grow), a
+ * fraction of the page height, and no per-stage stock image to load.
+ * Cards pop in with a slight overshoot and the connector arrows carry a
+ * continuous drifting pulse, so the "one connected system" idea reads as
+ * motion rather than three static boxes.
+ */
 export function AttractGenerateGrow() {
   const sectionRef = useRef<HTMLElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const stageRefs = useRef<(HTMLDivElement | null)[]>([]);
   const reducedMotion = usePrefersReducedMotion();
 
-  // Section-transition clip-path reveal: this section starts masked down to
-  // a rounded inset window and expands to fill the full rectangle as it
-  // scrolls up into place — a mask-based reveal instead of a hard cut from
-  // the hero, scrubbed directly to scroll position.
   useLayoutEffect(() => {
     if (reducedMotion || !sectionRef.current) return;
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.set(sectionRef.current, { clipPath: "inset(12% round 32px)", willChange: "clip-path" });
-    const revealTween = gsap.to(sectionRef.current, {
-      clipPath: "inset(0% round 0px)",
-      ease: "none",
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top bottom",
-        end: "top 15%",
-        scrub: true,
-      },
-    });
-
-    return () => {
-      revealTween.scrollTrigger?.kill();
-      revealTween.kill();
-    };
-  }, [reducedMotion]);
-
-  useLayoutEffect(() => {
-    if (reducedMotion) return;
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    const mm = gsap.matchMedia();
-
-    mm.add("(min-width: 1024px)", () => {
-      const panels = stageRefs.current.filter(Boolean) as HTMLDivElement[];
-      if (!panels.length || !containerRef.current) return;
-
-      gsap.set(panels[0], { opacity: 1, scale: 1, x: 0 });
-      gsap.set(panels.slice(1), { opacity: 0, scale: 0.94, x: 40 });
-
+    const ctx = gsap.context(() => {
       const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top top",
-          end: "+=200%",
-          scrub: 1,
-          pin: true,
-          anticipatePin: 1,
-          // Images loading async can shift layout after this trigger's
-          // start/end were first measured — refreshing on load recalculates
-          // them against final layout instead of a stale one.
-          invalidateOnRefresh: true,
-        },
+        scrollTrigger: { trigger: ".stage-row", start: "top 82%", once: true },
       });
 
-      tl.to(panels[0], { opacity: 0, x: -50, scale: 0.92, duration: 1 })
-        .to(panels[1], { opacity: 1, x: 0, scale: 1, duration: 1 }, "<")
-        .to(panels[1], { opacity: 0, x: -50, scale: 0.92, duration: 1 })
-        .to(panels[2], { opacity: 1, x: 0, scale: 1, duration: 1 }, "<");
+      tl.fromTo(
+        ".stage-card",
+        { opacity: 0, y: 32, scale: 0.9 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "back.out(1.6)", stagger: 0.15 }
+      ).fromTo(
+        ".stage-arrow",
+        { opacity: 0, x: -8 },
+        { opacity: 1, x: 0, duration: 0.4, ease: "power2.out", stagger: 0.15 },
+        "-=0.5"
+      );
 
-      return () => {
-        tl.kill();
-      };
-    });
+      // A continuous, gentle drift on the arrows once they're in —
+      // reads as traffic/leads flowing left to right through the system.
+      gsap.to(".stage-arrow", {
+        x: 5,
+        duration: 0.9,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: -1,
+        stagger: { each: 0.2, repeat: -1 },
+        delay: 1.2,
+      });
 
-    return () => mm.revert();
+      gsap.to(".stage-dot", {
+        scale: 1.4,
+        opacity: 0.5,
+        duration: 1.1,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: -1,
+        stagger: 0.3,
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, [reducedMotion]);
 
   return (
-    <section ref={sectionRef} className="bg-navy text-cream">
-      <div className="wrap grid gap-10 pt-20 sm:pt-28 lg:grid-cols-[1.15fr_0.85fr] lg:items-end lg:gap-16">
-        <div>
-          <Eyebrow light accent="gold">The AMREN Growth System</Eyebrow>
-          <SplitReveal
-            as="h2"
-            text="Attract. Generate Leads. Grow."
-            className="mt-5 max-w-3xl font-display text-4xl font-bold uppercase leading-[1.02] tracking-tight sm:text-6xl"
-          />
-        </div>
-        <FadeIn delay={0.2} className="hidden lg:block">
-          <ImageReveal>
-            <AssetPlaceholder
-              type="hero"
-              label="The AMREN Growth System"
-              motif="nodes"
-              aspectRatio="4/3"
-              tone={5}
-              decorative
-            />
-          </ImageReveal>
-        </FadeIn>
-      </div>
+    <section ref={sectionRef} className="section bg-navy text-cream">
+      <div className="wrap">
+        <Eyebrow light accent="gold">The AMREN Growth System</Eyebrow>
+        <SplitReveal
+          as="h2"
+          text="Attract. Generate Leads. Grow."
+          className="mt-5 max-w-3xl font-display text-4xl font-bold uppercase leading-[1.02] tracking-tight sm:text-6xl"
+        />
 
-      {/* Desktop: pinned scroll choreography */}
-      <div
-        ref={containerRef}
-        className={reducedMotion ? "hidden" : "relative mt-16 hidden lg:block lg:h-screen"}
-      >
-        <div className="absolute inset-0 flex items-center overflow-hidden">
-          <div className="wrap relative h-[70vh] w-full">
-            {stages.map((stage, i) => (
-              <div
-                key={stage.key}
-                ref={(el) => {
-                  stageRefs.current[i] = el;
-                }}
-                className={`absolute inset-0 grid grid-cols-2 items-center gap-16 ${i === 0 ? "opacity-100" : "opacity-0"}`}
-              >
-                <div>
-                  <span className="font-display text-8xl font-bold text-cream/10">{stage.number}</span>
-                  <h3 className="mt-2 font-display text-5xl font-bold uppercase tracking-tight xl:text-6xl">{stage.title}</h3>
-                  <p className={`mt-4 max-w-md font-editorial text-2xl italic ${stage.accentText}`}>{stage.headline}</p>
-                  <p className="mt-5 max-w-md text-cream/70">{stage.description}</p>
-                  <ul className="mt-6 flex flex-wrap gap-2">
-                    {stage.visuals.map((v) => (
-                      <li key={v} className={`rounded-full border px-3 py-1 text-xs uppercase tracking-wide text-cream/70 ${stage.accentBorder}`}>
-                        {v}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <AssetPlaceholder
-                  type="dashboard-screenshot"
-                  label={stage.title}
-                  alt={`${stage.title}: ${stage.headline}`}
-                  motif={stage.motif}
-                  tone={stage.tone}
-                  aspectRatio="4/5"
-                  className="w-80 justify-self-center"
-                  priority={i === 0}
-                  showLabel={false}
+        <div className="stage-row mt-14 flex flex-col gap-6 lg:flex-row lg:items-stretch lg:gap-0">
+          {stages.flatMap((stage, i) => [
+            <div key={stage.key} className="stage-card flex-1">
+              <div className="relative flex h-full flex-col overflow-hidden rounded-[var(--radius-lg)] border border-cream/12 bg-navy-2 p-7 transition-colors duration-300 hover:border-cream/25 sm:p-8">
+                <span
+                  aria-hidden="true"
+                  className={`stage-dot absolute right-7 top-7 h-2 w-2 rounded-full sm:right-8 sm:top-8 ${stage.accentBg}`}
                 />
+                <span className="font-display text-5xl font-bold text-cream/15">{stage.number}</span>
+                <h3 className="mt-2 font-display text-2xl font-bold uppercase tracking-tight">{stage.title}</h3>
+                <p className={`mt-3 font-editorial text-lg italic ${stage.accentText}`}>{stage.headline}</p>
+                <p className="mt-3 text-sm leading-relaxed text-cream/70">{stage.description}</p>
+                <ul className="mt-5 flex flex-wrap gap-2">
+                  {stage.visuals.map((v) => (
+                    <li
+                      key={v}
+                      className={`rounded-full border px-3 py-1 text-[11px] uppercase tracking-wide text-cream/70 ${stage.accentBorder}`}
+                    >
+                      {v}
+                    </li>
+                  ))}
+                </ul>
               </div>
-            ))}
-          </div>
+            </div>,
+            i < stages.length - 1 ? (
+              <div key={`${stage.key}-arrow`} aria-hidden="true" className="hidden shrink-0 items-center justify-center px-3 lg:flex">
+                <span className="stage-arrow text-2xl text-gold/50">→</span>
+              </div>
+            ) : null,
+          ])}
         </div>
-      </div>
-
-      {/* Mobile / tablet, and desktop when reduced motion is preferred: stacked cards */}
-      <div className={reducedMotion ? "wrap mt-12 space-y-10 pb-20" : "wrap mt-12 space-y-10 pb-20 lg:hidden"}>
-        {stages.map((stage, i) => (
-          <FadeIn
-            key={stage.key}
-            delay={i * 0.1}
-            className="grid gap-6 rounded-[var(--radius-lg)] border border-cream/12 bg-navy-2 p-6 sm:grid-cols-2 sm:items-center sm:p-8"
-          >
-            <div>
-              <span className="font-display text-4xl font-bold text-cream/15">{stage.number}</span>
-              <h3 className="mt-1 font-display text-3xl font-bold uppercase tracking-tight">{stage.title}</h3>
-              <p className={`mt-3 font-editorial text-xl italic ${stage.accentText}`}>{stage.headline}</p>
-              <p className="mt-3 text-sm text-cream/70">{stage.description}</p>
-              <ul className="mt-5 flex flex-wrap gap-2">
-                {stage.visuals.map((v) => (
-                  <li key={v} className={`rounded-full border px-3 py-1 text-[11px] uppercase tracking-wide text-cream/70 ${stage.accentBorder}`}>
-                    {v}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <AssetPlaceholder
-              type="dashboard-screenshot"
-              label={stage.title}
-              alt={`${stage.title}: ${stage.headline}`}
-              motif={stage.motif}
-              tone={stage.tone}
-              aspectRatio="4/5"
-              showLabel={false}
-            />
-          </FadeIn>
-        ))}
       </div>
     </section>
   );
