@@ -1,0 +1,281 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   AMREN DIGITAL — DESIGN TOKENS
+   Single source of truth for color, type, spacing, radius and motion.
+   Do not scatter raw hex values in components — reference these tokens.
+   ========================================================================== */
+
+:root {
+  /* Brand colors — vibrant, eye-catching hues kept light in value (high
+     lightness, real saturation — not muted/dusty), spanning a full rainbow
+     spread (orange, rose, sky, lime, violet, yellow) on a light beige-white
+     ground. Token names are kept stable (navy/blue/gold/coral/etc.) since
+     every component references these names as Tailwind utilities — only
+     the underlying hex values change, so the whole site re-themes from
+     here.
+     "navy"/"ink" (the dark-section-bg and body-text roles) stay a warm
+     neutral charcoal rather than any accent hue — every accent here is
+     deliberately light, so none of them can also serve as the dark anchor
+     color the rest of the site's contrast depends on. */
+  --amren-navy: #2b2620;
+  --amren-navy-2: #37312a;
+  --amren-navy-3: #453d33;
+  --amren-ink: #241f1a;
+  --amren-blue: #7dd3fc;
+  --amren-blue-2: #bae6fd;
+  --amren-gold: #fdba74;
+  --amren-gold-2: #fed7aa;
+  --amren-cream: #ffffff;
+  --amren-cream-2: #f6f3ec;
+  --amren-white: #ffffff;
+
+  /* Secondary accents — vivid but light, used sparingly; warm orange (gold slot) stays the primary voice */
+  --amren-coral: #fda4af;
+  --amren-coral-2: #fecdd3;
+  --amren-lime: #bef264;
+  --amren-lime-2: #d9f99d;
+  --amren-purple: #c4b5fd;
+  --amren-purple-2: #ddd6fe;
+  --amren-orange: #fde047;
+  --amren-orange-2: #fef08a;
+
+  /* Semantic */
+  --bg-page: #ffffff;
+  --bg-surface: var(--amren-white);
+  --bg-inverse: var(--amren-navy);
+  --text-primary: var(--amren-ink);
+  --text-inverse: var(--amren-cream);
+  --text-muted: #7a6f62;
+  --text-muted-inverse: #b8aea0;
+  --border-subtle: rgba(36, 31, 26, 0.1);
+  --border-subtle-inverse: rgba(250, 246, 239, 0.14);
+
+  /* Radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.75rem;
+  --radius-xl: 2.5rem;
+  --radius-pill: 999px;
+
+  /* Shadow */
+  --shadow-soft: 0 20px 60px -20px rgba(10, 10, 10, 0.35);
+  --shadow-card: 0 12px 40px -12px rgba(10, 10, 10, 0.22);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 200ms;
+  --dur-med: 420ms;
+  --dur-slow: 800ms;
+
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-navy: var(--amren-navy);
+  --color-navy-2: var(--amren-navy-2);
+  --color-navy-3: var(--amren-navy-3);
+  --color-ink: var(--amren-ink);
+  --color-blue: var(--amren-blue);
+  --color-blue-2: var(--amren-blue-2);
+  --color-gold: var(--amren-gold);
+  --color-gold-2: var(--amren-gold-2);
+  --color-cream: var(--amren-cream);
+  --color-cream-2: var(--amren-cream-2);
+  --color-brand-white: var(--amren-white);
+  --color-coral: var(--amren-coral);
+  --color-coral-2: var(--amren-coral-2);
+  --color-lime: var(--amren-lime);
+  --color-lime-2: var(--amren-lime-2);
+  --color-purple: var(--amren-purple);
+  --color-purple-2: var(--amren-purple-2);
+  --color-orange: var(--amren-orange);
+  --color-orange-2: var(--amren-orange-2);
+
+  --font-display: var(--font-space-grotesk), "Arial Black", sans-serif;
+  --font-editorial: var(--font-dm-serif), Georgia, serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
+
+  --radius-card: var(--radius-lg);
+  --radius-pill: var(--radius-pill);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+  /* Clip horizontal overflow at the root so it stays the single window
+     scroller. Setting this on body instead would force body's overflow-y
+     to compute as `auto` per spec, turning body into its OWN nested scroll
+     container — which breaks GSAP ScrollTrigger and Lenis, both of which
+     assume window/html is the scroller, and was causing pinned sections to
+     miscalculate and the page to stop scrolling correctly. */
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--bg-page);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+}
+
+::selection {
+  background: var(--amren-gold);
+  color: var(--amren-ink);
+}
+
+/* Layered (not left bare) so Tailwind color utilities on <a> tags — e.g.
+   text-cream on a button rendered as a Link — win in the cascade instead of
+   being silently overridden by this default. Cascade layers rank by origin
+   first: anything outside a @layer beats every layered rule regardless of
+   specificity, so an unlayered `a { color: inherit }` would always beat
+   `text-cream`, not just when it's the "wrong" choice. */
+@layer base {
+  a {
+    color: inherit;
+  }
+}
+
+/* Grain / noise texture overlay — subtle, fixed, non-interactive */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Visible focus states for accessibility */
+:focus-visible {
+  outline: 2px solid var(--amren-gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--amren-navy);
+  color: var(--amren-cream);
+  padding: 0.75rem 1.25rem;
+  border-radius: 0 0 var(--radius-sm) 0;
+}
+.skip-link:focus {
+  left: 0;
+}
+
+/* Marquee */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+.marquee-track.marquee-reverse {
+  animation-direction: reverse;
+}
+.marquee-row:hover .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Editorial pull-quote mark */
+.pull-quote::before {
+  content: "\201C";
+  font-family: var(--font-editorial);
+}
+
+/* Floating flat-color accent shapes — crisp solid circles, no blur/blend, so
+   overlapping colors never read as a gradient. Used sparingly as small motion
+   accents, not full-bleed background washes. */
+.accent-dot {
+  position: absolute;
+  border-radius: 999px;
+  will-change: transform;
+  pointer-events: none;
+}
+@keyframes dot-float-a {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(6px, 10px);
+  }
+}
+@keyframes dot-float-b {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-8px, -6px);
+  }
+}
+.accent-dot-a {
+  animation: dot-float-a 6s ease-in-out infinite;
+}
+.accent-dot-b {
+  animation: dot-float-b 7s ease-in-out infinite;
+}
+
+/* Scroll progress bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  transform-origin: 0 50%;
+  background: var(--amren-gold);
+  z-index: 80;
+}
+
+/* Reduced motion: neutralize decorative motion, preserve content */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .marquee-track,
+  .accent-dot {
+    animation: none !important;
+  }
+  .scroll-progress {
+    display: none !important;
+  }
+}
+
+/* Utility: container rhythm */
+.section {
+  padding-block: clamp(4rem, 9vw, 8rem);
+}
+
+.wrap {
+  width: min(1320px, 100% - 2.5rem);
+  margin-inline: auto;
+}
+
+@media (min-width: 768px) {
+  .wrap {
+    width: min(1320px, 100% - 5rem);
+  }
+}
