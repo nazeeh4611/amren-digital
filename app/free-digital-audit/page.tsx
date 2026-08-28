@@ -46,14 +46,14 @@ export default function FreeDigitalAuditPage() {
             as="h1"
             text="A free digital growth audit for Dubai businesses."
             trigger="mount"
-            className="mt-5 font-display text-4xl font-bold uppercase leading-[1.02] tracking-tight text-navy sm:text-6xl"
+            className="mt-5 font-display text-4xl font-bold uppercase leading-[1.02] tracking-tight text-ink sm:text-6xl"
           />
-          <p className="mt-6 max-w-xl text-lg text-navy/70">
+          <p className="mt-6 max-w-xl text-lg text-ink/70">
             Tell us about your business and we&rsquo;ll review what&rsquo;s publicly visible about your digital
             presence — website, Google Business Profile, visible advertising and lead-capture setup — and share what
             we find.
           </p>
-          <p className="mt-4 max-w-xl text-sm text-navy/55">
+          <p className="mt-4 max-w-xl text-sm text-ink/55">
             The audit is based on publicly observable information. We won&rsquo;t claim to know figures like your
             actual conversion rate or ad account performance unless you choose to share account access or data with
             us directly.
@@ -65,14 +65,14 @@ export default function FreeDigitalAuditPage() {
       <section className="section bg-white pt-0">
         <div className="wrap">
           <Eyebrow accent="gold">What We Review</Eyebrow>
-          <h2 className="mt-5 max-w-2xl font-display text-3xl font-bold uppercase tracking-tight text-navy sm:text-5xl">
+          <h2 className="mt-5 max-w-2xl font-display text-3xl font-bold uppercase tracking-tight text-ink sm:text-5xl">
             Where we look
           </h2>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {auditScope.map((item, i) => (
               <FadeIn key={item.label} delay={Math.min(i * 0.05, 0.3)} className="rounded-[var(--radius-card)] border border-navy/10 bg-cream p-6">
-                <h3 className="font-display text-lg font-semibold text-navy">{item.label}</h3>
-                <p className="mt-2 text-sm text-navy/65">{item.detail}</p>
+                <h3 className="font-display text-lg font-semibold text-ink">{item.label}</h3>
+                <p className="mt-2 text-sm text-ink/65">{item.detail}</p>
               </FadeIn>
             ))}
           </div>
@@ -119,10 +119,10 @@ export default function FreeDigitalAuditPage() {
         <div className="wrap grid gap-14 lg:grid-cols-[1fr_1fr] lg:gap-20">
           <div>
             <Eyebrow accent="gold">Request Your Audit</Eyebrow>
-            <h2 className="mt-5 font-display text-3xl font-bold uppercase leading-[1.02] tracking-tight text-navy sm:text-4xl">
+            <h2 className="mt-5 font-display text-3xl font-bold uppercase leading-[1.02] tracking-tight text-ink sm:text-4xl">
               Tell us about your business.
             </h2>
-            <p className="mt-5 max-w-md text-navy/70">
+            <p className="mt-5 max-w-md text-ink/70">
               A few details about where you are now — we&rsquo;ll take it from there.
             </p>
           </div>

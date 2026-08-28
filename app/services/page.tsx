@@ -27,9 +27,9 @@ export default function ServicesPage() {
           as="h1"
           text="What we build."
           trigger="mount"
-          className="mt-5 max-w-3xl font-display text-5xl font-bold uppercase leading-[1.02] tracking-tight text-navy sm:text-7xl"
+          className="mt-5 max-w-3xl font-display text-5xl font-bold uppercase leading-[1.02] tracking-tight text-ink sm:text-7xl"
         />
-        <p className="mt-6 max-w-2xl text-lg text-navy/70">
+        <p className="mt-6 max-w-2xl text-lg text-ink/70">
           Every service below works as part of one connected system — Attract, Generate Leads, Grow — rather than as
           an isolated line item.
         </p>
@@ -42,12 +42,12 @@ export default function ServicesPage() {
             return (
               <FadeIn key={category.key} className="grid gap-8 py-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
                 <div>
-                  <span className="font-display text-5xl font-bold text-navy/10">{category.number}</span>
-                  <h2 className="mt-2 font-display text-3xl font-bold uppercase tracking-tight text-navy sm:text-4xl">
+                  <span className="font-display text-5xl font-bold text-ink/10">{category.number}</span>
+                  <h2 className="mt-2 font-display text-3xl font-bold uppercase tracking-tight text-ink sm:text-4xl">
                     {category.title}
                   </h2>
                   <p className="mt-3 font-editorial text-xl italic text-blue">{category.headline}</p>
-                  <p className="mt-3 max-w-md text-navy/70">{category.description}</p>
+                  <p className="mt-3 max-w-md text-ink/70">{category.description}</p>
                 </div>
 
                 <div className="grid gap-6 sm:grid-cols-2">
@@ -65,10 +65,10 @@ export default function ServicesPage() {
                         aspectRatio="4/3"
                         className="transition-transform duration-500 group-hover:scale-[1.03]"
                       />
-                      <h3 className="mt-4 font-display text-lg font-semibold text-navy transition-colors group-hover:text-blue">
+                      <h3 className="mt-4 font-display text-lg font-semibold text-ink transition-colors group-hover:text-blue">
                         {service.title}
                       </h3>
-                      <p className="mt-1 line-clamp-2 text-sm text-navy/60">{service.headline}</p>
+                      <p className="mt-1 line-clamp-2 text-sm text-ink/60">{service.headline}</p>
                     </Link>
                   ))}
                 </div>

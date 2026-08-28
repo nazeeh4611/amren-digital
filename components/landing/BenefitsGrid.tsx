@@ -15,7 +15,7 @@ export function BenefitsGrid({ benefits }: { benefits: string[] }) {
       <div className="wrap">
         <FadeIn>
           <Eyebrow accent="blue">What You Get</Eyebrow>
-          <h2 className="mt-5 max-w-2xl font-display text-3xl font-bold uppercase leading-tight tracking-tight text-navy sm:text-5xl">
+          <h2 className="mt-5 max-w-2xl font-display text-3xl font-bold uppercase leading-tight tracking-tight text-ink sm:text-5xl">
             Built around outcomes, not activity.
           </h2>
         </FadeIn>
@@ -27,10 +27,10 @@ export function BenefitsGrid({ benefits }: { benefits: string[] }) {
               delay={Math.min(i * 0.06, 0.3)}
               className="flex items-start gap-4 rounded-[var(--radius-card)] border border-navy/10 bg-white p-6"
             >
-              <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gold/20 text-navy">
+              <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gold/20 text-ink">
                 <CheckIcon />
               </span>
-              <p className="text-navy/80">{benefit}</p>
+              <p className="text-ink/80">{benefit}</p>
             </FadeIn>
           ))}
         </div>

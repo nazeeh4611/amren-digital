@@ -7,52 +7,53 @@
    ========================================================================== */
 
 :root {
-  /* Brand colors — a warm-neutral + muted blue-teal interior palette
-     (5 hex values supplied directly: #C7B8A4, #CCB68E, #A88C6C, #5A7C83,
-     #2C444D), replacing the earlier teal-ramp theme. Token names stay
-     stable (navy/blue/gold/coral/etc.) since every component references
-     these names as Tailwind utilities — only the underlying hex values
-     change, so the whole site re-themes from here.
-     Dark anchor (navy/ink) = the palette's darkest step, #2C444D, with
-     navy-2/navy-3 derived between it and the muted teal #5A7C83; light
-     surfaces (cream/cream-2) are near-white/light tints of the taupe
-     #C7B8A4; "gold" — the primary CTA/pop accent — takes the warmest,
-     most saturated step (#CCB68E) in place of the old turquoise. Every
-     other accent is a tint/shade within this same warm-neutral + teal
-     family rather than an unrelated hue. */
-  --amren-navy: #2c444d; /* given — dark anchor */
-  --amren-navy-2: #3f5c66; /* between navy and the muted teal */
-  --amren-navy-3: #5a7c83; /* given — muted blue-teal */
-  --amren-ink: #202f35; /* deepened navy, body text */
-  --amren-blue: #5a7c83; /* given — muted blue-teal accent */
-  --amren-blue-2: #c7b8a4; /* given — light taupe, pale companion */
-  --amren-gold: #ccb68e; /* given — primary accent */
-  --amren-gold-2: #c7b8a4; /* given — lighter companion */
-  --amren-cream: #f8f5ef; /* near-white, taupe-tinted */
-  --amren-cream-2: #e3d9c9; /* light taupe tint — alternate section bg */
-  --amren-white: #ffffff;
+  /* Brand colors — the "Socio-inspired" editorial palette: predominantly
+     soft-neutral backgrounds (Soft White / Mist), near-black type
+     (Primary Ink), one strong dark accent (Deep Blue) carrying most of
+     the color weight, and a small set of soft/bright accents (Soft
+     Blue, Cyan, Soft Peach, Coral, Green, Orange) used selectively for
+     per-category identity rather than covering whole sections. No
+     purple in this system — the previous grayscale iteration's vestigial
+     `purple`/`lime` token slots are renamed to `green`/`cyan` below
+     (not just recolored) so the name itself no longer exists anywhere.
+     Token names stay stable for every OTHER role since components
+     reference them as Tailwind utilities — only the underlying hex
+     values change, so the whole site re-themes from here. */
+  --amren-ink: #111111; /* Primary Ink — body text, headings */
+  --amren-cream: #fafaf7; /* Soft White — primary background (65%) */
+  --amren-cream-2: #eef2f7; /* Mist — alternate section background */
+  --amren-white: #ffffff; /* true white, for surfaces that want to sit above Mist/Soft White */
+  --amren-navy: #203778; /* Deep Blue — the one strong dark accent (15%): dark sections, primary CTA */
+  --amren-navy-2: #1a2c60; /* Deep Blue, darker — hover state */
+  --amren-navy-3: #2e4a94; /* Deep Blue, lighter — badges/borders on dark */
+  --amren-gold: #203778; /* primary CTA — Deep Blue, per spec */
+  --amren-gold-2: #1a2c60; /* primary CTA hover — a darker Deep Blue, per spec */
+  --amren-blue: #a3c1ee; /* Soft Blue */
+  --amren-blue-2: #d3e2f7; /* Soft Blue, lighter tint */
 
-  /* Secondary accents — tints/shades within the same warm-neutral + teal
-     family, used sparingly for per-category variety (service cards, eyebrows). */
-  --amren-coral: #a88c6c; /* given — medium warm brown */
-  --amren-coral-2: #c9b39a; /* lightened */
-  --amren-lime: #6b8d93; /* teal variant, shifted from blue */
-  --amren-lime-2: #a9c1c5; /* lightened */
-  --amren-purple: #3f5c66; /* deep teal-blue variant */
-  --amren-purple-2: #7c9ba1; /* lightened */
-  --amren-orange: #8c7355; /* darker brown/tan variant */
-  --amren-orange-2: #bfa989; /* lightened */
+  /* Soft/bright accents — used selectively (small labels, numbers, icons,
+     borders, hover states), never as large saturated blocks. */
+  --amren-cyan: #94eff2;
+  --amren-cyan-2: #c9f7f8;
+  --amren-peach: #f1ddd8; /* Soft Peach */
+  --amren-peach-2: #f8eeeb;
+  --amren-coral: #fac8ac;
+  --amren-coral-2: #fde3d3;
+  --amren-green: #88d692;
+  --amren-green-2: #c3edc9;
+  --amren-orange: #f3bb34;
+  --amren-orange-2: #fbde9c;
 
   /* Semantic */
-  --bg-page: #f8f5ef;
+  --bg-page: var(--amren-cream);
   --bg-surface: var(--amren-white);
   --bg-inverse: var(--amren-navy);
   --text-primary: var(--amren-ink);
   --text-inverse: var(--amren-cream);
-  --text-muted: #6e655a;
-  --text-muted-inverse: #b7ac9c;
-  --border-subtle: rgba(32, 47, 53, 0.1);
-  --border-subtle-inverse: rgba(227, 217, 201, 0.14);
+  --text-muted: #5a5a5a; /* neutral gray, tuned for AA contrast on Soft White — not a pastel, per accessibility note */
+  --text-muted-inverse: #c3cee6;
+  --border-subtle: rgba(17, 17, 17, 0.1);
+  --border-subtle-inverse: rgba(255, 255, 255, 0.16);
 
   /* Radius */
   --radius-sm: 0.5rem;
@@ -89,12 +90,21 @@
   --color-brand-white: var(--amren-white);
   --color-coral: var(--amren-coral);
   --color-coral-2: var(--amren-coral-2);
-  --color-lime: var(--amren-lime);
-  --color-lime-2: var(--amren-lime-2);
-  --color-purple: var(--amren-purple);
-  --color-purple-2: var(--amren-purple-2);
+  --color-cyan: var(--amren-cyan);
+  --color-cyan-2: var(--amren-cyan-2);
+  --color-peach: var(--amren-peach);
+  --color-peach-2: var(--amren-peach-2);
+  --color-green: var(--amren-green);
+  --color-green-2: var(--amren-green-2);
   --color-orange: var(--amren-orange);
   --color-orange-2: var(--amren-orange-2);
+
+  /* Exact design-token names from the brief — semantic aliases onto the
+     tokens above, for anyone reaching for the palette by its own names. */
+  --color-background: var(--amren-cream);
+  --color-mist: var(--amren-cream-2);
+  --color-primary: var(--amren-navy);
+  --color-blue-soft: var(--amren-blue);
 
   --font-display: var(--font-space-grotesk), "Arial Black", sans-serif;
   --font-editorial: var(--font-dm-serif), Georgia, serif;

@@ -21,12 +21,12 @@ export function Marquee({
   separator?: string;
   reverse?: boolean;
   speed?: number;
-  accent?: "gold" | "coral" | "blue" | "lime";
+  accent?: "gold" | "coral" | "blue" | "cyan";
 }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const reducedMotion = usePrefersReducedMotion();
   const doubled = [...items, ...items];
-  const accentClass = { gold: "text-gold", coral: "text-coral", blue: "text-blue-2", lime: "text-lime" }[accent];
+  const accentClass = { gold: "text-gold", coral: "text-coral", blue: "text-blue-2", cyan: "text-cyan" }[accent];
 
   // GSAP-driven (not pure CSS) so its playback speed can react to scroll
   // velocity in real time — the marquee visibly accelerates while you scroll
@@ -80,7 +80,7 @@ export function Marquee({
             key={i}
             className={clsx(
               "mx-4 shrink-0 font-display text-lg font-medium uppercase tracking-wide sm:text-2xl",
-              tone === "dark" ? "text-cream/70" : "text-navy/60"
+              tone === "dark" ? "text-cream/70" : "text-ink/60"
             )}
           >
             {item}

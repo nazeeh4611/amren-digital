@@ -31,7 +31,7 @@ export function CookieConsent() {
       aria-live="polite"
       className="fixed inset-x-3 bottom-3 z-[70] mx-auto max-w-2xl rounded-[var(--radius-lg)] border border-navy/10 bg-cream p-5 shadow-[var(--shadow-soft)] sm:inset-x-auto sm:right-6 sm:bottom-6 sm:p-6"
     >
-      <p className="text-sm text-navy/80">
+      <p className="text-sm text-ink/80">
         AMREN Digital uses essential cookies to run this site, and optional analytics/marketing cookies to understand
         traffic and improve campaigns. You can change your choice anytime — see our{" "}
         <Link href="/cookie-policy" className="underline underline-offset-2 hover:text-blue">
@@ -42,11 +42,11 @@ export function CookieConsent() {
 
       {showPreferences && (
         <div className="mt-4 space-y-3 border-t border-navy/10 pt-4">
-          <label className="flex items-center justify-between gap-4 text-sm text-navy/80">
+          <label className="flex items-center justify-between gap-4 text-sm text-ink/80">
             <span>Essential cookies (always on)</span>
             <input type="checkbox" checked disabled className="h-4 w-4 accent-navy" />
           </label>
-          <label className="flex items-center justify-between gap-4 text-sm text-navy/80">
+          <label className="flex items-center justify-between gap-4 text-sm text-ink/80">
             <span>Analytics cookies</span>
             <input
               type="checkbox"
@@ -55,7 +55,7 @@ export function CookieConsent() {
               className="h-4 w-4 accent-blue"
             />
           </label>
-          <label className="flex items-center justify-between gap-4 text-sm text-navy/80">
+          <label className="flex items-center justify-between gap-4 text-sm text-ink/80">
             <span>Marketing cookies</span>
             <input
               type="checkbox"
@@ -78,7 +78,7 @@ export function CookieConsent() {
         <button
           type="button"
           onClick={rejectAll}
-          className="rounded-full border border-navy/20 px-5 py-2.5 text-xs font-semibold uppercase tracking-wide text-navy transition-colors hover:bg-navy/5"
+          className="rounded-full border border-navy/20 px-5 py-2.5 text-xs font-semibold uppercase tracking-wide text-ink transition-colors hover:bg-navy/5"
         >
           Essential Only
         </button>
@@ -86,7 +86,7 @@ export function CookieConsent() {
           <button
             type="button"
             onClick={savePreferences}
-            className="rounded-full border border-navy/20 px-5 py-2.5 text-xs font-semibold uppercase tracking-wide text-navy transition-colors hover:bg-navy/5"
+            className="rounded-full border border-navy/20 px-5 py-2.5 text-xs font-semibold uppercase tracking-wide text-ink transition-colors hover:bg-navy/5"
           >
             Save Preferences
           </button>
@@ -94,7 +94,7 @@ export function CookieConsent() {
           <button
             type="button"
             onClick={() => setShowPreferences(true)}
-            className="text-xs font-semibold uppercase tracking-wide text-navy/60 underline underline-offset-4 hover:text-blue"
+            className="text-xs font-semibold uppercase tracking-wide text-ink/60 underline underline-offset-4 hover:text-blue"
           >
             Preferences
           </button>

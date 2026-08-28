@@ -33,7 +33,7 @@ export default async function LandingThankYouPage({
           trigger="mount"
           className="font-display text-6xl font-bold uppercase tracking-tight text-coral sm:text-8xl"
         />
-        <p className="mx-auto max-w-lg text-lg text-navy/70">
+        <p className="mx-auto max-w-lg text-lg text-ink/70">
           {service
             ? `We've received your ${service.title.toLowerCase()} request. A member of the AMREN team will review your details and get back to you shortly.`
             : "We've received your request. A member of the AMREN team will review your details and get back to you shortly."}
@@ -48,9 +48,9 @@ export default async function LandingThankYouPage({
           </Button>
         </div>
 
-        <p className="mt-4 text-sm text-navy/50">
+        <p className="mt-4 text-sm text-ink/50">
           Not urgent? We typically respond within 1–2 business days.{" "}
-          <Link href="/" className="underline underline-offset-2 hover:text-navy">
+          <Link href="/" className="underline underline-offset-2 hover:text-ink">
             Back to the AMREN Digital homepage
           </Link>
           .

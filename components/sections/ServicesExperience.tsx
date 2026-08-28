@@ -8,13 +8,20 @@ import { FadeIn } from "@/components/animations/FadeIn";
 
 type CardSize = "wide" | "normal";
 
+// Per-category accent identity, per spec: Performance→Deep Blue,
+// Social→Peach, Search→Cyan, Digital Experiences→Soft Blue,
+// Content→Orange, Systems→Green. Only Performance sits on the one dark
+// accent (Deep Blue), so only that card needs light text — every other
+// category is a soft/bright pastel, so dark ink reads best on it. The
+// numbered badge stays Deep Blue throughout regardless of card color —
+// one consistent dark-accent thread running across all six cards.
 const cardStyle: Record<string, { bg: string; text: string; badgeBg: string; badgeText: string; size: CardSize }> = {
-  performance: { bg: "bg-gold", text: "text-ink", badgeBg: "bg-navy", badgeText: "text-cream", size: "wide" },
-  social: { bg: "bg-blue", text: "text-ink", badgeBg: "bg-navy-3", badgeText: "text-cream", size: "wide" },
-  search: { bg: "bg-coral", text: "text-ink", badgeBg: "bg-navy-3", badgeText: "text-cream", size: "normal" },
-  "digital-experiences": { bg: "bg-navy", text: "text-cream", badgeBg: "bg-cream", badgeText: "text-navy", size: "wide" },
-  content: { bg: "bg-lime", text: "text-ink", badgeBg: "bg-navy", badgeText: "text-cream", size: "normal" },
-  systems: { bg: "bg-orange", text: "text-ink", badgeBg: "bg-navy", badgeText: "text-cream", size: "normal" },
+  performance: { bg: "bg-gold", text: "text-cream", badgeBg: "bg-navy-3", badgeText: "text-cream", size: "wide" },
+  social: { bg: "bg-peach", text: "text-ink", badgeBg: "bg-navy", badgeText: "text-cream", size: "wide" },
+  search: { bg: "bg-cyan", text: "text-ink", badgeBg: "bg-navy", badgeText: "text-cream", size: "normal" },
+  "digital-experiences": { bg: "bg-blue", text: "text-ink", badgeBg: "bg-navy", badgeText: "text-cream", size: "wide" },
+  content: { bg: "bg-orange", text: "text-ink", badgeBg: "bg-navy", badgeText: "text-cream", size: "normal" },
+  systems: { bg: "bg-green", text: "text-ink", badgeBg: "bg-navy", badgeText: "text-cream", size: "normal" },
 };
 
 function ArrowIcon({ className }: { className?: string }) {
@@ -174,7 +181,7 @@ export function ServicesExperience() {
         <SplitReveal
           as="h2"
           text="One system. Six connected capabilities."
-          className="mt-5 max-w-3xl font-display text-4xl font-bold uppercase leading-[1.02] tracking-tight text-navy sm:text-6xl"
+          className="mt-5 max-w-3xl font-display text-4xl font-bold uppercase leading-[1.02] tracking-tight text-ink sm:text-6xl"
         />
       </div>
 
@@ -208,7 +215,7 @@ export function ServicesExperience() {
               />
             </div>
             <div className="flex flex-1 flex-col justify-between p-7">
-              <span className="font-display text-xl font-bold uppercase leading-tight tracking-tight text-navy">
+              <span className="font-display text-xl font-bold uppercase leading-tight tracking-tight text-ink">
                 Explore every service
               </span>
 
@@ -225,7 +232,7 @@ export function ServicesExperience() {
                 />
                 <span
                   aria-hidden="true"
-                  className="absolute inset-y-1.5 left-1.5 z-10 my-auto flex h-10 w-10 items-center justify-center rounded-full text-navy transition-[left,color] duration-300 ease-out group-hover:left-[calc(100%-3.25rem)] group-hover:text-cream"
+                  className="absolute inset-y-1.5 left-1.5 z-10 my-auto flex h-10 w-10 items-center justify-center rounded-full text-ink transition-[left,color] duration-300 ease-out group-hover:left-[calc(100%-3.25rem)] group-hover:text-cream"
                 >
                   <ArrowIcon className="h-4 w-4" />
                 </span>

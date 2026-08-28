@@ -41,7 +41,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
       <section className="wrap pb-12 pt-8 sm:pt-10">
         <Eyebrow>{project.industry}</Eyebrow>
-        <h1 className="mt-5 max-w-3xl font-display text-4xl font-bold uppercase leading-[1.02] tracking-tight text-navy sm:text-6xl">
+        <h1 className="mt-5 max-w-3xl font-display text-4xl font-bold uppercase leading-[1.02] tracking-tight text-ink sm:text-6xl">
           <SplitReveal as="span" text={project.title} trigger="mount" />
         </h1>
         <ul className="mt-5 flex flex-wrap gap-2">
@@ -50,7 +50,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               key={s}
               as="li"
               delay={0.4 + i * 0.05}
-              className="rounded-full border border-navy/15 px-3 py-1 text-xs uppercase tracking-wide text-navy/60"
+              className="rounded-full border border-navy/15 px-3 py-1 text-xs uppercase tracking-wide text-ink/60"
             >
               {s}
             </FadeIn>
@@ -73,16 +73,16 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       <section className="section bg-white pt-0">
         <div className="wrap grid gap-12 lg:grid-cols-3">
           <FadeIn>
-            <h2 className="font-display text-lg font-bold uppercase tracking-tight text-navy">Overview</h2>
-            <p className="mt-3 text-navy/70">{project.overview}</p>
+            <h2 className="font-display text-lg font-bold uppercase tracking-tight text-ink">Overview</h2>
+            <p className="mt-3 text-ink/70">{project.overview}</p>
           </FadeIn>
           <FadeIn delay={0.08}>
-            <h2 className="font-display text-lg font-bold uppercase tracking-tight text-navy">Challenge</h2>
-            <p className="mt-3 text-navy/70">{project.challenge}</p>
+            <h2 className="font-display text-lg font-bold uppercase tracking-tight text-ink">Challenge</h2>
+            <p className="mt-3 text-ink/70">{project.challenge}</p>
           </FadeIn>
           <FadeIn delay={0.16}>
-            <h2 className="font-display text-lg font-bold uppercase tracking-tight text-navy">Strategy &amp; Execution</h2>
-            <p className="mt-3 text-navy/70">
+            <h2 className="font-display text-lg font-bold uppercase tracking-tight text-ink">Strategy &amp; Execution</h2>
+            <p className="mt-3 text-ink/70">
               {project.strategy} {project.execution}
             </p>
           </FadeIn>
@@ -90,7 +90,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
         {!project.resultsAvailable && (
           <FadeIn className="wrap mt-12">
-            <div className="rounded-[var(--radius-lg)] border border-dashed border-navy/20 bg-cream p-6 text-sm text-navy/60">
+            <div className="rounded-[var(--radius-lg)] border border-dashed border-navy/20 bg-cream p-6 text-sm text-ink/60">
               Verified results for this project will be published here once confirmed with the client. AMREN does not
               publish estimated or fabricated results.
             </div>
@@ -103,8 +103,8 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           ← All work
         </Button>
         <Link href={`/work/${nextProject.slug}`} className="group text-right">
-          <span className="block text-xs font-semibold uppercase tracking-wide text-navy/50">Next project</span>
-          <span className="relative inline-flex font-display text-lg font-semibold text-navy transition-colors group-hover:text-blue">
+          <span className="block text-xs font-semibold uppercase tracking-wide text-ink/50">Next project</span>
+          <span className="relative inline-flex font-display text-lg font-semibold text-ink transition-colors group-hover:text-blue">
             {nextProject.title}
             <span
               aria-hidden="true"

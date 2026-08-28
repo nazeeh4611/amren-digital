@@ -65,7 +65,7 @@ export function ViewCursorArea({
         <div
           ref={followerRef}
           aria-hidden="true"
-          className="pointer-events-none fixed left-0 top-0 z-[70] flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 scale-0 items-center justify-center rounded-full bg-gold text-xs font-bold uppercase tracking-wide text-ink opacity-0"
+          className="pointer-events-none fixed left-0 top-0 z-[70] flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 scale-0 items-center justify-center rounded-full bg-gold text-xs font-bold uppercase tracking-wide text-cream opacity-0"
         >
           {label}
         </div>

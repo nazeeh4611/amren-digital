@@ -25,9 +25,9 @@ export default function WaitlistPage() {
             as="h1"
             text="Get on the growth list."
             trigger="mount"
-            className="mt-5 font-display text-4xl font-bold uppercase leading-[1.02] tracking-tight text-navy sm:text-6xl"
+            className="mt-5 font-display text-4xl font-bold uppercase leading-[1.02] tracking-tight text-ink sm:text-6xl"
           />
-          <p className="mt-6 max-w-md text-lg text-navy/70">
+          <p className="mt-6 max-w-md text-lg text-ink/70">
             Register your interest for an upcoming consultation slot with AMREN. Tell us what you want to grow, and
             we&rsquo;ll be in touch to schedule a conversation.
           </p>

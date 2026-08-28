@@ -24,7 +24,7 @@ export function LandingHeader() {
           <a
             href={site.contact.phoneHref}
             onClick={() => trackEvent("phone_click", { label: "lp_header" })}
-            className="hidden text-sm font-semibold text-navy/70 transition-colors hover:text-navy sm:inline"
+            className="hidden text-sm font-semibold text-ink/70 transition-colors hover:text-ink sm:inline"
           >
             {site.contact.phone}
           </a>

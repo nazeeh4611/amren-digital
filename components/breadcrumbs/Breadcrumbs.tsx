@@ -8,13 +8,13 @@ export function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
   return (
     <nav aria-label="Breadcrumb" className="wrap pt-28 sm:pt-32">
       <JsonLd data={breadcrumbSchema(full)} />
-      <ol className="flex flex-wrap items-center gap-2 text-xs uppercase tracking-wide text-navy/50">
+      <ol className="flex flex-wrap items-center gap-2 text-xs uppercase tracking-wide text-ink/50">
         {full.map((item, index) => {
           const isLast = index === full.length - 1;
           return (
             <li key={item.path} className="flex items-center gap-2">
               {isLast ? (
-                <span aria-current="page" className="text-navy">
+                <span aria-current="page" className="text-ink">
                   {item.name}
                 </span>
               ) : (

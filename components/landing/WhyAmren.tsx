@@ -16,7 +16,7 @@ export function WhyAmren() {
       <div className="wrap">
         <FadeIn>
           <Eyebrow accent="coral">Why AMREN</Eyebrow>
-          <h2 className="mt-5 max-w-2xl font-display text-3xl font-bold uppercase leading-tight tracking-tight text-navy sm:text-5xl">
+          <h2 className="mt-5 max-w-2xl font-display text-3xl font-bold uppercase leading-tight tracking-tight text-ink sm:text-5xl">
             Built to be a growth partner, not a vendor.
           </h2>
         </FadeIn>
@@ -24,8 +24,8 @@ export function WhyAmren() {
         <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {pillars.map((pillar, i) => (
             <FadeIn key={pillar.title} delay={Math.min(i * 0.06, 0.3)}>
-              <h3 className="font-display text-lg font-semibold text-navy">{pillar.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-navy/65">{pillar.body}</p>
+              <h3 className="font-display text-lg font-semibold text-ink">{pillar.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink/65">{pillar.body}</p>
             </FadeIn>
           ))}
         </div>

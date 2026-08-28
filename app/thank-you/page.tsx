@@ -28,7 +28,7 @@ export default function ThankYouPage() {
             trigger="mount"
             className="mt-5 font-display text-6xl font-bold uppercase tracking-tight text-coral sm:text-8xl"
           />
-          <p className="mx-auto mt-6 max-w-md text-lg text-navy/70">
+          <p className="mx-auto mt-6 max-w-md text-lg text-ink/70">
             Thanks for reaching out. We&rsquo;ll be in touch shortly.
           </p>
         </div>

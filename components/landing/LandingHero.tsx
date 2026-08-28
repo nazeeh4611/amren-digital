@@ -46,9 +46,9 @@ export function LandingHero({
           as="h1"
           text={headline}
           trigger="mount"
-          className="mt-5 font-display text-4xl font-bold uppercase leading-[1.02] tracking-tight text-navy sm:text-6xl"
+          className="mt-5 font-display text-4xl font-bold uppercase leading-[1.02] tracking-tight text-ink sm:text-6xl"
         />
-        <p className="mt-6 max-w-xl text-lg leading-relaxed text-navy/70">{subheadline}</p>
+        <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink/70">{subheadline}</p>
 
         <div className="mt-8 flex flex-wrap items-center gap-4">
           <Button href="#lead-form" variant="primary">
@@ -59,7 +59,7 @@ export function LandingHero({
           </Button>
         </div>
 
-        <p className="mt-5 text-xs uppercase tracking-wide text-navy/45">
+        <p className="mt-5 text-xs uppercase tracking-wide text-ink/45">
           No obligation · Dubai, UAE · Response within 1–2 business days
         </p>
       </div>

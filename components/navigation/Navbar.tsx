@@ -73,7 +73,7 @@ export function Navbar() {
                   href={item.href}
                   className={clsx(
                     "group relative text-sm font-medium uppercase tracking-wide transition-colors hover:text-blue",
-                    active ? "text-navy" : "text-navy/70"
+                    active ? "text-ink" : "text-ink/70"
                   )}
                   aria-current={active ? "page" : undefined}
                 >
@@ -101,7 +101,7 @@ export function Navbar() {
           <button
             type="button"
             onClick={() => setOpen(true)}
-            className="flex items-center gap-2 rounded-full border border-navy/15 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-navy lg:hidden"
+            className="flex items-center gap-2 rounded-full border border-navy/15 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-ink lg:hidden"
             aria-haspopup="true"
             aria-expanded={open}
             aria-controls="mobile-menu"

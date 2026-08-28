@@ -12,7 +12,7 @@ export function TestimonialsSection() {
         <SplitReveal
           as="h2"
           text="Real feedback, from real work."
-          className="mt-5 max-w-2xl font-display text-4xl font-bold uppercase leading-[1.02] tracking-tight text-navy sm:text-6xl"
+          className="mt-5 max-w-2xl font-display text-4xl font-bold uppercase leading-[1.02] tracking-tight text-ink sm:text-6xl"
         />
 
         <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">

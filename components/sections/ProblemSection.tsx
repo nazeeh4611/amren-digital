@@ -7,13 +7,16 @@ import { Eyebrow } from "@/components/typography/Eyebrow";
 import { SplitReveal } from "@/components/animations/SplitReveal";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 
+// Deep Blue and Cyan, alternating — the two "system indicator" colors
+// called for here, kept to small numbered nodes rather than the section
+// at large.
 const chain: { label: string; accent: string; ring: string }[] = [
   { label: "Ads", accent: "text-blue-2", ring: "border-blue-2/50" },
-  { label: "Website", accent: "text-coral-2", ring: "border-coral-2/50" },
-  { label: "Lead", accent: "text-gold-2", ring: "border-gold-2/50" },
-  { label: "Tracking", accent: "text-blue-2", ring: "border-blue-2/50" },
-  { label: "Retargeting", accent: "text-coral-2", ring: "border-coral-2/50" },
-  { label: "Growth", accent: "text-gold-2", ring: "border-gold-2/50" },
+  { label: "Website", accent: "text-cyan", ring: "border-cyan/50" },
+  { label: "Lead", accent: "text-blue-2", ring: "border-blue-2/50" },
+  { label: "Tracking", accent: "text-cyan", ring: "border-cyan/50" },
+  { label: "Retargeting", accent: "text-blue-2", ring: "border-blue-2/50" },
+  { label: "Growth", accent: "text-cyan", ring: "border-cyan/50" },
 ];
 
 const disconnects = [
@@ -124,19 +127,19 @@ export function ProblemSection() {
   }, [reducedMotion]);
 
   return (
-    <section ref={sectionRef} className="section bg-cream">
+    <section ref={sectionRef} className="section bg-cream-2">
       <div className="wrap">
         <Eyebrow accent="gold">The Problem</Eyebrow>
         <SplitReveal
           as="h2"
           text="Your business doesn’t need more marketing."
-          className="mt-5 max-w-4xl font-display text-4xl font-bold uppercase leading-[1.02] tracking-tight text-navy sm:text-6xl lg:text-7xl"
+          className="mt-5 max-w-4xl font-display text-4xl font-bold uppercase leading-[1.02] tracking-tight text-ink sm:text-6xl lg:text-7xl"
         />
         <SplitReveal
           as="p"
           text="It needs marketing that works together."
           delay={0.15}
-          className="mt-6 max-w-2xl font-editorial text-2xl italic text-navy/70 sm:text-3xl"
+          className="mt-6 max-w-2xl font-editorial text-2xl italic text-ink/70 sm:text-3xl"
         />
 
         <div className="mt-14 grid gap-6 lg:grid-cols-2 lg:items-stretch lg:gap-6" style={{ perspective: 1200 }}>
@@ -144,10 +147,10 @@ export function ProblemSection() {
             className="tilt-card disconnect-list flex flex-col justify-center rounded-[var(--radius-lg)] border border-navy/10 bg-white p-8 shadow-[var(--shadow-card)] transition-shadow duration-300 will-change-transform hover:shadow-lg sm:p-10"
             style={{ transformStyle: "preserve-3d" }}
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-navy/40">Working in isolation</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-ink/40">Working in isolation</p>
             <ul className="mt-8 space-y-4">
               {disconnects.map((item) => (
-                <li key={item} className="disconnect-item flex items-start gap-3 text-base text-navy/70 sm:text-lg">
+                <li key={item} className="disconnect-item flex items-start gap-3 text-base text-ink/70 sm:text-lg">
                   <span
                     aria-hidden="true"
                     className="disconnect-badge mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-coral/40 text-[10px] font-bold text-coral"
@@ -187,7 +190,7 @@ export function ProblemSection() {
                 <div className="chain-line-draw absolute inset-0 origin-top bg-gold/50" style={{ transform: "scaleY(0)" }} />
                 <div
                   className="chain-pulse absolute left-1/2 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold opacity-0"
-                  style={{ top: "0%", boxShadow: "0 0 10px 3px rgba(212,167,44,0.6)" }}
+                  style={{ top: "0%", boxShadow: "0 0 10px 3px rgba(148,239,242,0.6)" }}
                 />
               </div>
             </div>

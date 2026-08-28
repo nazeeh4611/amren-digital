@@ -12,7 +12,6 @@ import { FaqSection } from "@/components/sections/FaqSection";
 import { CTASection } from "@/components/sections/CTASection";
 import { FullBleedImage } from "@/components/sections/FullBleedImage";
 import { BrandMarquee } from "@/components/sections/BrandMarquee";
-import { SitewideFlightPath } from "@/components/homepage/SitewideFlightPath";
 import { homeFaqs } from "@/content/faqs";
 
 export const metadata: Metadata = buildMetadata({
@@ -29,17 +28,15 @@ export default function HomePage() {
     <>
       <JsonLd data={[localBusinessSchema(), faqSchema(homeFaqs)]} />
       <Hero />
-      <SitewideFlightPath>
-        <Marquee items={marqueeServices} tone="dark" accent="gold" speed={26} />
-        <ProblemSection />
-        <AttractGenerateGrow />
-        <ServicesExperience />
-        <FullBleedImage eyebrow="Real work, real growth" statement="Built for brands that mean business." tone={1} />
-        <PortfolioTeaser />
-        <FaqSection items={homeFaqs} title="Questions, answered." />
-        <BrandMarquee />
-        <CTASection />
-      </SitewideFlightPath>
+      <Marquee items={marqueeServices} tone="dark" accent="gold" speed={26} />
+      <ProblemSection />
+      <AttractGenerateGrow />
+      <ServicesExperience />
+      <FullBleedImage eyebrow="Real work, real growth" statement="Built for brands that mean business." tone={1} />
+      <PortfolioTeaser />
+      <FaqSection items={homeFaqs} title="Questions, answered." />
+      <BrandMarquee />
+      <CTASection />
     </>
   );
 }

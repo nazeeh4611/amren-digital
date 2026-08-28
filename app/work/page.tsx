@@ -26,9 +26,9 @@ export default function WorkPage() {
           as="h1"
           text="Work that moves brands."
           trigger="mount"
-          className="mt-5 max-w-3xl font-display text-5xl font-bold uppercase leading-[1.02] tracking-tight text-navy sm:text-7xl"
+          className="mt-5 max-w-3xl font-display text-5xl font-bold uppercase leading-[1.02] tracking-tight text-ink sm:text-7xl"
         />
-        <p className="mt-6 max-w-2xl text-lg text-navy/70">
+        <p className="mt-6 max-w-2xl text-lg text-ink/70">
           Real project detail, visuals and results are added here as each engagement is confirmed and approved for
           public display. Nothing on this page is fabricated.
         </p>

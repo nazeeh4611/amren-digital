@@ -1,11 +1,12 @@
 import clsx from "clsx";
 
-export type Accent = "blue" | "coral" | "purple" | "orange" | "gold";
+export type Accent = "blue" | "coral" | "green" | "cyan" | "orange" | "gold";
 
 const accentClasses: Record<Accent, { onLightBg: string; onLightBgBefore: string; onDarkBg: string; onDarkBgBefore: string }> = {
   blue: { onLightBg: "text-blue", onLightBgBefore: "before:bg-blue", onDarkBg: "text-blue-2", onDarkBgBefore: "before:bg-blue-2" },
   coral: { onLightBg: "text-coral", onLightBgBefore: "before:bg-coral", onDarkBg: "text-coral-2", onDarkBgBefore: "before:bg-coral-2" },
-  purple: { onLightBg: "text-purple", onLightBgBefore: "before:bg-purple", onDarkBg: "text-purple-2", onDarkBgBefore: "before:bg-purple-2" },
+  green: { onLightBg: "text-green", onLightBgBefore: "before:bg-green", onDarkBg: "text-green-2", onDarkBgBefore: "before:bg-green-2" },
+  cyan: { onLightBg: "text-cyan", onLightBgBefore: "before:bg-cyan", onDarkBg: "text-cyan-2", onDarkBgBefore: "before:bg-cyan-2" },
   orange: { onLightBg: "text-orange", onLightBgBefore: "before:bg-orange", onDarkBg: "text-orange-2", onDarkBgBefore: "before:bg-orange-2" },
   gold: { onLightBg: "text-gold", onLightBgBefore: "before:bg-gold", onDarkBg: "text-gold-2", onDarkBgBefore: "before:bg-gold-2" },
 };

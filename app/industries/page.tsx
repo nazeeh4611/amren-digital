@@ -27,9 +27,9 @@ export default function IndustriesPage() {
           as="h1"
           text="Different businesses, different journeys."
           trigger="mount"
-          className="mt-5 max-w-3xl font-display text-4xl font-bold uppercase leading-[1.02] tracking-tight text-navy sm:text-6xl"
+          className="mt-5 max-w-3xl font-display text-4xl font-bold uppercase leading-[1.02] tracking-tight text-ink sm:text-6xl"
         />
-        <p className="mt-6 max-w-2xl text-lg text-navy/70">
+        <p className="mt-6 max-w-2xl text-lg text-ink/70">
           How a clinic gets discovered isn&rsquo;t how a real estate buyer decides, and neither looks like how someone
           picks a restaurant. AMREN builds the acquisition journey around how customers in your specific category
           actually search, compare and decide.
@@ -45,10 +45,10 @@ export default function IndustriesPage() {
                 className="group block overflow-hidden rounded-[var(--radius-card)] border border-navy/10 bg-white p-6 transition-[transform,border-color,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:border-blue/40 hover:shadow-[var(--shadow-card)]"
               >
                 <AssetPlaceholder type="service" alt={industry.title} motif="chart" tone={i} aspectRatio="16/9" />
-                <h2 className="mt-5 font-display text-2xl font-bold uppercase tracking-tight text-navy transition-colors group-hover:text-blue">
+                <h2 className="mt-5 font-display text-2xl font-bold uppercase tracking-tight text-ink transition-colors group-hover:text-blue">
                   {industry.title}
                 </h2>
-                <p className="mt-2 text-navy/65">{industry.headline}</p>
+                <p className="mt-2 text-ink/65">{industry.headline}</p>
               </Link>
             </FadeIn>
           ))}

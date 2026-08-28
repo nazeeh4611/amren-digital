@@ -106,7 +106,7 @@ export function LeadForm({
   return (
     <div id="lead-form" className="rounded-[var(--radius-lg)] border border-navy/10 bg-white p-6 shadow-[var(--shadow-card)] sm:p-8">
       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">{leadMagnetLabel}</p>
-      <p className="mt-2 text-sm text-navy/65">{leadMagnetDescription}</p>
+      <p className="mt-2 text-sm text-ink/65">{leadMagnetDescription}</p>
 
       <div className="mt-6 flex items-center gap-2" role="progressbar" aria-valuenow={step} aria-valuemin={1} aria-valuemax={3}>
         {[1, 2, 3].map((s) => (

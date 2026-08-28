@@ -8,7 +8,7 @@ export function ProcessTimeline({ steps }: { steps: ProcessStep[] }) {
       <div className="wrap">
         <FadeIn>
           <Eyebrow accent="gold">How It Works</Eyebrow>
-          <h2 className="mt-5 max-w-2xl font-display text-3xl font-bold uppercase leading-tight tracking-tight text-navy sm:text-5xl">
+          <h2 className="mt-5 max-w-2xl font-display text-3xl font-bold uppercase leading-tight tracking-tight text-ink sm:text-5xl">
             From first call to live campaign.
           </h2>
         </FadeIn>
@@ -16,9 +16,9 @@ export function ProcessTimeline({ steps }: { steps: ProcessStep[] }) {
         <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((step, i) => (
             <FadeIn key={step.title} delay={i * 0.08}>
-              <span className="font-display text-4xl font-bold text-navy/15">0{i + 1}</span>
-              <h3 className="mt-2 font-display text-lg font-semibold text-navy">{step.title}</h3>
-              <p className="mt-2 text-sm text-navy/65">{step.description}</p>
+              <span className="font-display text-4xl font-bold text-ink/15">0{i + 1}</span>
+              <h3 className="mt-2 font-display text-lg font-semibold text-ink">{step.title}</h3>
+              <p className="mt-2 text-sm text-ink/65">{step.description}</p>
             </FadeIn>
           ))}
         </div>

@@ -15,15 +15,15 @@ export default function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "center",
           padding: 80,
-          background: "#2c444d",
-          color: "#f8f5ef",
+          background: "#203778",
+          color: "#ffffff",
         }}
       >
-        <div style={{ display: "flex", fontSize: 28, color: "#ccb68e", letterSpacing: 4, textTransform: "uppercase" }}>
+        <div style={{ display: "flex", fontSize: 28, color: "#94eff2", letterSpacing: 4, textTransform: "uppercase" }}>
           {site.location.label}
         </div>
         <div style={{ display: "flex", fontSize: 96, fontWeight: 700, marginTop: 20, lineHeight: 1 }}>AMREN DIGITAL</div>
-        <div style={{ display: "flex", fontSize: 34, marginTop: 24, color: "#c7b8a4", maxWidth: 900 }}>
+        <div style={{ display: "flex", fontSize: 34, marginTop: 24, color: "#a3c1ee", maxWidth: 900 }}>
           Digital growth built to move.
         </div>
       </div>

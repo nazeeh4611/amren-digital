@@ -57,10 +57,10 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
       <article className="wrap max-w-3xl pb-24 pt-8 sm:pt-10">
         <Eyebrow>{article.category}</Eyebrow>
-        <h1 className="mt-5 font-display text-3xl font-bold leading-tight text-navy sm:text-5xl">
+        <h1 className="mt-5 font-display text-3xl font-bold leading-tight text-ink sm:text-5xl">
           <SplitReveal as="span" text={article.title} trigger="mount" />
         </h1>
-        <FadeIn delay={0.3} className="mt-4 flex flex-wrap items-center gap-3 text-sm text-navy/60">
+        <FadeIn delay={0.3} className="mt-4 flex flex-wrap items-center gap-3 text-sm text-ink/60">
           <span>{article.author}</span>
           <span aria-hidden="true">·</span>
           <time dateTime={article.publishedAt}>{formatDate(article.publishedAt)}</time>
@@ -78,7 +78,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           </ImageReveal>
         </div>
 
-        <div className="prose-amren mt-10 space-y-6 text-lg leading-relaxed text-navy/80">
+        <div className="prose-amren mt-10 space-y-6 text-lg leading-relaxed text-ink/80">
           {article.body.map((paragraph, i) => (
             <FadeIn key={i} as="div" delay={Math.min(i * 0.04, 0.2)}>
               <p>{paragraph}</p>
@@ -104,11 +104,11 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
         {related.length > 0 && (
           <FadeIn className="mt-16 border-t border-navy/10 pt-10">
-            <h2 className="font-display text-xl font-bold uppercase tracking-tight text-navy">Related reading</h2>
+            <h2 className="font-display text-xl font-bold uppercase tracking-tight text-ink">Related reading</h2>
             <ul className="mt-4 space-y-3">
               {related.map((r) => (
                 <li key={r.slug}>
-                  <Link href={`/insights/${r.slug}`} className="text-navy underline decoration-gold decoration-2 underline-offset-4 hover:text-blue">
+                  <Link href={`/insights/${r.slug}`} className="text-ink underline decoration-gold decoration-2 underline-offset-4 hover:text-blue">
                     {r.title}
                   </Link>
                 </li>

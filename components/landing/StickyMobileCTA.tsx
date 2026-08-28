@@ -15,7 +15,7 @@ export function StickyMobileCTA({ leadMagnetLabel, serviceSlug }: { leadMagnetLa
       <a
         href="#lead-form"
         onClick={() => trackEvent("landing_page_cta_click", { label: "sticky_bar", service: serviceSlug })}
-        className="flex-1 truncate rounded-full bg-gold px-4 py-3 text-center text-xs font-semibold uppercase tracking-wide text-ink"
+        className="flex-1 truncate rounded-full bg-gold px-4 py-3 text-center text-xs font-semibold uppercase tracking-wide text-cream"
       >
         {leadMagnetLabel}
       </a>

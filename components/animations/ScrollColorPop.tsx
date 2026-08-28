@@ -11,6 +11,10 @@ const COLOR_CLASS = {
   blue: "bg-blue",
   coral: "bg-coral",
   cream: "bg-cream",
+  cyan: "bg-cyan",
+  green: "bg-green",
+  peach: "bg-peach",
+  orange: "bg-orange",
 } as const;
 
 /**

@@ -80,7 +80,7 @@ export default async function LandingPagePage({ params }: { params: Promise<{ sl
       <section className="section bg-white">
         <div className="wrap max-w-3xl">
           <Eyebrow accent="blue">Common Questions</Eyebrow>
-          <h2 className="mt-5 font-display text-3xl font-bold uppercase tracking-tight text-navy sm:text-4xl">
+          <h2 className="mt-5 font-display text-3xl font-bold uppercase tracking-tight text-ink sm:text-4xl">
             Before you reach out
           </h2>
           <div className="mt-8">
@@ -92,7 +92,7 @@ export default async function LandingPagePage({ params }: { params: Promise<{ sl
       <section className="section bg-cream">
         <div className="wrap max-w-3xl">
           <Eyebrow accent="gold">FAQ</Eyebrow>
-          <h2 className="mt-5 font-display text-3xl font-bold uppercase tracking-tight text-navy sm:text-4xl">
+          <h2 className="mt-5 font-display text-3xl font-bold uppercase tracking-tight text-ink sm:text-4xl">
             {service.title} — frequently asked
           </h2>
           <div className="mt-8">

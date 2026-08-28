@@ -23,18 +23,18 @@ export function ProjectCard({ project, tone = 0 }: { project: Project; tone?: nu
       </ViewCursorArea>
       <div className="mt-4 flex items-start justify-between gap-4">
         <div>
-          <h3 className="font-display text-xl font-semibold text-navy transition-colors group-hover:text-blue sm:text-2xl">
+          <h3 className="font-display text-xl font-semibold text-ink transition-colors group-hover:text-blue sm:text-2xl">
             {project.title}
           </h3>
-          <p className="mt-1 text-sm text-navy/60">{project.industry}</p>
+          <p className="mt-1 text-sm text-ink/60">{project.industry}</p>
         </div>
-        <span aria-hidden="true" className="mt-1 shrink-0 text-navy transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+        <span aria-hidden="true" className="mt-1 shrink-0 text-ink transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
           ↗
         </span>
       </div>
       <ul className="mt-2 flex flex-wrap gap-x-3 gap-y-1">
         {project.servicesUsed.map((s) => (
-          <li key={s} className="text-xs uppercase tracking-wide text-navy/50">
+          <li key={s} className="text-xs uppercase tracking-wide text-ink/50">
             {s}
           </li>
         ))}

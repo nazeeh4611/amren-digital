@@ -18,14 +18,14 @@ export function PortfolioTeaser() {
             <SplitReveal
               as="h2"
               text="Work that moves brands."
-              className="mt-5 max-w-2xl font-display text-4xl font-bold uppercase leading-[1.02] tracking-tight text-navy sm:text-6xl"
+              className="mt-5 max-w-2xl font-display text-4xl font-bold uppercase leading-[1.02] tracking-tight text-ink sm:text-6xl"
             />
           </div>
           <Button href="/work" variant="ghost">
             View all work
           </Button>
         </div>
-        <p className="mt-4 hidden text-sm uppercase tracking-wide text-navy/40 lg:block">Scroll to explore →</p>
+        <p className="mt-4 hidden text-sm uppercase tracking-wide text-ink/40 lg:block">Scroll to explore →</p>
       </div>
 
       <div className="mt-14">

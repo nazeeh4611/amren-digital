@@ -14,7 +14,7 @@ export function FaqSection({ items, title = "Frequently Asked Questions" }: { it
               <Eyebrow accent="gold">FAQ</Eyebrow>
               <ScrollColorPop color="coral" size={9} />
             </div>
-            <h2 className="mt-5 font-display text-3xl font-bold uppercase leading-tight tracking-tight text-navy sm:text-5xl">
+            <h2 className="mt-5 font-display text-3xl font-bold uppercase leading-tight tracking-tight text-ink sm:text-5xl">
               {title}
             </h2>
           </FadeIn>

@@ -13,7 +13,7 @@ export function Logo({ tone = "dark", className }: { tone?: "dark" | "light"; cl
       className={clsx("group inline-flex items-baseline gap-1.5 font-display", className)}
       aria-label="AMREN Digital — Home"
     >
-      <span className={clsx("text-2xl font-bold tracking-tight sm:text-3xl", tone === "dark" ? "text-navy" : "text-cream")}>
+      <span className={clsx("text-2xl font-bold tracking-tight sm:text-3xl", tone === "dark" ? "text-ink" : "text-cream")}>
         AMREN
       </span>
       <span

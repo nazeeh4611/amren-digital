@@ -17,22 +17,22 @@ export function VenturesConnection() {
             </ImageReveal>
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.25em] text-blue">Part of a bigger picture</p>
-              <h2 className="mt-4 font-display text-3xl font-bold uppercase leading-tight tracking-tight text-navy sm:text-5xl">
+              <h2 className="mt-4 font-display text-3xl font-bold uppercase leading-tight tracking-tight text-ink sm:text-5xl">
                 Digital is one part of the bigger picture.
               </h2>
-              <p className="mt-5 max-w-xl text-navy/70">
-                AMREN Digital is part of <strong className="text-navy">{site.parent.name}</strong>, a broader business
+              <p className="mt-5 max-w-xl text-ink/70">
+                AMREN Digital is part of <strong className="text-ink">{site.parent.name}</strong>, a broader business
                 group with multiple ventures.
               </p>
               <div className="mt-6 rounded-[var(--radius-md)] border border-navy/10 bg-white p-5">
-                <p className="font-display text-xl font-bold text-navy">{site.parent.name}</p>
-                <p className="mt-1 text-sm text-navy/60">{site.parent.description}</p>
+                <p className="font-display text-xl font-bold text-ink">{site.parent.name}</p>
+                <p className="mt-1 text-sm text-ink/60">{site.parent.description}</p>
               </div>
               <a
                 href={site.parent.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-navy underline decoration-gold decoration-2 underline-offset-4 transition-colors hover:text-blue"
+                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-ink underline decoration-gold decoration-2 underline-offset-4 transition-colors hover:text-blue"
               >
                 Explore {site.parent.name} →
               </a>

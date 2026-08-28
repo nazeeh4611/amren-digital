@@ -28,9 +28,9 @@ export default function InsightsPage() {
           as="h1"
           text="Ideas worth acting on."
           trigger="mount"
-          className="mt-5 max-w-3xl font-display text-5xl font-bold uppercase leading-[1.02] tracking-tight text-navy sm:text-7xl"
+          className="mt-5 max-w-3xl font-display text-5xl font-bold uppercase leading-[1.02] tracking-tight text-ink sm:text-7xl"
         />
-        <p className="mt-6 max-w-2xl text-lg text-navy/70">
+        <p className="mt-6 max-w-2xl text-lg text-ink/70">
           Practical thinking on digital growth for UAE businesses — no fabricated statistics, no invented case
           studies.
         </p>
@@ -46,10 +46,10 @@ export default function InsightsPage() {
                 </div>
               </div>
               <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-blue">{article.category}</p>
-              <h2 className="mt-1 font-display text-xl font-semibold leading-snug text-navy transition-colors group-hover:text-blue">
+              <h2 className="mt-1 font-display text-xl font-semibold leading-snug text-ink transition-colors group-hover:text-blue">
                 {article.title}
               </h2>
-              <p className="mt-2 text-sm text-navy/60">{article.excerpt}</p>
+              <p className="mt-2 text-sm text-ink/60">{article.excerpt}</p>
             </Link>
           </FadeIn>
         ))}

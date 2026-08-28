@@ -29,7 +29,7 @@ export function DriftingClouds({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const reducedMotion = usePrefersReducedMotion();
-  const colorClass = tone === "light" ? "text-cream/40" : "text-navy/14";
+  const colorClass = tone === "light" ? "text-cream/40" : "text-ink/14";
 
   useLayoutEffect(() => {
     if (reducedMotion || !ref.current) return;
