@@ -115,7 +115,7 @@ export function AttractGenerateGrow() {
         <div className="stage-row mt-14 flex flex-col gap-6 lg:flex-row lg:items-stretch lg:gap-6">
           {stages.map((stage) => (
             <div key={stage.key} className="stage-card flex-1">
-              <div className="relative flex h-full flex-col overflow-hidden rounded-[var(--radius-lg)] border border-navy/10 bg-white p-7 shadow-[var(--shadow-card)] transition-colors duration-300 hover:border-navy/25 sm:p-8">
+              <div className="card-glossy relative flex h-full flex-col overflow-hidden rounded-[var(--radius-lg)] bg-white p-7 sm:p-8">
                 <span
                   aria-hidden="true"
                   className={`stage-dot absolute right-7 top-7 h-2 w-2 rounded-full sm:right-8 sm:top-8 ${stage.accentBg}`}

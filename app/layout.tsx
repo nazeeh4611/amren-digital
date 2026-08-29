@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, DM_Serif_Display, Inter } from "next/font/google";
+import { Space_Grotesk, DM_Serif_Display, Inter, Fraunces } from "next/font/google";
 import "./globals.css";
 import { site } from "@/content/site";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -29,6 +29,14 @@ const dmSerif = DM_Serif_Display({
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+});
+
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
+  subsets: ["latin"],
+  weight: "variable",
+  style: ["italic"],
+  axes: ["opsz", "SOFT"],
 });
 
 export const metadata: Metadata = {
@@ -71,7 +79,7 @@ export const viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${dmSerif.variable} ${inter.variable} h-full antialiased`}>
+    <html lang="en" className={`${spaceGrotesk.variable} ${dmSerif.variable} ${inter.variable} ${fraunces.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-cream text-ink">
         <MotionProvider>
           <JsonLd data={[organizationSchema(), websiteSchema()]} />

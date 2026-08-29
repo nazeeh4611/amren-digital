@@ -8,20 +8,20 @@ import { FadeIn } from "@/components/animations/FadeIn";
 
 type CardSize = "wide" | "normal";
 
-// Per-category accent identity, per spec: Performance→Deep Blue,
-// Social→Peach, Search→Cyan, Digital Experiences→Soft Blue,
-// Content→Orange, Systems→Green. Only Performance sits on the one dark
-// accent (Deep Blue), so only that card needs light text — every other
-// category is a soft/bright pastel, so dark ink reads best on it. The
-// numbered badge stays Deep Blue throughout regardless of card color —
-// one consistent dark-accent thread running across all six cards.
+// Per-category accent identity, drawn from the swatch-card ladder.
+// Performance is the one card on the dark accent (Atlantic), so it's the
+// only one that needs light text — every other category sits on a light
+// rung (Seafoam/Mint/Aqua) with a glossy 3D treatment (see .card-glossy
+// in globals.css), so dark ink reads best on it. The numbered badge stays
+// Atlantic throughout regardless of card color — one consistent
+// dark-accent thread running across all six cards.
 const cardStyle: Record<string, { bg: string; text: string; badgeBg: string; badgeText: string; size: CardSize }> = {
   performance: { bg: "bg-gold", text: "text-cream", badgeBg: "bg-navy-3", badgeText: "text-cream", size: "wide" },
-  social: { bg: "bg-peach", text: "text-ink", badgeBg: "bg-navy", badgeText: "text-cream", size: "wide" },
-  search: { bg: "bg-cyan", text: "text-ink", badgeBg: "bg-navy", badgeText: "text-cream", size: "normal" },
-  "digital-experiences": { bg: "bg-blue", text: "text-ink", badgeBg: "bg-navy", badgeText: "text-cream", size: "wide" },
-  content: { bg: "bg-orange", text: "text-ink", badgeBg: "bg-navy", badgeText: "text-cream", size: "normal" },
-  systems: { bg: "bg-green", text: "text-ink", badgeBg: "bg-navy", badgeText: "text-cream", size: "normal" },
+  social: { bg: "bg-mint", text: "text-ink", badgeBg: "bg-navy", badgeText: "text-cream", size: "wide" },
+  search: { bg: "bg-aqua", text: "text-ink", badgeBg: "bg-navy", badgeText: "text-cream", size: "normal" },
+  "digital-experiences": { bg: "bg-seafoam", text: "text-ink", badgeBg: "bg-navy", badgeText: "text-cream", size: "wide" },
+  content: { bg: "bg-mint", text: "text-ink", badgeBg: "bg-navy", badgeText: "text-cream", size: "normal" },
+  systems: { bg: "bg-aqua", text: "text-ink", badgeBg: "bg-navy", badgeText: "text-cream", size: "normal" },
 };
 
 function ArrowIcon({ className }: { className?: string }) {
@@ -81,7 +81,7 @@ function CategoryCard({ category, index, fullWidthPair }: { category: (typeof se
       <FadeIn
         delay={index * 0.05}
         className={clsx(
-          "flex flex-col overflow-hidden rounded-[var(--radius-card)]",
+          "card-glossy flex flex-col overflow-hidden rounded-[var(--radius-card)]",
           fullWidthPair ? "" : "sm:col-span-2",
           style.bg,
           style.text
@@ -123,7 +123,7 @@ function CategoryCard({ category, index, fullWidthPair }: { category: (typeof se
       <Link
         href={firstHref}
         className={clsx(
-          "group flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] transition-transform duration-300 ease-out hover:-translate-y-1",
+          "card-glossy group flex h-full flex-col overflow-hidden rounded-[var(--radius-card)]",
           style.bg,
           style.text
         )}
@@ -199,7 +199,7 @@ export function ServicesExperience() {
         <FadeIn delay={serviceCategories.length * 0.05}>
           <Link
             href="/services"
-            className="group flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] border-2 border-navy/15 bg-white"
+            className="card-glossy group flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] bg-white"
           >
             <div className="h-72 w-full shrink-0 overflow-hidden sm:h-80">
               <AssetPlaceholder

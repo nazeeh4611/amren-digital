@@ -7,42 +7,54 @@
    ========================================================================== */
 
 :root {
-  /* Brand colors — the "Socio-inspired" editorial palette: predominantly
-     soft-neutral backgrounds (Soft White / Mist), near-black type
-     (Primary Ink), one strong dark accent (Deep Blue) carrying most of
-     the color weight, and a small set of soft/bright accents (Soft
-     Blue, Cyan, Soft Peach, Coral, Green, Orange) used selectively for
-     per-category identity rather than covering whole sections. No
-     purple in this system — the previous grayscale iteration's vestigial
-     `purple`/`lime` token slots are renamed to `green`/`cyan` below
-     (not just recolored) so the name itself no longer exists anywhere.
-     Token names stay stable for every OTHER role since components
-     reference them as Tailwind utilities — only the underlying hex
-     values change, so the whole site re-themes from here. */
-  --amren-ink: #111111; /* Primary Ink — body text, headings */
-  --amren-cream: #fafaf7; /* Soft White — primary background (65%) */
-  --amren-cream-2: #eef2f7; /* Mist — alternate section background */
+  /* Brand colors — the AMREN swatch-card palette: one continuous
+     seafoam-to-abyss teal/navy family instead of the previous multi-hue
+     pastel set. Soft-neutral backgrounds and near-black type both carry a
+     faint cool undertone from this family, Atlantic (Deep Blue) remains
+     the one strong dark accent, and every other accent role below now
+     points at a rung of the same teal/navy ladder rather than an
+     unrelated hue — the site should read as one cohesive palette, not a
+     collection of separate accent colors. Token names stay stable since
+     components reference them as Tailwind utilities — only the
+     underlying hex values change, so the whole site re-themes from here. */
+  --amren-ink: #0b121f; /* Abyss-tinted near-black — body text, headings */
+  --amren-cream: #f5f8f6; /* Soft White, seafoam-tinted — primary background (65%) */
+  --amren-cream-2: #e8f0ec; /* Mist, mint-tinted — alternate section background */
   --amren-white: #ffffff; /* true white, for surfaces that want to sit above Mist/Soft White */
-  --amren-navy: #203778; /* Deep Blue — the one strong dark accent (15%): dark sections, primary CTA */
-  --amren-navy-2: #1a2c60; /* Deep Blue, darker — hover state */
-  --amren-navy-3: #2e4a94; /* Deep Blue, lighter — badges/borders on dark */
-  --amren-gold: #203778; /* primary CTA — Deep Blue, per spec */
-  --amren-gold-2: #1a2c60; /* primary CTA hover — a darker Deep Blue, per spec */
-  --amren-blue: #a3c1ee; /* Soft Blue */
-  --amren-blue-2: #d3e2f7; /* Soft Blue, lighter tint */
+  --amren-navy: #17294b; /* Deep Blue — "Atlantic" from the brand swatch card; dark sections, primary CTA */
+  --amren-navy-2: #101d35; /* Deep Blue, darker — hover state */
+  --amren-navy-3: #2b4470; /* Deep Blue, lighter — badges/borders on dark */
+  --amren-gold: #17294b; /* primary CTA — Deep Blue, per spec */
+  --amren-gold-2: #101d35; /* primary CTA hover — a darker Deep Blue, per spec */
 
-  /* Soft/bright accents — used selectively (small labels, numbers, icons,
-     borders, hover states), never as large saturated blocks. */
-  --amren-cyan: #94eff2;
-  --amren-cyan-2: #c9f7f8;
-  --amren-peach: #f1ddd8; /* Soft Peach */
-  --amren-peach-2: #f8eeeb;
-  --amren-coral: #fac8ac;
-  --amren-coral-2: #fde3d3;
-  --amren-green: #88d692;
-  --amren-green-2: #c3edc9;
-  --amren-orange: #f3bb34;
-  --amren-orange-2: #fbde9c;
+  /* The full swatch-card ladder, lightest to darkest — used directly by
+     the glossy card treatment and available for any component that wants
+     a specific rung rather than a recycled role name below. */
+  --amren-seafoam: #dcebe1;
+  --amren-mint: #c7dcc9;
+  --amren-aqua: #a9cdce;
+  --amren-turquoise: #3fa8ac;
+  --amren-teal: #278688;
+  --amren-lagoon: #2e7d72;
+  --amren-peacock: #1c6672;
+  --amren-petrol: #154456;
+  --amren-abyss: #0a0f1c;
+
+  /* Existing accent-role names, remapped onto the ladder above so every
+     component that already references bg-blue/bg-cyan/bg-peach/etc. now
+     renders in-palette without needing per-file edits. */
+  --amren-blue: var(--amren-aqua); /* Soft Blue */
+  --amren-blue-2: var(--amren-seafoam); /* Soft Blue, lighter tint */
+  --amren-cyan: var(--amren-turquoise);
+  --amren-cyan-2: var(--amren-aqua);
+  --amren-peach: var(--amren-mint); /* Soft Peach */
+  --amren-peach-2: var(--amren-seafoam);
+  --amren-coral: var(--amren-aqua);
+  --amren-coral-2: var(--amren-seafoam);
+  --amren-green: var(--amren-teal);
+  --amren-green-2: var(--amren-mint);
+  --amren-orange: var(--amren-turquoise);
+  --amren-orange-2: var(--amren-aqua);
 
   /* Semantic */
   --bg-page: var(--amren-cream);
@@ -99,6 +111,18 @@
   --color-orange: var(--amren-orange);
   --color-orange-2: var(--amren-orange-2);
 
+  /* Direct swatch-ladder rungs, for components (like the glossy cards)
+     that want a specific step rather than a recycled accent-role name. */
+  --color-seafoam: var(--amren-seafoam);
+  --color-mint: var(--amren-mint);
+  --color-aqua: var(--amren-aqua);
+  --color-turquoise: var(--amren-turquoise);
+  --color-teal: var(--amren-teal);
+  --color-lagoon: var(--amren-lagoon);
+  --color-peacock: var(--amren-peacock);
+  --color-petrol: var(--amren-petrol);
+  --color-abyss: var(--amren-abyss);
+
   /* Exact design-token names from the brief — semantic aliases onto the
      tokens above, for anyone reaching for the palette by its own names. */
   --color-background: var(--amren-cream);
@@ -109,6 +133,7 @@
   --font-display: var(--font-space-grotesk), "Arial Black", sans-serif;
   --font-editorial: var(--font-dm-serif), Georgia, serif;
   --font-body: var(--font-inter), system-ui, sans-serif;
+  --font-rotating: var(--font-fraunces), var(--font-dm-serif), Georgia, serif;
 
   --radius-card: var(--radius-lg);
   --radius-pill: var(--radius-pill);
@@ -206,10 +231,91 @@ body {
   }
 }
 
+/* Hero rotating word — pure CSS so the correct word is visible on first
+   paint (no JS/hydration wait) and it can never freeze mid-animation the
+   way a JS ticker can on a throttled/backgrounded tab. Each item gets its
+   own --rotate-delay (index * slot) so they take turns inside one shared
+   --rotate-duration loop; the base rule shows only the first item when
+   motion is off or before JS attaches. */
+.rotating-word-item {
+  opacity: 0;
+  transform: translateY(16px);
+}
+.rotating-word-item:first-child {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .rotating-word-item {
+    animation:
+      rotating-word-cycle var(--rotate-duration, 6.3s) ease-in-out infinite,
+      rotating-word-shine 2.8s linear infinite;
+    animation-delay: var(--rotate-delay, 0s), 0s;
+  }
+}
+@keyframes rotating-word-cycle {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  27% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  33% {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  97% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes rotating-word-shine {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: 200% 0%;
+  }
+}
+
 /* Editorial pull-quote mark */
 .pull-quote::before {
   content: "\201C";
   font-family: var(--font-editorial);
+}
+
+/* Glossy 3D card — a soft glass-like sheen, a bevelled edge and a lifted,
+   tinted shadow layered on top of whatever flat bg-* color the card
+   already has, so a light swatch (seafoam/mint/aqua) reads like a raised,
+   polished tile instead of a flat color block. Stacks with any existing
+   background color; only adds image/border/shadow/transform layers. */
+.card-glossy {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background-image:
+    linear-gradient(155deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.18) 32%, rgba(255, 255, 255, 0) 58%),
+    radial-gradient(130% 100% at 10% -15%, rgba(255, 255, 255, 0.65), transparent 55%),
+    linear-gradient(0deg, rgba(10, 15, 28, 0.1) 0%, rgba(10, 15, 28, 0) 22%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 0 -14px 24px -18px rgba(10, 15, 28, 0.25),
+    0 2px 6px -2px rgba(10, 15, 28, 0.18),
+    0 28px 54px -22px rgba(10, 15, 28, 0.38);
+  transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out);
+}
+.card-glossy:hover {
+  transform: translateY(-8px) scale(1.012);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 0 -14px 24px -18px rgba(10, 15, 28, 0.25),
+    0 4px 10px -2px rgba(10, 15, 28, 0.22),
+    0 40px 72px -22px rgba(10, 15, 28, 0.46);
 }
 
 /* Floating flat-color accent shapes — crisp solid circles, no blur/blend, so

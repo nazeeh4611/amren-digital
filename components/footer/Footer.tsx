@@ -30,12 +30,12 @@ export function Footer() {
   }
 
   return (
-    <footer className="bg-navy text-cream">
+    <footer className="bg-petrol text-cream">
       <div className="wrap section">
         <div className="flex flex-col items-start justify-between gap-8 border-b border-cream/12 pb-14 sm:flex-row sm:items-end">
           <div>
             <FadeIn>
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-gold-2">Ready to grow?</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-turquoise">Ready to grow?</p>
             </FadeIn>
             <h2 className="mt-3 font-display text-4xl font-bold leading-[0.95] sm:text-6xl">
               <SplitReveal as="span" text="Let’s build your" className="block" />
@@ -44,7 +44,7 @@ export function Footer() {
           </div>
           <FadeIn delay={0.15}>
             <Magnetic>
-              <Button href={site.cta.startProject.href} variant="primary">
+              <Button href={site.cta.startProject.href} variant="warm">
                 {site.cta.startProject.label}
               </Button>
             </Magnetic>
@@ -60,12 +60,12 @@ export function Footer() {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="group relative inline-flex text-sm text-cream/80 transition-colors hover:text-gold-2"
+                      className="group relative inline-flex text-sm text-cream/80 transition-colors hover:text-turquoise"
                     >
                       {item.label}
                       <span
                         aria-hidden="true"
-                        className="absolute -bottom-0.5 left-0 h-px w-0 bg-gold-2 transition-[width] duration-300 ease-out group-hover:w-full"
+                        className="absolute -bottom-0.5 left-0 h-px w-0 bg-turquoise transition-[width] duration-300 ease-out group-hover:w-full"
                       />
                     </Link>
                   </li>
@@ -82,12 +82,12 @@ export function Footer() {
                   href={site.parent.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative inline-flex text-sm text-cream/80 transition-colors hover:text-gold-2"
+                  className="group relative inline-flex text-sm text-cream/80 transition-colors hover:text-turquoise"
                 >
                   {site.parent.name}
                   <span
                     aria-hidden="true"
-                    className="absolute -bottom-0.5 left-0 h-px w-0 bg-gold-2 transition-[width] duration-300 ease-out group-hover:w-full"
+                    className="absolute -bottom-0.5 left-0 h-px w-0 bg-turquoise transition-[width] duration-300 ease-out group-hover:w-full"
                   />
                 </a>
               </li>
@@ -95,12 +95,12 @@ export function Footer() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="group relative inline-flex text-sm text-cream/80 transition-colors hover:text-gold-2"
+                    className="group relative inline-flex text-sm text-cream/80 transition-colors hover:text-turquoise"
                   >
                     {item.label}
                     <span
                       aria-hidden="true"
-                      className="absolute -bottom-0.5 left-0 h-px w-0 bg-gold-2 transition-[width] duration-300 ease-out group-hover:w-full"
+                      className="absolute -bottom-0.5 left-0 h-px w-0 bg-turquoise transition-[width] duration-300 ease-out group-hover:w-full"
                     />
                   </Link>
                 </li>
@@ -113,13 +113,13 @@ export function Footer() {
             <ul className="mt-4 space-y-2.5 text-sm text-cream/80">
               <li>{site.location.label}</li>
               <li>
-                <a href={site.contact.phoneHref} className="transition-colors hover:text-gold-2">
+                <a href={site.contact.phoneHref} className="transition-colors hover:text-turquoise">
                   {site.contact.phone}
                 </a>
               </li>
               <li>{site.contact.website}</li>
               <li>
-                <a href={site.social.instagram} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-gold-2">
+                <a href={site.social.instagram} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-turquoise">
                   {site.contact.instagram}
                 </a>
               </li>

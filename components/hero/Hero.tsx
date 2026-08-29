@@ -1,18 +1,26 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { site } from "@/content/site";
 import { Button } from "@/components/buttons/Button";
-import { SplitReveal } from "@/components/animations/SplitReveal";
 import { Magnetic } from "@/components/animations/Magnetic";
+import { RotatingWord, type RotatingWordSpec } from "@/components/hero/RotatingWord";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 
-const headlineWord1 = "DIGITAL";
-const headlineHighlight = "GROWTH";
-const headlineLine2 = "BUILT TO MOVE.";
+// Short, single-word outcomes — keeps "DIGITAL [WORD]" / "BUILT TO MOVE."
+// to two lines at every breakpoint. Pulled from the swatch-card palette
+// (Turquoise/Mint/Aqua) instead of Deep Blue, so the hero stays out of
+// the one strong dark accent while reading clearly against the dark
+// photo overlay behind the heading.
+const rotatingWords: RotatingWordSpec[] = [
+  { text: "GROWTH", color: "#3FA8AC", shine: "#A9CDCE" },
+  { text: "REACH", color: "#C7DCC9", shine: "#DCEBE1" },
+  { text: "LEADS", color: "#A9CDCE", shine: "#DCEBE1" },
+];
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -44,69 +52,61 @@ export function Hero() {
   }, [reducedMotion]);
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden bg-cream pb-20 pt-32 text-ink sm:pb-28 sm:pt-40">
-      <div aria-hidden="true" className="accent-dot accent-dot-a absolute left-10 top-24 h-2 w-2 rounded-full bg-navy/60" />
-      <div aria-hidden="true" className="accent-dot accent-dot-b absolute right-16 top-16 h-1.5 w-1.5 rounded-full bg-navy/30" />
-      <div aria-hidden="true" className="accent-dot accent-dot-a absolute bottom-24 left-1/4 h-1.5 w-1.5 rounded-full bg-navy/30" />
-      <div aria-hidden="true" className="accent-dot accent-dot-b absolute bottom-16 right-1/4 h-2 w-2 rounded-full bg-navy/60" />
+    <section ref={sectionRef} className="relative overflow-hidden bg-ink pb-24 pt-36 text-cream sm:pb-32 sm:pt-44">
+      <Image src="/bghero.avif" alt="" fill priority sizes="100vw" className="object-cover" />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0"
+        style={{ background: "linear-gradient(180deg, rgba(17,17,17,0.78) 0%, rgba(17,17,17,0.6) 45%, rgba(17,17,17,0.85) 100%)" }}
+      />
 
-      <div className="wrap relative">
-        <span className="inline-flex items-center gap-2 rounded-full border border-navy/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-ink/70">
-          <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-gold" />
+      <div className="wrap relative flex flex-col items-center text-center">
+        <span className="inline-flex items-center gap-2 rounded-full border border-cream/25 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-cream/80">
+          <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-orange" />
           {site.location.label}
         </span>
 
-        <h1
+        <motion.h1
           ref={headingRef}
-          className="mt-6 max-w-6xl font-display text-[15vw] font-bold uppercase leading-[0.92] tracking-tight sm:text-[8rem] lg:text-[7rem] xl:text-[8.5rem]"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease, delay: 0.15 }}
+          className="mx-auto mt-6 max-w-4xl font-display text-[clamp(2.125rem,8.8vw,5.5rem)] font-bold uppercase leading-[0.95] tracking-tight"
           style={{ willChange: "transform" }}
         >
-          {/* One word carries Deep Blue — the rest of the headline stays
-              near-black, per "introduce Deep Blue selectively through
-              one highlighted word, not the whole hero." */}
           <span className="block">
-            <SplitReveal as="span" text={headlineWord1} trigger="mount" delay={0.15} stagger={0.06} className="inline" />{" "}
-            <SplitReveal as="span" text={headlineHighlight} trigger="mount" delay={0.25} stagger={0.06} className="inline text-navy" />
+            DIGITAL <RotatingWord words={rotatingWords} className="italic font-semibold" />
           </span>
-          <SplitReveal
-            as="span"
-            text={headlineLine2}
-            trigger="mount"
-            delay={0.4}
-            stagger={0.06}
-            className="block text-transparent [-webkit-text-stroke:1.5px_var(--amren-ink)] sm:[-webkit-text-stroke:2px_var(--amren-ink)]"
-          />
-        </h1>
+          <span className="block">BUILT TO MOVE.</span>
+        </motion.h1>
 
-        <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease, delay: 0.75 }}
-            className="max-w-xl text-lg leading-relaxed text-ink/70 sm:text-xl"
-          >
-            We build connected digital systems that attract attention, generate qualified enquiries and help UAE
-            businesses grow.
-          </motion.p>
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease, delay: 0.45 }}
+          className="mx-auto mt-8 max-w-xl text-lg leading-relaxed text-cream/75 sm:text-xl"
+        >
+          We build connected digital systems that attract attention, generate qualified enquiries and help UAE
+          businesses grow.
+        </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease, delay: 0.9 }}
-            className="flex flex-wrap items-center gap-4"
-          >
-            <Magnetic>
-              <Button href={site.cta.primary.href} variant="primary">
-                {site.cta.primary.label}
-              </Button>
-            </Magnetic>
-            <Magnetic>
-              <Button href={site.cta.secondary.href} variant="ghost">
-                {site.cta.secondary.label}
-              </Button>
-            </Magnetic>
-          </motion.div>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease, delay: 0.65 }}
+          className="mt-8 flex flex-wrap items-center justify-center gap-4"
+        >
+          <Magnetic>
+            <Button href={site.cta.primary.href} variant="warm">
+              {site.cta.primary.label}
+            </Button>
+          </Magnetic>
+          <Magnetic>
+            <Button href={site.cta.secondary.href} variant="outline-light">
+              {site.cta.secondary.label}
+            </Button>
+          </Magnetic>
+        </motion.div>
       </div>
     </section>
   );
