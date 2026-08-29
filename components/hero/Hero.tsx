@@ -57,7 +57,11 @@ export function Hero() {
       <div
         aria-hidden="true"
         className="absolute inset-0"
-        style={{ background: "linear-gradient(180deg, rgba(17,17,17,0.78) 0%, rgba(17,17,17,0.6) 45%, rgba(17,17,17,0.85) 100%)" }}
+        style={{
+          background:
+            "linear-gradient(90deg, rgba(63,168,172,0.22) 0%, rgba(63,168,172,0) 22%, rgba(63,168,172,0) 78%, rgba(63,168,172,0.22) 100%), " +
+            "linear-gradient(180deg, rgba(11,18,31,0.6) 0%, rgba(11,18,31,0.42) 45%, rgba(11,18,31,0.68) 100%)",
+        }}
       />
 
       <div className="wrap relative flex flex-col items-center text-center">
