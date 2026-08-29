@@ -4,6 +4,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { site } from "@/content/site";
 import { Button } from "@/components/buttons/Button";
+import { Logo } from "@/components/navigation/Logo";
 
 export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
   return (
@@ -21,7 +22,9 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
           className="fixed inset-0 z-[60] flex flex-col bg-navy text-cream lg:hidden"
         >
           <div className="flex items-center justify-between px-5 pt-5">
-            <span className="font-display text-2xl font-bold text-cream">AMREN</span>
+            {/* The logo's colors are fixed (navy/gold), so it needs a light
+                chip behind it to stay visible on this dark navy panel. */}
+            <Logo className="rounded-lg bg-cream px-2.5 py-1.5" />
             <button
               type="button"
               onClick={onClose}

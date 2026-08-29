@@ -18,8 +18,8 @@ import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 // photo overlay behind the heading.
 const rotatingWords: RotatingWordSpec[] = [
   { text: "GROWTH", color: "#3FA8AC" },
-  { text: "REACH", color: "#2E7D72" },
-  { text: "LEADS", color: "#1C6672" },
+  { text: "REACH", color: "#3FA8AC" },
+  { text: "LEADS", color: "#3FA8AC" },
 ];
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -53,14 +53,14 @@ export function Hero() {
 
   return (
     <section ref={sectionRef} className="relative overflow-hidden bg-ink pb-24 pt-36 text-cream sm:pb-32 sm:pt-44">
-      <Image src="/bghero.avif" alt="" fill priority sizes="100vw" className="object-cover" />
+      <Image src="/dbhero.avif" alt="" fill priority sizes="100vw" className="object-cover" />
       <div
         aria-hidden="true"
         className="absolute inset-0"
         style={{
           background:
             "linear-gradient(90deg, rgba(63,168,172,0.15) 0%, rgba(63,168,172,0) 20%, rgba(63,168,172,0) 80%, rgba(63,168,172,0.15) 100%), " +
-            "linear-gradient(180deg, rgba(11,18,31,0.34) 0%, rgba(11,18,31,0.16) 45%, rgba(11,18,31,0.42) 100%)",
+            "linear-gradient(180deg, rgba(11,18,31,0.52) 0%, rgba(11,18,31,0.32) 45%, rgba(11,18,31,0.6) 100%)",
         }}
       />
 
@@ -83,11 +83,10 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease, delay: 0.45 }}
-          className="mx-auto mt-8 max-w-xl text-lg leading-relaxed text-cream/95 sm:text-xl"
+          className="mx-auto mt-8 max-w-2xl text-base leading-relaxed text-cream/95 sm:whitespace-nowrap sm:text-lg lg:text-xl"
           style={{ textShadow: "0 2px 12px rgba(10,15,28,0.5)" }}
         >
-          We build connected digital systems that attract attention, generate qualified enquiries and help UAE
-          businesses grow.
+          Attract attention. Generate leads. Grow your business.
         </motion.p>
 
         <motion.div
