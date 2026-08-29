@@ -240,7 +240,6 @@ body {
 .rotating-word-item {
   opacity: 0;
   transform: translateY(16px);
-  filter: drop-shadow(0 2px 8px rgba(10, 15, 28, 0.4));
 }
 .rotating-word-item:first-child {
   opacity: 1;
