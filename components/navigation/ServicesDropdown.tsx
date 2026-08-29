@@ -115,8 +115,8 @@ export function ServicesDropdown() {
       <Link
         href="/services"
         className={clsx(
-          "group relative flex items-center gap-1 text-sm font-medium uppercase tracking-wide transition-colors hover:text-blue",
-          active ? "text-ink" : "text-ink/70"
+          "group relative flex items-center gap-1 text-sm font-semibold uppercase tracking-wide transition-colors hover:text-blue",
+          active ? "text-ink" : "text-ink/85"
         )}
         aria-haspopup="true"
         aria-expanded={open}

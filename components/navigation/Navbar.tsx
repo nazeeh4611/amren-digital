@@ -60,7 +60,7 @@ export function Navbar() {
             "flex w-full max-w-6xl items-center justify-between rounded-full border transition-all duration-300 ease-out",
             scrolled
               ? "border-navy/10 bg-cream/80 px-4 py-2 shadow-[var(--shadow-card)] backdrop-blur-md sm:px-5"
-              : "border-transparent bg-cream/40 px-5 py-3 backdrop-blur-sm sm:px-6 sm:py-4"
+              : "border-cream/40 bg-cream/65 px-5 py-3 shadow-[0_8px_30px_-12px_rgba(11,18,31,0.35)] backdrop-blur-md sm:px-6 sm:py-4"
           )}
         >
           <Logo tone="dark" />
@@ -76,8 +76,8 @@ export function Navbar() {
                   key={item.href}
                   href={item.href}
                   className={clsx(
-                    "group relative text-sm font-medium uppercase tracking-wide transition-colors hover:text-blue",
-                    active ? "text-ink" : "text-ink/70"
+                    "group relative text-sm font-semibold uppercase tracking-wide transition-colors hover:text-blue",
+                    active ? "text-ink" : "text-ink/85"
                   )}
                   aria-current={active ? "page" : undefined}
                 >
