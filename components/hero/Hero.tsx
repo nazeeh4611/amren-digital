@@ -17,9 +17,9 @@ import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 // the one strong dark accent while reading clearly against the dark
 // photo overlay behind the heading.
 const rotatingWords: RotatingWordSpec[] = [
-  { text: "GROWTH", color: "#3FA8AC", shine: "#A9CDCE" },
-  { text: "REACH", color: "#2E7D72", shine: "#C7DCC9" },
-  { text: "LEADS", color: "#1C6672", shine: "#A9CDCE" },
+  { text: "GROWTH", color: "#3FA8AC" },
+  { text: "REACH", color: "#2E7D72" },
+  { text: "LEADS", color: "#1C6672" },
 ];
 
 const ease = [0.16, 1, 0.3, 1] as const;
