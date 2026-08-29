@@ -6,21 +6,16 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import clsx from "clsx";
 import { services } from "@/content/services";
+import { ServiceIcon } from "@/components/icons/ServiceIcons";
 
-// One distinct, genuinely colorful icon per service — matching the
-// reference dropdown's style (a different colored glyph per row, not one
-// recolored shape reused across items).
-const serviceIcons: Record<string, string> = {
-  "google-ads": "🎯",
-  "meta-ads": "📱",
-  seo: "🔍",
-  "local-seo": "📍",
-  "social-media-marketing": "📣",
-  "web-design-development": "💻",
-  "content-creation": "🎨",
-  "video-production": "🎬",
-  "marketing-automation": "⚡",
-};
+const iconTints = [
+  "bg-turquoise/15 text-turquoise",
+  "bg-lagoon/15 text-lagoon",
+  "bg-peacock/15 text-peacock",
+  "bg-aqua/40 text-navy-3",
+  "bg-teal/15 text-teal",
+  "bg-mint/50 text-lagoon",
+];
 
 /**
  * Desktop-only nav dropdown: hovering (or clicking, for keyboard/touch)
@@ -86,15 +81,17 @@ export function ServicesDropdown() {
             transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
             className="absolute left-1/2 top-full z-50 mt-4 w-80 -translate-x-1/2 rounded-2xl border border-navy/10 bg-white p-2 shadow-[var(--shadow-soft)]"
           >
-            {services.map((service) => (
+            {services.map((service, i) => (
               <Link
                 key={service.slug}
                 href={`/services/${service.slug}`}
                 onClick={() => setOpen(false)}
                 className="flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-cream-2"
               >
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center text-2xl" aria-hidden="true">
-                  {serviceIcons[service.slug] ?? "✨"}
+                <span
+                  className={clsx("flex h-9 w-9 shrink-0 items-center justify-center rounded-lg", iconTints[i % iconTints.length])}
+                >
+                  <ServiceIcon id={service.slug} className="h-5 w-5" />
                 </span>
                 <span className="text-sm font-semibold text-ink">{service.title}</span>
               </Link>

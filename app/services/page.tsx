@@ -25,13 +25,13 @@ export default function ServicesPage() {
         <Eyebrow>Services</Eyebrow>
         <SplitReveal
           as="h1"
-          text="What we build."
+          text="Digital marketing services built to work together."
           trigger="mount"
-          className="mt-5 max-w-3xl font-display text-5xl font-bold uppercase leading-[1.02] tracking-tight text-ink sm:text-7xl"
+          className="mt-5 max-w-4xl font-display text-5xl font-bold uppercase leading-[1.02] tracking-tight text-ink sm:text-7xl"
         />
-        <p className="mt-6 max-w-2xl text-lg text-ink/70">
-          Every service below works as part of one connected system — Attract, Generate Leads, Grow — rather than as
-          an isolated line item.
+        <p className="mt-6 max-w-2xl text-lg font-medium text-ink/80">
+          Nine services, one connected system — ads, search, social, web and automation working together instead of
+          six separate agencies.
         </p>
       </section>
 
@@ -46,8 +46,8 @@ export default function ServicesPage() {
                   <h2 className="mt-2 font-display text-3xl font-bold uppercase tracking-tight text-ink sm:text-4xl">
                     {category.title}
                   </h2>
-                  <p className="mt-3 font-editorial text-xl italic text-blue">{category.headline}</p>
-                  <p className="mt-3 max-w-md text-ink/70">{category.description}</p>
+                  <p className="mt-3 font-editorial text-xl italic text-navy">{category.headline}</p>
+                  <p className="mt-3 max-w-md font-medium text-ink/85">{category.description}</p>
                 </div>
 
                 <div className="grid gap-6 sm:grid-cols-2">
@@ -55,7 +55,7 @@ export default function ServicesPage() {
                     <Link
                       key={service.slug}
                       href={`/services/${service.slug}`}
-                      className="group block overflow-hidden rounded-[var(--radius-card)] border border-navy/10 bg-white p-5 transition-colors hover:border-blue/40"
+                      className="group block overflow-hidden rounded-[var(--radius-card)] border border-navy/10 bg-white p-5 transition-colors hover:border-navy/40"
                     >
                       <AssetPlaceholder
                         type="service"
@@ -65,10 +65,10 @@ export default function ServicesPage() {
                         aspectRatio="4/3"
                         className="transition-transform duration-500 group-hover:scale-[1.03]"
                       />
-                      <h3 className="mt-4 font-display text-lg font-semibold text-ink transition-colors group-hover:text-blue">
+                      <h3 className="mt-4 font-display text-lg font-semibold text-ink transition-colors group-hover:text-navy">
                         {service.title}
                       </h3>
-                      <p className="mt-1 line-clamp-2 text-sm text-ink/60">{service.headline}</p>
+                      <p className="mt-1 line-clamp-2 text-sm font-medium text-ink/75">{service.headline}</p>
                     </Link>
                   ))}
                 </div>

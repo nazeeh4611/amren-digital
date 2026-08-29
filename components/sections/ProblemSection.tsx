@@ -3,7 +3,6 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Eyebrow } from "@/components/typography/Eyebrow";
 import { SplitReveal } from "@/components/animations/SplitReveal";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 
@@ -127,30 +126,75 @@ export function ProblemSection() {
   }, [reducedMotion]);
 
   return (
-    <section ref={sectionRef} className="section bg-cream-2">
-      <div className="wrap">
-        <Eyebrow accent="gold">The Problem</Eyebrow>
-        <SplitReveal
-          as="h2"
-          text="Your business doesn’t need more marketing."
-          className="mt-5 max-w-4xl font-display text-4xl font-bold uppercase leading-[1.02] tracking-tight text-ink sm:text-6xl lg:text-7xl"
-        />
-        <SplitReveal
-          as="p"
-          text="It needs marketing that works together."
-          delay={0.15}
-          className="mt-6 max-w-2xl font-editorial text-2xl italic text-ink/70 sm:text-3xl"
-        />
+    <section ref={sectionRef} className="section relative overflow-hidden bg-cream-2">
+      {/* Faint decorative cloud/paper-plane motif — pure background texture,
+          very low opacity, drifting slowly. Purely optional flourish: if it
+          ever reads as clutter rather than texture, delete this block and
+          nothing else in the section depends on it. */}
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 100 60"
+        className="accent-dot-a pointer-events-none absolute -right-6 top-10 h-28 w-auto text-navy opacity-[0.06] sm:top-16 sm:h-36"
+        fill="currentColor"
+      >
+        <path d="M25 45c-8 0-14-6-14-13 0-6 4-11 10-13 1-8 8-14 16-14 7 0 13 4 15 11 7 1 12 7 12 14 0 8-6 15-15 15H25z" />
+      </svg>
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 100 100"
+        className="accent-dot-b pointer-events-none absolute bottom-10 left-[-2rem] h-20 w-auto rotate-[18deg] text-turquoise opacity-[0.08] sm:h-24"
+        fill="currentColor"
+      >
+        <path d="M6 52L92 8 62 90l-14-30-14 10-4-16 20-14z" />
+      </svg>
 
+      <div className="wrap">
+        <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
+          <div>
+            <SplitReveal
+              as="h2"
+              text="Your Business Doesn’t Need More Marketing."
+              className="font-display text-4xl font-bold uppercase leading-[1.02] tracking-tight text-ink sm:text-6xl lg:text-7xl"
+            />
+            <SplitReveal
+              as="h2"
+              text="It Needs Marketing That Works."
+              delay={0.1}
+              className="mt-1 font-display text-4xl font-bold uppercase leading-[1.02] tracking-tight text-turquoise sm:text-6xl lg:text-7xl"
+            />
+          </div>
+          <div className="lg:border-l lg:border-navy/15 lg:pl-16">
+            <span aria-hidden="true" className="block h-1 w-16 rounded-full bg-turquoise" />
+            <SplitReveal
+              as="p"
+              text="We turn digital challenges into simple strategies, better leads, and real business growth."
+              delay={0.2}
+              className="mt-6 font-editorial text-2xl italic leading-snug text-ink/70 sm:text-3xl lg:text-4xl"
+            />
+            <p className="mt-6 flex flex-wrap items-center gap-2 text-base font-semibold uppercase tracking-[0.15em] sm:text-lg">
+              <span className="text-ink/40 line-through decoration-2 decoration-coral/60">Less Noise.</span>
+              <span className="text-turquoise">More Results.</span>
+            </p>
+          </div>
+        </div>
+
+        {/* Both cards keep their own color at rest and on hover — no full
+            background swap. Instead a thin accent strip fades in along the
+            top edge and the card lifts slightly, a subtler "this one's
+            active" cue than inverting the whole card. */}
         <div className="mt-14 grid gap-6 lg:grid-cols-2 lg:items-stretch lg:gap-6" style={{ perspective: 1200 }}>
           <div
-            className="tilt-card disconnect-list flex flex-col justify-center rounded-[var(--radius-lg)] border border-navy/10 bg-white p-8 shadow-[var(--shadow-card)] transition-shadow duration-300 will-change-transform hover:shadow-lg sm:p-10"
+            className="tilt-card disconnect-list group relative flex flex-col justify-center overflow-hidden rounded-[var(--radius-lg)] border border-navy/10 bg-white p-8 shadow-[var(--shadow-card)] transition-[transform,box-shadow] duration-300 will-change-transform hover:-translate-y-1 hover:shadow-lg sm:p-10"
             style={{ transformStyle: "preserve-3d" }}
           >
+            <span
+              aria-hidden="true"
+              className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-navy transition-transform duration-300 ease-out group-hover:scale-x-100"
+            />
             <p className="text-xs font-semibold uppercase tracking-[0.25em] text-ink/40">Working in isolation</p>
             <ul className="mt-8 space-y-4">
               {disconnects.map((item) => (
-                <li key={item} className="disconnect-item flex items-start gap-3 text-base text-ink/70 sm:text-lg">
+                <li key={item} className="disconnect-item flex items-start gap-3 text-lg font-medium text-navy-3 sm:text-xl">
                   <span
                     aria-hidden="true"
                     className="disconnect-badge mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-coral/40 text-[10px] font-bold text-coral"
@@ -164,10 +208,14 @@ export function ProblemSection() {
           </div>
 
           <div
-            className="tilt-card chain-list flex flex-col justify-center rounded-[var(--radius-lg)] bg-navy p-8 text-cream shadow-[var(--shadow-card)] will-change-transform sm:p-10"
+            className="tilt-card chain-list group relative flex flex-col justify-center overflow-hidden rounded-[var(--radius-lg)] bg-navy p-8 text-cream shadow-[var(--shadow-card)] transition-[transform,box-shadow] duration-300 will-change-transform hover:-translate-y-1 hover:shadow-lg sm:p-10"
             style={{ transformStyle: "preserve-3d" }}
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-2">AMREN connects the system</p>
+            <span
+              aria-hidden="true"
+              className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-cream transition-transform duration-300 ease-out group-hover:scale-x-100"
+            />
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-turquoise">AMREN connects the system</p>
             <div className="relative mt-8">
               <div className="flex flex-col gap-8">
                 {chain.map((step, i) => (
@@ -187,10 +235,10 @@ export function ProblemSection() {
                   between the first and last node's center. */}
               <div aria-hidden="true" className="pointer-events-none absolute left-[18px] top-[18px] bottom-[18px] w-px -translate-x-1/2">
                 <div className="absolute inset-0 bg-cream/15" />
-                <div className="chain-line-draw absolute inset-0 origin-top bg-gold/50" style={{ transform: "scaleY(0)" }} />
+                <div className="chain-line-draw absolute inset-0 origin-top bg-turquoise/60" style={{ transform: "scaleY(0)" }} />
                 <div
-                  className="chain-pulse absolute left-1/2 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold opacity-0"
-                  style={{ top: "0%", boxShadow: "0 0 10px 3px rgba(148,239,242,0.6)" }}
+                  className="chain-pulse absolute left-1/2 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-turquoise opacity-0"
+                  style={{ top: "0%", boxShadow: "0 0 10px 3px rgba(63,168,172,0.6)" }}
                 />
               </div>
             </div>

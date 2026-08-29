@@ -30,6 +30,7 @@ export type ServiceCategory = {
   headline: string;
   description: string;
   serviceSlugs: string[];
+  image: string;
 };
 
 export const serviceCategories: ServiceCategory[] = [
@@ -37,55 +38,61 @@ export const serviceCategories: ServiceCategory[] = [
     key: "performance",
     number: "01",
     title: "Performance",
-    headline: "Make every click count.",
+    headline: "Ads that pay for themselves.",
     description:
       "Paid search and paid social campaigns built around intent, audience and measurable return — not vanity impressions.",
     serviceSlugs: ["google-ads", "meta-ads"],
+    image: "/perfomance.webp",
   },
   {
     key: "social",
     number: "02",
     title: "Social",
-    headline: "Turn attention into desire.",
+    headline: "Content people actually stop scrolling for.",
     description:
       "Content strategy, creative campaigns and day-to-day management that keep a brand present, consistent and worth following.",
     serviceSlugs: ["social-media-marketing"],
+    image: "/socialhero.webp",
   },
   {
     key: "search",
     number: "03",
     title: "Search",
-    headline: "Be found before they find someone else.",
+    headline: "Show up first when it matters most.",
     description:
       "Technical, on-page and local SEO that builds organic visibility on Google — where most buying decisions now start.",
     serviceSlugs: ["seo", "local-seo"],
+    image: "/seohero.webp",
   },
   {
     key: "digital-experiences",
     number: "04",
     title: "Digital Experiences",
-    headline: "Websites that do more than look good.",
+    headline: "A website built to convert, not just impress.",
     description:
       "Conversion-focused websites and landing pages engineered to turn traffic from every channel into enquiries.",
     serviceSlugs: ["web-design-development"],
+    image: "/webhero.webp",
   },
   {
     key: "content",
     number: "05",
     title: "Content",
-    headline: "Make your brand worth watching.",
+    headline: "Photo and video worth stopping for.",
     description:
       "Photography, video and creative direction that give every campaign, page and profile something worth stopping for.",
     serviceSlugs: ["content-creation", "video-production"],
+    image: "/contenthero.webp",
   },
   {
     key: "systems",
     number: "06",
     title: "Systems",
-    headline: "Connect the work behind the work.",
+    headline: "Never lose a lead to bad follow-up again.",
     description:
       "CRM, WhatsApp automation and workflow tooling that make sure a lead is never followed up late, or not at all.",
     serviceSlugs: ["marketing-automation"],
+    image: "/crmauto.webp",
   },
 ];
 

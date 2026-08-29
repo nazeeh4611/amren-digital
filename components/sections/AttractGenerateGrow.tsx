@@ -122,8 +122,8 @@ export function AttractGenerateGrow() {
                 />
                 <span className={`font-display text-5xl font-bold ${stage.numberColor}`}>{stage.number}</span>
                 <h3 className="mt-2 font-display text-2xl font-bold uppercase tracking-tight text-ink">{stage.title}</h3>
-                <p className="mt-3 font-editorial text-lg italic text-ink/70">{stage.headline}</p>
-                <p className="mt-3 text-sm leading-relaxed text-ink/65">{stage.description}</p>
+                <p className="mt-3 font-editorial text-lg italic text-ink/85">{stage.headline}</p>
+                <p className="mt-3 text-sm font-medium leading-relaxed text-ink/85">{stage.description}</p>
                 <ul className="mt-5 flex flex-wrap gap-2">
                   {stage.visuals.map((v) => (
                     <li

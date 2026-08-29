@@ -1,10 +1,11 @@
 import Link from "next/link";
+import Image from "next/image";
 import clsx from "clsx";
-import { serviceCategories, services, categoryMotif } from "@/content/services";
+import { serviceCategories, services } from "@/content/services";
 import { Eyebrow } from "@/components/typography/Eyebrow";
-import { AssetPlaceholder } from "@/components/assets/AssetPlaceholder";
 import { SplitReveal } from "@/components/animations/SplitReveal";
 import { FadeIn } from "@/components/animations/FadeIn";
+import { ServiceIcon } from "@/components/icons/ServiceIcons";
 
 type CardSize = "wide" | "normal";
 
@@ -49,29 +50,26 @@ function CategoryCard({ category, index, fullWidthPair }: { category: (typeof se
   const isWide = style.size === "wide";
 
   const badge = (
-    <span
-      className={clsx(
-        "inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl font-display text-sm font-bold",
-        style.badgeBg,
-        style.badgeText
-      )}
-    >
-      {category.number}
-    </span>
+    <div className="flex items-center gap-3">
+      <span
+        className={clsx("inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl", style.badgeBg, style.badgeText)}
+      >
+        <ServiceIcon id={category.key} className="h-5 w-5" />
+      </span>
+      <span className={clsx("font-display text-xs font-semibold uppercase tracking-[0.2em] opacity-60")}>
+        {category.number} / 06
+      </span>
+    </div>
   );
 
   const image = (
-    <div className={clsx("w-full shrink-0 overflow-hidden", isWide ? "h-80 sm:h-[26rem]" : "h-72 sm:h-80")}>
-      <AssetPlaceholder
-        type="service"
-        label={category.title}
+    <div className={clsx("relative w-full shrink-0 overflow-hidden", isWide ? "h-80 sm:h-[26rem]" : "h-72 sm:h-80")}>
+      <Image
+        src={category.image}
         alt={`${category.title} services at AMREN Digital`}
-        motif={categoryMotif[category.key]}
-        tone={index}
-        fillHeight
-        rounded={false}
-        showLabel={false}
-        className="h-full w-full"
+        fill
+        sizes="(min-width: 1024px) 50vw, 100vw"
+        className="object-cover"
       />
     </div>
   );
@@ -95,8 +93,8 @@ function CategoryCard({ category, index, fullWidthPair }: { category: (typeof se
               {category.title}
             </Link>
           </h3>
-          <p className="mt-2 font-editorial text-lg italic opacity-80 sm:text-xl">{category.headline}</p>
-          <p className="mt-3 max-w-md text-sm opacity-75">{category.description}</p>
+          <p className="mt-2 font-editorial text-lg italic opacity-95 sm:text-xl">{category.headline}</p>
+          <p className="mt-3 max-w-md text-sm font-medium opacity-90">{category.description}</p>
 
           <ul className="mt-6 flex flex-wrap gap-2">
             {categoryServices.map((service) => (
@@ -132,7 +130,8 @@ function CategoryCard({ category, index, fullWidthPair }: { category: (typeof se
         <div className="flex flex-1 flex-col p-7">
           {badge}
           <h3 className="mt-5 font-display text-xl font-bold uppercase leading-none tracking-tight">{category.title}</h3>
-          <p className="mt-2 font-editorial text-base italic opacity-80">{category.headline}</p>
+          <p className="mt-2 font-editorial text-base italic opacity-95">{category.headline}</p>
+          <p className="mt-2 text-sm font-medium opacity-80">{category.description}</p>
           <span className="mt-auto flex items-center gap-1.5 pt-6 text-xs font-semibold uppercase tracking-wide opacity-70 transition-opacity group-hover:opacity-100">
             Explore
             <ArrowIcon className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
@@ -201,17 +200,13 @@ export function ServicesExperience() {
             href="/services"
             className="card-glossy group flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] bg-white"
           >
-            <div className="h-72 w-full shrink-0 overflow-hidden sm:h-80">
-              <AssetPlaceholder
-                type="hero"
-                label="AMREN Digital"
+            <div className="relative h-72 w-full shrink-0 overflow-hidden sm:h-80">
+              <Image
+                src="/allservices.webp"
                 alt="Explore every AMREN Digital service"
-                motif="nodes"
-                tone={2}
-                fillHeight
-                rounded={false}
-                showLabel={false}
-                className="h-full w-full"
+                fill
+                sizes="(min-width: 1024px) 33vw, 100vw"
+                className="object-cover"
               />
             </div>
             <div className="flex flex-1 flex-col justify-between p-7">
