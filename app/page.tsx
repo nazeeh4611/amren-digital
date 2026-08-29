@@ -7,7 +7,7 @@ import { Marquee } from "@/components/typography/Marquee";
 import { AttractGenerateGrow } from "@/components/sections/AttractGenerateGrow";
 import { ProblemSection } from "@/components/sections/ProblemSection";
 import { ServicesExperience } from "@/components/sections/ServicesExperience";
-import { PortfolioTeaser } from "@/components/sections/PortfolioTeaser";
+// import { PortfolioTeaser } from "@/components/sections/PortfolioTeaser";
 import { FaqSection } from "@/components/sections/FaqSection";
 import { CTASection } from "@/components/sections/CTASection";
 import { FullBleedImage } from "@/components/sections/FullBleedImage";
@@ -33,7 +33,11 @@ export default function HomePage() {
       <AttractGenerateGrow />
       <ServicesExperience />
       <FullBleedImage eyebrow="Real work, real growth" statement="Built for brands that mean business." tone={1} />
-      <PortfolioTeaser />
+      {/* Portfolio teaser intentionally off the homepage for now — real
+          completed work so far is video, posters and branding (shown on
+          /work) plus this website itself; no case-study-worthy web
+          projects to feature here yet. Re-add once there's real client
+          work to show alongside it: <PortfolioTeaser /> */}
       <FaqSection items={homeFaqs} title="Questions, answered." />
       <BrandMarquee />
       <CTASection />

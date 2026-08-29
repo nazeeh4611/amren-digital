@@ -9,20 +9,17 @@ import { ServiceIcon } from "@/components/icons/ServiceIcons";
 
 type CardSize = "wide" | "normal";
 
-// Per-category accent identity, drawn from the swatch-card ladder.
-// Performance is the one card on the dark accent (Atlantic), so it's the
-// only one that needs light text — every other category sits on a light
-// rung (Seafoam/Mint/Aqua) with a glossy 3D treatment (see .card-glossy
-// in globals.css), so dark ink reads best on it. The numbered badge stays
-// Atlantic throughout regardless of card color — one consistent
-// dark-accent thread running across all six cards.
+// Same palette as the rest of the site — Performance stays the one card
+// on the dark accent, everything else now gets its own distinct pastel
+// rung of the swatch ladder instead of two cards sharing mint and two
+// sharing aqua.
 const cardStyle: Record<string, { bg: string; text: string; badgeBg: string; badgeText: string; size: CardSize }> = {
   performance: { bg: "bg-gold", text: "text-cream", badgeBg: "bg-navy-3", badgeText: "text-cream", size: "wide" },
   social: { bg: "bg-mint", text: "text-ink", badgeBg: "bg-navy", badgeText: "text-cream", size: "wide" },
   search: { bg: "bg-aqua", text: "text-ink", badgeBg: "bg-navy", badgeText: "text-cream", size: "normal" },
   "digital-experiences": { bg: "bg-seafoam", text: "text-ink", badgeBg: "bg-navy", badgeText: "text-cream", size: "wide" },
-  content: { bg: "bg-mint", text: "text-ink", badgeBg: "bg-navy", badgeText: "text-cream", size: "normal" },
-  systems: { bg: "bg-aqua", text: "text-ink", badgeBg: "bg-navy", badgeText: "text-cream", size: "normal" },
+  content: { bg: "bg-turquoise/25", text: "text-ink", badgeBg: "bg-navy", badgeText: "text-cream", size: "normal" },
+  systems: { bg: "bg-teal/20", text: "text-ink", badgeBg: "bg-navy", badgeText: "text-cream", size: "normal" },
 };
 
 function ArrowIcon({ className }: { className?: string }) {
@@ -43,99 +40,48 @@ function ArrowIcon({ className }: { className?: string }) {
   );
 }
 
+/**
+ * One flat-color panel: an icon chip, the category name, and its
+ * illustration bleeding off the bottom-right corner — nothing else. No
+ * number badge, no description, no tag list, no separate detail panel
+ * under the image.
+ */
 function CategoryCard({ category, index, fullWidthPair }: { category: (typeof serviceCategories)[number]; index: number; fullWidthPair?: boolean }) {
   const categoryServices = services.filter((s) => category.serviceSlugs.includes(s.slug));
   const firstHref = `/services/${categoryServices[0]?.slug ?? ""}`;
   const style = cardStyle[category.key];
   const isWide = style.size === "wide";
 
-  const badge = (
-    <div className="flex items-center gap-3">
-      <span
-        className={clsx("inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl", style.badgeBg, style.badgeText)}
-      >
-        <ServiceIcon id={category.key} className="h-5 w-5" />
-      </span>
-      <span className={clsx("font-display text-xs font-semibold uppercase tracking-[0.2em] opacity-60")}>
-        {category.number} / 06
-      </span>
-    </div>
-  );
-
-  const image = (
-    <div className={clsx("relative w-full shrink-0 overflow-hidden", isWide ? "h-80 sm:h-[26rem]" : "h-72 sm:h-80")}>
-      <Image
-        src={category.image}
-        alt={`${category.title} services at AMREN Digital`}
-        fill
-        sizes="(min-width: 1024px) 50vw, 100vw"
-        className="object-cover"
-      />
-    </div>
-  );
-
-  if (isWide) {
-    return (
-      <FadeIn
-        delay={index * 0.05}
-        className={clsx(
-          "card-glossy flex flex-col overflow-hidden rounded-[var(--radius-card)]",
-          fullWidthPair ? "" : "sm:col-span-2",
-          style.bg,
-          style.text
-        )}
-      >
-        {image}
-        <div className="p-7 sm:p-9">
-          {badge}
-          <h3 className="mt-5 font-display text-2xl font-bold uppercase leading-none tracking-tight sm:text-4xl">
-            <Link href={firstHref} className="hover:underline underline-offset-4">
-              {category.title}
-            </Link>
-          </h3>
-          <p className="mt-2 font-editorial text-lg italic opacity-95 sm:text-xl">{category.headline}</p>
-          <p className="mt-3 max-w-md text-sm font-medium opacity-90">{category.description}</p>
-
-          <ul className="mt-6 flex flex-wrap gap-2">
-            {categoryServices.map((service) => (
-              <li key={service.slug}>
-                <Link
-                  href={`/services/${service.slug}`}
-                  className={clsx(
-                    "inline-block rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wide transition-colors",
-                    style.text === "text-cream" ? "border-cream/30 hover:border-cream/60" : "border-ink/20 hover:border-ink/45"
-                  )}
-                >
-                  {service.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </FadeIn>
-    );
-  }
-
   return (
-    <FadeIn delay={index * 0.05}>
+    <FadeIn delay={index * 0.05} className={clsx(isWide && !fullWidthPair && "sm:col-span-2")}>
       <Link
         href={firstHref}
         className={clsx(
-          "card-glossy group flex h-full flex-col overflow-hidden rounded-[var(--radius-card)]",
+          "card-glossy group relative flex h-[22rem] flex-col overflow-hidden rounded-[var(--radius-card)] p-7 sm:h-[26rem] sm:p-8",
           style.bg,
           style.text
         )}
       >
-        {image}
-        <div className="flex flex-1 flex-col p-7">
-          {badge}
-          <h3 className="mt-5 font-display text-xl font-bold uppercase leading-none tracking-tight">{category.title}</h3>
-          <p className="mt-2 font-editorial text-base italic opacity-95">{category.headline}</p>
-          <p className="mt-2 text-sm font-medium opacity-80">{category.description}</p>
-          <span className="mt-auto flex items-center gap-1.5 pt-6 text-xs font-semibold uppercase tracking-wide opacity-70 transition-opacity group-hover:opacity-100">
-            Explore
-            <ArrowIcon className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
-          </span>
+        <span
+          className={clsx(
+            "relative z-10 inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl",
+            style.badgeBg,
+            style.badgeText
+          )}
+        >
+          <ServiceIcon id={category.key} className="h-6 w-6" />
+        </span>
+        <h3 className="relative z-10 mt-5 max-w-[65%] font-display text-2xl font-bold uppercase leading-[0.95] tracking-tight sm:text-3xl">
+          {category.title}
+        </h3>
+        <div className="pointer-events-none absolute bottom-0 right-0 h-[78%] w-[72%]">
+          <Image
+            src={category.image}
+            alt=""
+            fill
+            sizes="(min-width: 1024px) 33vw, 90vw"
+            className="object-contain object-bottom transition-transform duration-500 ease-out group-hover:scale-105"
+          />
         </div>
       </Link>
     </FadeIn>
@@ -143,12 +89,10 @@ function CategoryCard({ category, index, fullWidthPair }: { category: (typeof se
 }
 
 /**
- * A bento grid, not a repeated card template — each tile is its own flat
- * brand color (reusing the secondary accent palette from globals.css that
- * otherwise sits mostly unused), image-forward (~80% image / ~20% detail)
- * rather than the usual photo-strip-under-text card. Performance and Social
- * open the grid as a matching, equal-width pair in their own row; everything
- * from Search onward keeps its original 3-column layout untouched.
+ * A bento grid of flat-color panels — icon, heading, illustration bleeding
+ * off the corner, nothing else per card. Performance and Social open the
+ * grid as a matching, equal-width pair in their own row; everything from
+ * Search onward keeps its original 3-column layout untouched.
  */
 export function ServicesExperience() {
   const topPair = serviceCategories.filter((c) => c.key === "performance" || c.key === "social");
@@ -156,10 +100,9 @@ export function ServicesExperience() {
   // Wide (2-col-span) cards sorted to the front of each row: a wide card
   // stranded after a normal one can't fit in the remaining column, so CSS
   // grid auto-placement skips that cell and bumps the wide card to the
-  // next row — leaving a blank gap (and isolating the trailing white
-  // "Explore" card next to another one) at the sm/tablet 2-column
-  // breakpoint. Leading with the wide card fills every row exactly at
-  // both the sm (2-col) and lg (3-col) breakpoints.
+  // next row — leaving a blank gap at the sm/tablet 2-column breakpoint.
+  // Leading with the wide card fills every row exactly at both the sm
+  // (2-col) and lg (3-col) breakpoints.
   const rest = serviceCategories
     .filter((c) => c.key !== "performance" && c.key !== "social")
     .sort((a, b) => Number(cardStyle[b.key].size === "wide") - Number(cardStyle[a.key].size === "wide"));
@@ -198,47 +141,22 @@ export function ServicesExperience() {
         <FadeIn delay={serviceCategories.length * 0.05}>
           <Link
             href="/services"
-            className="card-glossy group flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] bg-white"
+            className="card-glossy group relative flex h-[22rem] flex-col overflow-hidden rounded-[var(--radius-card)] bg-white p-7 sm:h-[26rem] sm:p-8"
           >
-            <div className="relative h-72 w-full shrink-0 overflow-hidden sm:h-80">
+            <span className="relative z-10 inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-navy text-cream">
+              <ArrowIcon className="h-6 w-6 -rotate-45" />
+            </span>
+            <h3 className="relative z-10 mt-5 max-w-[65%] font-display text-2xl font-bold uppercase leading-[0.95] tracking-tight text-ink sm:text-3xl">
+              Explore every service
+            </h3>
+            <div className="pointer-events-none absolute bottom-0 right-0 h-[78%] w-[72%]">
               <Image
                 src="/allservices.webp"
-                alt="Explore every AMREN Digital service"
+                alt=""
                 fill
-                sizes="(min-width: 1024px) 33vw, 100vw"
-                className="object-cover"
+                sizes="(min-width: 1024px) 33vw, 90vw"
+                className="object-contain object-bottom transition-transform duration-500 ease-out group-hover:scale-105"
               />
-            </div>
-            <div className="flex flex-1 flex-col justify-between p-7">
-              <span className="font-display text-xl font-bold uppercase leading-tight tracking-tight text-ink">
-                Explore every service
-              </span>
-
-              {/* Rounded "track" spanning the full card width. At rest, it's
-                  a plain white pill with a soft turquoise ring pulsing
-                  outward from the border, and the arrow chip nudges side to
-                  side — reads as alive without the fill color doing it. On
-                  hover, the pulse and nudge both stop, a solid navy fill
-                  sweeps in from the left behind the arrow, and the arrow
-                  slides from the track's left end to its right end while
-                  spinning a full turn. Positioned via `left` (not
-                  `transform`) since the slide needs to be independent of the
-                  icon's own rotation transform. */}
-              <span className="relative mt-6 flex h-14 w-full shrink-0 animate-[track-pulse-glow_2.4s_ease-out_infinite] items-center justify-center overflow-hidden rounded-full border-2 border-navy bg-white group-hover:[animation-play-state:paused]">
-                <span
-                  aria-hidden="true"
-                  className="absolute inset-0 origin-left scale-x-0 bg-navy transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100"
-                />
-                <span className="relative z-10 text-xs font-semibold uppercase tracking-[0.2em] text-ink transition-colors duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:text-cream">
-                  Explore all services
-                </span>
-                <span
-                  aria-hidden="true"
-                  className="absolute inset-y-1.5 left-1.5 z-10 my-auto flex h-10 w-10 animate-[arrow-nudge_1.8s_ease-in-out_infinite] items-center justify-center rounded-full text-ink transition-[left,color] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:left-[calc(100%-3.25rem)] group-hover:text-cream group-hover:[animation-play-state:paused]"
-                >
-                  <ArrowIcon className="h-4 w-4 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:rotate-[360deg]" />
-                </span>
-              </span>
             </div>
           </Link>
         </FadeIn>
