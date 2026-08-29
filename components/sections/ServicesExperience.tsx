@@ -219,27 +219,17 @@ export function ServicesExperience() {
                 Explore every service
               </span>
 
-              {/* Rounded "track" spanning the full card width. At rest, a
-                  slow turquoise shimmer sweeps through it (same technique as
-                  the hero's rotating word) and the arrow chip nudges side to
-                  side, so the card reads as alive rather than a plain
-                  outlined button. On hover, the shimmer and nudge both stop,
-                  a solid navy fill sweeps in from the left behind the arrow,
-                  and the arrow slides from the track's left end to its right
-                  end while spinning a full turn. Positioned via `left` (not
+              {/* Rounded "track" spanning the full card width. At rest, it's
+                  a plain white pill with a soft turquoise ring pulsing
+                  outward from the border, and the arrow chip nudges side to
+                  side — reads as alive without the fill color doing it. On
+                  hover, the pulse and nudge both stop, a solid navy fill
+                  sweeps in from the left behind the arrow, and the arrow
+                  slides from the track's left end to its right end while
+                  spinning a full turn. Positioned via `left` (not
                   `transform`) since the slide needs to be independent of the
                   icon's own rotation transform. */}
-              <span className="relative mt-6 flex h-14 w-full shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-navy">
-                <span
-                  aria-hidden="true"
-                  className="absolute inset-0 transition-opacity duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:opacity-0"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(100deg, var(--amren-seafoam) 0%, var(--amren-aqua) 25%, var(--amren-turquoise) 50%, var(--amren-aqua) 75%, var(--amren-seafoam) 100%)",
-                    backgroundSize: "260% 100%",
-                    animation: "rotating-word-shine 4s linear infinite",
-                  }}
-                />
+              <span className="relative mt-6 flex h-14 w-full shrink-0 animate-[track-pulse-glow_2.4s_ease-out_infinite] items-center justify-center overflow-hidden rounded-full border-2 border-navy bg-white group-hover:[animation-play-state:paused]">
                 <span
                   aria-hidden="true"
                   className="absolute inset-0 origin-left scale-x-0 bg-navy transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100"
