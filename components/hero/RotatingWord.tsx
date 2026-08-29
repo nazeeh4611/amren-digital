@@ -8,7 +8,7 @@ export type RotatingWordSpec = {
   shine: string;
 };
 
-const SLOT_SECONDS = 2.1;
+const SLOT_SECONDS = 2.6;
 
 /**
  * A stack of words in the same grid cell (so swapping between them never

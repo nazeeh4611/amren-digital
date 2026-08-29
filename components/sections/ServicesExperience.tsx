@@ -219,22 +219,39 @@ export function ServicesExperience() {
                 Explore every service
               </span>
 
-              {/* Rounded "track" spanning the full card width. On hover, a
-                  black fill sweeps in from the left behind the arrow while
-                  the arrow itself slides from the track's left end to its
-                  right end, ending on the now-filled black background.
-                  Positioned via `left` (not `transform`) since this needs to
-                  be independent of any other transform on the element. */}
-              <span className="relative mt-6 h-14 w-full shrink-0 overflow-hidden rounded-full border-2 border-navy">
+              {/* Rounded "track" spanning the full card width. At rest, a
+                  slow turquoise shimmer sweeps through it (same technique as
+                  the hero's rotating word) and the arrow chip nudges side to
+                  side, so the card reads as alive rather than a plain
+                  outlined button. On hover, the shimmer and nudge both stop,
+                  a solid navy fill sweeps in from the left behind the arrow,
+                  and the arrow slides from the track's left end to its right
+                  end while spinning a full turn. Positioned via `left` (not
+                  `transform`) since the slide needs to be independent of the
+                  icon's own rotation transform. */}
+              <span className="relative mt-6 flex h-14 w-full shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-navy">
                 <span
                   aria-hidden="true"
-                  className="absolute inset-0 origin-left scale-x-0 bg-navy transition-transform duration-300 ease-out group-hover:scale-x-100"
+                  className="absolute inset-0 transition-opacity duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:opacity-0"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(100deg, var(--amren-seafoam) 0%, var(--amren-aqua) 25%, var(--amren-turquoise) 50%, var(--amren-aqua) 75%, var(--amren-seafoam) 100%)",
+                    backgroundSize: "260% 100%",
+                    animation: "rotating-word-shine 4s linear infinite",
+                  }}
                 />
                 <span
                   aria-hidden="true"
-                  className="absolute inset-y-1.5 left-1.5 z-10 my-auto flex h-10 w-10 items-center justify-center rounded-full text-ink transition-[left,color] duration-300 ease-out group-hover:left-[calc(100%-3.25rem)] group-hover:text-cream"
+                  className="absolute inset-0 origin-left scale-x-0 bg-navy transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100"
+                />
+                <span className="relative z-10 text-xs font-semibold uppercase tracking-[0.2em] text-ink transition-colors duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:text-cream">
+                  Explore all services
+                </span>
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-y-1.5 left-1.5 z-10 my-auto flex h-10 w-10 animate-[arrow-nudge_1.8s_ease-in-out_infinite] items-center justify-center rounded-full text-ink transition-[left,color] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:left-[calc(100%-3.25rem)] group-hover:text-cream group-hover:[animation-play-state:paused]"
                 >
-                  <ArrowIcon className="h-4 w-4" />
+                  <ArrowIcon className="h-4 w-4 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:rotate-[360deg]" />
                 </span>
               </span>
             </div>

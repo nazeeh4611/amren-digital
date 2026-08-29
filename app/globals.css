@@ -214,7 +214,7 @@ body {
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee 16s linear infinite;
+  animation: marquee 8s linear infinite;
 }
 .marquee-track.marquee-reverse {
   animation-direction: reverse;
@@ -240,6 +240,7 @@ body {
 .rotating-word-item {
   opacity: 0;
   transform: translateY(16px);
+  filter: drop-shadow(0 1px 2px rgba(10, 15, 28, 0.95)) drop-shadow(0 4px 18px rgba(10, 15, 28, 0.75));
 }
 .rotating-word-item:first-child {
   opacity: 1;
@@ -350,6 +351,19 @@ body {
 }
 .accent-dot-b {
   animation: dot-float-b 7s ease-in-out infinite;
+}
+
+/* Idle nudge on the "explore all services" arrow chip — a small side-to-side
+   hint that it's clickable, paused (via group-hover:animate-none) the
+   moment the real hover-slide animation takes over. */
+@keyframes arrow-nudge {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5px);
+  }
 }
 
 /* Scroll progress bar */

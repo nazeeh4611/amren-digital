@@ -18,8 +18,8 @@ import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 // photo overlay behind the heading.
 const rotatingWords: RotatingWordSpec[] = [
   { text: "GROWTH", color: "#3FA8AC", shine: "#A9CDCE" },
-  { text: "REACH", color: "#C7DCC9", shine: "#DCEBE1" },
-  { text: "LEADS", color: "#A9CDCE", shine: "#DCEBE1" },
+  { text: "REACH", color: "#2E7D72", shine: "#C7DCC9" },
+  { text: "LEADS", color: "#1C6672", shine: "#A9CDCE" },
 ];
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -60,23 +60,18 @@ export function Hero() {
         style={{
           background:
             "linear-gradient(90deg, rgba(63,168,172,0.15) 0%, rgba(63,168,172,0) 20%, rgba(63,168,172,0) 80%, rgba(63,168,172,0.15) 100%), " +
-            "linear-gradient(180deg, rgba(11,18,31,0.48) 0%, rgba(11,18,31,0.3) 45%, rgba(11,18,31,0.56) 100%)",
+            "linear-gradient(180deg, rgba(11,18,31,0.34) 0%, rgba(11,18,31,0.16) 45%, rgba(11,18,31,0.42) 100%)",
         }}
       />
 
       <div className="wrap relative flex flex-col items-center text-center">
-        <span className="inline-flex items-center gap-2 rounded-full border border-cream/25 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-cream/80">
-          <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-orange" />
-          {site.location.label}
-        </span>
-
         <motion.h1
           ref={headingRef}
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease, delay: 0.15 }}
           className="mx-auto mt-6 max-w-4xl font-display text-[clamp(2.125rem,8.8vw,5.5rem)] font-bold uppercase leading-[0.95] tracking-tight"
-          style={{ willChange: "transform" }}
+          style={{ willChange: "transform", textShadow: "0 4px 24px rgba(10,15,28,0.55)" }}
         >
           <span className="block">
             DIGITAL <RotatingWord words={rotatingWords} className="italic font-semibold" />
@@ -88,7 +83,8 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease, delay: 0.45 }}
-          className="mx-auto mt-8 max-w-xl text-lg leading-relaxed text-cream/75 sm:text-xl"
+          className="mx-auto mt-8 max-w-xl text-lg leading-relaxed text-cream/95 sm:text-xl"
+          style={{ textShadow: "0 2px 12px rgba(10,15,28,0.5)" }}
         >
           We build connected digital systems that attract attention, generate qualified enquiries and help UAE
           businesses grow.
