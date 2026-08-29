@@ -13,6 +13,7 @@ import { Button } from "@/components/buttons/Button";
 import { Magnetic } from "@/components/animations/Magnetic";
 import { MobileMenu } from "@/components/navigation/MobileMenu";
 import { LandingHeader } from "@/components/landing/LandingHeader";
+import { ServicesDropdown } from "@/components/navigation/ServicesDropdown";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -66,6 +67,9 @@ export function Navbar() {
 
           <nav aria-label="Primary" className="hidden items-center gap-7 lg:flex">
             {site.nav.map((item) => {
+              if (item.label === "Services") {
+                return <ServicesDropdown key={item.href} />;
+              }
               const active = pathname === item.href;
               return (
                 <Link

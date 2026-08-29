@@ -7,7 +7,7 @@ import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 
 // Cycles through the brand palette as the reader moves through the page —
 // a small, always-visible "different color appears while scroll" cue.
-const PALETTE = ["#17294b", "#3fa8ac", "#17294b"];
+const PALETTE = ["#1e2142", "#3fa8ac", "#1e2142"];
 
 export function ScrollProgressBar() {
   const barRef = useRef<HTMLDivElement>(null);

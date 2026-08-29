@@ -8,10 +8,10 @@ import { trackEvent } from "@/lib/track";
 type Variant = "primary" | "secondary" | "ghost" | "outline-light" | "warm";
 
 const fillByVariant: Partial<Record<Variant, string>> = {
-  primary: "bg-gold-2",
-  secondary: "bg-navy-2",
+  primary: "bg-orange-2",
+  secondary: "bg-orange-2",
   "outline-light": "bg-cream/12",
-  warm: "bg-coral",
+  warm: "bg-orange-2",
 };
 
 /**
@@ -45,16 +45,16 @@ export function Button({
   const base =
     "group relative inline-flex items-center gap-2 overflow-hidden rounded-full px-6 py-3 text-sm font-semibold uppercase tracking-wide transition-[transform,box-shadow,color] duration-300 ease-out focus-visible:outline-2 focus-visible:outline-offset-2 will-change-transform hover:-translate-y-0.5 active:translate-y-0";
 
+  // Every filled variant now shares the one accent color used by the hero's
+  // "Let's Grow" button (Turquoise, via the `orange` token) — primary,
+  // secondary and warm are kept as separate variant names for call-site
+  // clarity, but they render identically on purpose.
   const variants: Record<Variant, string> = {
-    primary: "bg-gold text-cream shadow-[0_0_0_rgba(0,0,0,0)] hover:shadow-[0_14px_34px_-10px_rgba(32,55,120,0.5)]",
-    secondary: "bg-navy text-cream shadow-[0_0_0_rgba(0,0,0,0)] hover:shadow-[0_14px_34px_-10px_rgba(32,55,120,0.55)]",
-    // Near-black by default (dominant heading/body color), Deep Blue on
-    // hover — the accent shows up only on interaction, not at rest.
-    ghost: "bg-transparent text-ink underline decoration-2 underline-offset-4 hover:text-gold",
+    primary: "bg-orange text-ink shadow-[0_0_0_rgba(0,0,0,0)] hover:shadow-[0_14px_34px_-10px_rgba(63,168,172,0.55)]",
+    secondary: "bg-orange text-ink shadow-[0_0_0_rgba(0,0,0,0)] hover:shadow-[0_14px_34px_-10px_rgba(63,168,172,0.55)]",
+    ghost: "bg-transparent text-ink underline decoration-2 underline-offset-4 hover:text-orange",
     "outline-light": "border border-cream/40 text-cream hover:shadow-[0_14px_34px_-10px_rgba(255,255,255,0.25)]",
-    // Orange-based, no Deep Blue anywhere — for contexts (like the hero)
-    // that must stay outside the navy accent entirely.
-    warm: "bg-orange text-ink shadow-[0_0_0_rgba(0,0,0,0)] hover:shadow-[0_14px_34px_-10px_rgba(243,187,52,0.55)]",
+    warm: "bg-orange text-ink shadow-[0_0_0_rgba(0,0,0,0)] hover:shadow-[0_14px_34px_-10px_rgba(63,168,172,0.55)]",
   };
 
   const fill = fillByVariant[variant];

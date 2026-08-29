@@ -21,11 +21,11 @@
   --amren-cream: #f5f8f6; /* Soft White, seafoam-tinted — primary background (65%) */
   --amren-cream-2: #e8f0ec; /* Mist, mint-tinted — alternate section background */
   --amren-white: #ffffff; /* true white, for surfaces that want to sit above Mist/Soft White */
-  --amren-navy: #17294b; /* Deep Blue — "Atlantic" from the brand swatch card; dark sections, primary CTA */
-  --amren-navy-2: #101d35; /* Deep Blue, darker — hover state */
-  --amren-navy-3: #2b4470; /* Deep Blue, lighter — badges/borders on dark */
-  --amren-gold: #17294b; /* primary CTA — Deep Blue, per spec */
-  --amren-gold-2: #101d35; /* primary CTA hover — a darker Deep Blue, per spec */
+  --amren-navy: #1e2142; /* Deep Blue — latest brand swatch; dark sections, primary CTA */
+  --amren-navy-2: #14162e; /* Deep Blue, darker — hover state */
+  --amren-navy-3: #34386e; /* Deep Blue, lighter — badges/borders on dark */
+  --amren-gold: #1e2142; /* primary CTA — Deep Blue, per spec */
+  --amren-gold-2: #14162e; /* primary CTA hover — a darker Deep Blue, per spec */
 
   /* The full swatch-card ladder, lightest to darkest — used directly by
      the glossy card treatment and available for any component that wants
@@ -37,7 +37,7 @@
   --amren-teal: #278688;
   --amren-lagoon: #2e7d72;
   --amren-peacock: #1c6672;
-  --amren-petrol: #154456;
+  --amren-petrol: var(--amren-navy); /* footer now matches the same dark swatch as the CTA section above it */
   --amren-abyss: #0a0f1c;
 
   /* Existing accent-role names, remapped onto the ladder above so every

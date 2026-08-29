@@ -7,7 +7,7 @@ export const site = {
     "AMREN Digital is a Dubai-based digital growth agency helping UAE businesses attract customers, generate qualified leads and build connected digital systems.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://digital.amren.ae",
   locale: "en_AE",
-  themeColor: "#17294b",
+  themeColor: "#1e2142",
 
   parent: {
     name: "AMREN VENTURES",
@@ -40,9 +40,7 @@ export const site = {
     { label: "Home", href: "/" },
     { label: "About", href: "/about" },
     { label: "Services", href: "/services" },
-    { label: "Industries", href: "/industries" },
     { label: "Work", href: "/work" },
-    { label: "Insights", href: "/insights" },
     { label: "Contact", href: "/contact" },
   ],
 

@@ -53,7 +53,7 @@ export function Hero() {
 
   return (
     <section ref={sectionRef} className="relative overflow-hidden bg-ink pb-24 pt-36 text-cream sm:pb-32 sm:pt-44">
-      <Image src="/bghero.avif" alt="" fill priority sizes="100vw" className="object-cover" />
+      <Image src="/dbhero.avif" alt="" fill priority sizes="100vw" className="object-cover" />
       <div
         aria-hidden="true"
         className="absolute inset-0"
