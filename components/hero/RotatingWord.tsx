@@ -6,7 +6,7 @@ export type RotatingWordSpec = {
   color: string;
 };
 
-const SLOT_SECONDS = 2.6;
+const SLOT_SECONDS = 1.5;
 
 /**
  * A stack of words in the same grid cell (so swapping between them never
@@ -19,7 +19,7 @@ export function RotatingWord({ words, className }: { words: RotatingWordSpec[]; 
   const duration = words.length * SLOT_SECONDS;
 
   return (
-    <span className={`relative inline-grid font-rotating text-left align-bottom ${className ?? ""}`}>
+    <span className={`relative inline-grid text-left align-bottom ${className ?? ""}`}>
       {words.map((w, i) => (
         <span
           key={w.text}

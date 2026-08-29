@@ -17,9 +17,9 @@ import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 // the one strong dark accent while reading clearly against the dark
 // photo overlay behind the heading.
 const rotatingWords: RotatingWordSpec[] = [
-  { text: "GROWTH", color: "#3FA8AC" },
-  { text: "REACH", color: "#3FA8AC" },
-  { text: "LEADS", color: "#3FA8AC" },
+  { text: "GROWTH", color: "#72E8EC" },
+  { text: "REACH", color: "#72E8EC" },
+  { text: "LEADS", color: "#72E8EC" },
 ];
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -74,7 +74,7 @@ export function Hero() {
           style={{ willChange: "transform", textShadow: "0 4px 24px rgba(10,15,28,0.55)" }}
         >
           <span className="block">
-            DIGITAL <RotatingWord words={rotatingWords} className="italic font-semibold" />
+            DIGITAL <RotatingWord words={rotatingWords} />
           </span>
           <span className="block">BUILT TO MOVE.</span>
         </motion.h1>
