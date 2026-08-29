@@ -22,11 +22,16 @@ export function ScrollProgressBar() {
       start: 0,
       end: "max",
       onUpdate: (self) => {
+        // Scroll position itself already updates every frame while
+        // scrolling, so this only needs to set the current value, not
+        // spin up a whole new tweened animation per tick — that was
+        // creating dozens of overlapping GSAP tweens per second during
+        // fast scrolling, real wasted CPU on every single page.
         const segment = self.progress * (PALETTE.length - 1);
         const index = Math.min(Math.floor(segment), PALETTE.length - 2);
         const localProgress = segment - index;
         const color = gsap.utils.interpolate(PALETTE[index], PALETTE[index + 1], localProgress);
-        gsap.to(barRef.current, { scaleX: self.progress, backgroundColor: color, duration: 0.1, ease: "none" });
+        gsap.set(barRef.current, { scaleX: self.progress, backgroundColor: color });
       },
     });
 

@@ -9,17 +9,18 @@ import { ServiceIcon } from "@/components/icons/ServiceIcons";
 
 type CardSize = "wide" | "normal";
 
-// Same palette as the rest of the site — Performance stays the one card
-// on the dark accent, everything else now gets its own distinct pastel
-// rung of the swatch ladder instead of two cards sharing mint and two
-// sharing aqua.
+// Flat, special-mix pastel colors (one distinct hue per card, not the
+// site's usual teal-only ladder) — plain flat panels, no glass/shine
+// treatment. Performance stays the one dark anchor card; every other
+// category gets its own warm or cool pastel so the grid reads as varied
+// at a glance instead of a repeated teal tint.
 const cardStyle: Record<string, { bg: string; text: string; badgeBg: string; badgeText: string; size: CardSize }> = {
   performance: { bg: "bg-gold", text: "text-cream", badgeBg: "bg-navy-3", badgeText: "text-cream", size: "wide" },
-  social: { bg: "bg-mint", text: "text-ink", badgeBg: "bg-navy", badgeText: "text-cream", size: "wide" },
-  search: { bg: "bg-aqua", text: "text-ink", badgeBg: "bg-navy", badgeText: "text-cream", size: "normal" },
-  "digital-experiences": { bg: "bg-seafoam", text: "text-ink", badgeBg: "bg-navy", badgeText: "text-cream", size: "wide" },
-  content: { bg: "bg-turquoise/25", text: "text-ink", badgeBg: "bg-navy", badgeText: "text-cream", size: "normal" },
-  systems: { bg: "bg-teal/20", text: "text-ink", badgeBg: "bg-navy", badgeText: "text-cream", size: "normal" },
+  social: { bg: "bg-[#F6C9BE]", text: "text-ink", badgeBg: "bg-ink", badgeText: "text-cream", size: "wide" },
+  search: { bg: "bg-[#FCE8B8]", text: "text-ink", badgeBg: "bg-ink", badgeText: "text-cream", size: "normal" },
+  "digital-experiences": { bg: "bg-[#D9D0E8]", text: "text-ink", badgeBg: "bg-ink", badgeText: "text-cream", size: "wide" },
+  content: { bg: "bg-[#D7DFB0]", text: "text-ink", badgeBg: "bg-ink", badgeText: "text-cream", size: "normal" },
+  systems: { bg: "bg-[#F6B8AE]", text: "text-ink", badgeBg: "bg-ink", badgeText: "text-cream", size: "normal" },
 };
 
 function ArrowIcon({ className }: { className?: string }) {
@@ -57,7 +58,7 @@ function CategoryCard({ category, index, fullWidthPair }: { category: (typeof se
       <Link
         href={firstHref}
         className={clsx(
-          "card-glossy group relative flex h-[22rem] flex-col overflow-hidden rounded-[var(--radius-card)] p-7 sm:h-[26rem] sm:p-8",
+          "group relative flex h-[22rem] flex-col overflow-hidden rounded-[var(--radius-card)] p-7 shadow-[var(--shadow-card)] transition-transform duration-300 ease-out hover:-translate-y-1 sm:h-[26rem] sm:p-8",
           style.bg,
           style.text
         )}
@@ -74,6 +75,16 @@ function CategoryCard({ category, index, fullWidthPair }: { category: (typeof se
         <h3 className="relative z-10 mt-5 max-w-[65%] font-display text-2xl font-bold uppercase leading-[0.95] tracking-tight sm:text-3xl">
           {category.title}
         </h3>
+        <span
+          className={clsx(
+            "relative z-10 mt-auto inline-flex w-fit items-center gap-1.5 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-wide transition-transform duration-300 ease-out group-hover:translate-x-1",
+            style.badgeBg,
+            style.badgeText
+          )}
+        >
+          Learn More
+          <ArrowIcon className="h-3.5 w-3.5" />
+        </span>
         <div className="pointer-events-none absolute bottom-0 right-0 h-[78%] w-[72%]">
           <Image
             src={category.image}
@@ -141,7 +152,7 @@ export function ServicesExperience() {
         <FadeIn delay={serviceCategories.length * 0.05}>
           <Link
             href="/services"
-            className="card-glossy group relative flex h-[22rem] flex-col overflow-hidden rounded-[var(--radius-card)] bg-white p-7 sm:h-[26rem] sm:p-8"
+            className="group relative flex h-[22rem] flex-col overflow-hidden rounded-[var(--radius-card)] bg-white p-7 shadow-[var(--shadow-card)] transition-transform duration-300 ease-out hover:-translate-y-1 sm:h-[26rem] sm:p-8"
           >
             <span className="relative z-10 inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-navy text-cream">
               <ArrowIcon className="h-6 w-6 -rotate-45" />
@@ -149,6 +160,10 @@ export function ServicesExperience() {
             <h3 className="relative z-10 mt-5 max-w-[65%] font-display text-2xl font-bold uppercase leading-[0.95] tracking-tight text-ink sm:text-3xl">
               Explore every service
             </h3>
+            <span className="relative z-10 mt-auto inline-flex w-fit items-center gap-1.5 rounded-full bg-navy px-4 py-2 text-xs font-semibold uppercase tracking-wide text-cream transition-transform duration-300 ease-out group-hover:translate-x-1">
+              Explore More
+              <ArrowIcon className="h-3.5 w-3.5" />
+            </span>
             <div className="pointer-events-none absolute bottom-0 right-0 h-[78%] w-[72%]">
               <Image
                 src="/allservices.webp"
