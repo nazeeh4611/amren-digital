@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import clsx from "clsx";
-import { services } from "@/content/services";
+import { serviceCategories } from "@/content/services";
 import { ServiceIcon } from "@/components/icons/ServiceIcons";
 
 const iconTints = [
@@ -19,9 +19,10 @@ const iconTints = [
 
 /**
  * Desktop-only nav dropdown: hovering (or clicking, for keyboard/touch)
- * "Services" reveals every individual service as an icon + label row, so
- * visitors can jump straight to what they want instead of landing on the
- * overview page first. The trigger link itself still goes to /services.
+ * "Services" reveals the 6 core service categories (not every individual
+ * sub-service — SEO and Local SEO, for instance, are one "Search" line,
+ * not two), so the list stays short and scannable. The trigger link
+ * itself still goes to /services.
  */
 export function ServicesDropdown() {
   const [open, setOpen] = useState(false);
@@ -81,19 +82,19 @@ export function ServicesDropdown() {
             transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
             className="absolute left-1/2 top-full z-50 mt-4 w-80 -translate-x-1/2 rounded-2xl border border-navy/10 bg-white p-2 shadow-[var(--shadow-soft)]"
           >
-            {services.map((service, i) => (
+            {serviceCategories.map((category, i) => (
               <Link
-                key={service.slug}
-                href={`/services/${service.slug}`}
+                key={category.key}
+                href={`/services/${category.serviceSlugs[0]}`}
                 onClick={() => setOpen(false)}
                 className="flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-cream-2"
               >
                 <span
                   className={clsx("flex h-9 w-9 shrink-0 items-center justify-center rounded-lg", iconTints[i % iconTints.length])}
                 >
-                  <ServiceIcon id={service.slug} className="h-5 w-5" />
+                  <ServiceIcon id={category.key} className="h-5 w-5" />
                 </span>
-                <span className="text-sm font-semibold text-ink">{service.title}</span>
+                <span className="text-sm font-semibold text-ink">{category.title}</span>
               </Link>
             ))}
           </motion.div>

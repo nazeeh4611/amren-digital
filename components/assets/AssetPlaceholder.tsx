@@ -1,3 +1,5 @@
+import { existsSync } from "node:fs";
+import path from "node:path";
 import Image from "next/image";
 import clsx from "clsx";
 
@@ -30,14 +32,9 @@ const motifByType: Record<PlaceholderType, Motif> = {
   background: "mark",
 };
 
-// Flat, solid brand-color tints laid over a real photo (never a gradient) —
-// picked for reliable contrast against the cream/white label sitting on top.
-const solidTones = ["bg-navy", "bg-blue", "bg-coral", "bg-navy-3", "bg-navy-2"];
-
 /**
- * Deterministic seed so the same placeholder slot always gets the same free
- * stock photo (via Picsum Photos — no API key, no attribution wall) across
- * reloads and builds, rather than a random one on every render.
+ * Deterministic, human-readable seed so the same placeholder slot always
+ * resolves to the same file path across reloads and builds.
  */
 function toSeed(...parts: (string | number | undefined)[]) {
   return parts
@@ -48,8 +45,30 @@ function toSeed(...parts: (string | number | undefined)[]) {
     .replace(/(^-|-$)/g, "");
 }
 
-function stockPhotoUrl(seed: string) {
-  return `https://picsum.photos/seed/${seed}/1200/1200`;
+/**
+ * A predictable local path under /public/placeholders — drop a .webp with
+ * this exact name in there and it replaces this slot everywhere it's
+ * used, no code change needed. Until a file exists, next/image just fails
+ * to load it and the tinted color wash + label underneath (below) still
+ * shows, so the slot stays legible rather than breaking.
+ */
+function placeholderPath(seed: string) {
+  return `/placeholders/${seed}.webp`;
+}
+
+/**
+ * Server-only check (no "use client" anywhere in this component's callers)
+ * for whether a real file has actually been dropped into
+ * public/placeholders for this slot. Runs at build time for static pages,
+ * so a file added after a production build needs a rebuild to show up —
+ * same as any other file under /public.
+ */
+function hasRealPlaceholderFile(seed: string) {
+  try {
+    return existsSync(path.join(process.cwd(), "public", "placeholders", `${seed}.webp`));
+  } catch {
+    return false;
+  }
 }
 
 export function AssetPlaceholder({
@@ -85,29 +104,48 @@ export function AssetPlaceholder({
   fillHeight?: boolean;
 }) {
   const ratio = aspectRatio || (type === "hero" ? "16/9" : type === "portfolio" ? "4/3" : "4/5");
-  const tintClass = solidTones[tone % solidTones.length];
-  const finalSrc = src || stockPhotoUrl(toSeed(type, label, motif || motifByType[type], tone));
+  const seed = toSeed(type, label, motif || motifByType[type], tone);
+  const finalSrc = src || placeholderPath(seed);
+  // True once a real file has been dropped in — either an explicit `src`
+  // from the caller, or a manually-added local file matching this slot's
+  // seed. While still empty, this renders a plain light placeholder card
+  // with the exact file path printed on it — no dark color block, no
+  // broken-image icon, and no separate doc to cross-reference to find
+  // out what to name the file.
+  const isPlaceholder = !src && !hasRealPlaceholderFile(seed);
 
   return (
     <div
-      className={clsx("relative overflow-hidden bg-navy", rounded && "rounded-[var(--radius-card)]", className)}
+      className={clsx(
+        "relative overflow-hidden",
+        isPlaceholder ? "border border-dashed border-navy/20 bg-cream-2" : undefined,
+        rounded && "rounded-[var(--radius-card)]",
+        className
+      )}
       style={fillHeight ? undefined : { aspectRatio: ratio.replace("/", " / ") }}
     >
-      <Image
-        src={finalSrc}
-        alt={decorative ? "" : alt || label || "AMREN Digital"}
-        fill
-        priority={priority}
-        sizes={sizes || "(min-width: 1024px) 50vw, 100vw"}
-        className="object-cover"
-      />
-      {/* Quiet brand-color wash — keeps unbranded stock photography feeling
-          like it belongs to AMREN without covering it in icons/labels. */}
-      {!src && <div aria-hidden="true" className={clsx("absolute inset-0 mix-blend-multiply", tintClass, "opacity-30")} />}
-      {!src && label && showLabel && (
-        <span className="pointer-events-none absolute bottom-3 left-3 rounded-full bg-navy/50 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-cream/85 backdrop-blur-sm">
-          {label}
-        </span>
+      {isPlaceholder ? (
+        showLabel && (
+          <div className="flex h-full w-full flex-col items-center justify-center gap-2 p-4 text-center">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="h-7 w-7 text-navy/30" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <path d="M21 15l-5-5L5 21" />
+            </svg>
+            <span className="break-all font-mono text-[10px] leading-relaxed text-navy/50">
+              public/placeholders/{seed}.webp
+            </span>
+          </div>
+        )
+      ) : (
+        <Image
+          src={finalSrc}
+          alt={decorative ? "" : alt || label || "AMREN Digital"}
+          fill
+          priority={priority}
+          sizes={sizes || "(min-width: 1024px) 50vw, 100vw"}
+          className="object-cover"
+        />
       )}
     </div>
   );

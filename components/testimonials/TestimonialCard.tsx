@@ -12,6 +12,7 @@ export function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
         <figcaption className="mt-8 flex items-center gap-4">
           <AssetPlaceholder
             type="testimonial-photo"
+            label={testimonial.id}
             aspectRatio="1/1"
             alt={testimonial.name}
             className="h-14 w-14 shrink-0 [&_svg]:h-6 [&_svg]:w-6"

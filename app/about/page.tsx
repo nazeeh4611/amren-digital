@@ -117,7 +117,7 @@ export default function AboutPage() {
             {team.map((member, i) => (
               <FadeIn key={member.id} delay={i * 0.08} className="text-center">
                 <ImageReveal>
-                  <AssetPlaceholder type="team-photo" aspectRatio="4/5" alt={member.name} />
+                  <AssetPlaceholder type="team-photo" label={member.id} aspectRatio="4/5" alt={member.name} />
                 </ImageReveal>
                 <p className="mt-3 font-semibold text-ink">{member.name}</p>
                 <p className="text-sm text-ink/60">{member.role}</p>
