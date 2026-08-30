@@ -408,7 +408,7 @@ export const services: Service[] = [
     ],
     seoTopic: "web design / website development / Dubai",
     relatedSlugs: ["seo", "marketing-automation", "content-creation"],
-    aspectRatio: "16/9",
+    aspectRatio: "1/1",
     assetLabel: "Websites",
     recommendedAsset: "Browser mockup of a real website, responsive multi-device screens, or an actual project screenshot.",
   },
