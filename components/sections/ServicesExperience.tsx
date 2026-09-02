@@ -69,18 +69,15 @@ function CategoryCard({ category, fullWidthPair }: { category: (typeof serviceCa
           style.text
         )}
       >
-        <span
-          className={clsx(
-            "relative z-10 inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl",
-            style.badgeBg,
-            style.badgeText
-          )}
-        >
+        <span className="relative z-10 inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/90 shadow-sm">
           <ServiceIcon id={category.key} className="h-6 w-6" />
         </span>
         <h3 className="relative z-10 mt-5 max-w-[65%] font-display text-2xl font-bold uppercase leading-[0.95] tracking-tight sm:text-3xl">
           {category.title}
         </h3>
+        <p className="relative z-10 mt-3 max-w-[60%] text-sm font-medium leading-snug opacity-80 sm:text-base">
+          {category.headline}
+        </p>
         <span
           className={clsx(
             "relative z-10 mt-auto inline-flex w-fit items-center gap-1.5 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-wide transition-transform duration-300 ease-out group-hover:translate-x-1",
@@ -165,13 +162,16 @@ export function ServicesExperience() {
           <h3 className="relative z-10 mt-5 max-w-[65%] font-display text-2xl font-bold uppercase leading-[0.95] tracking-tight text-ink sm:text-3xl">
             Explore every service
           </h3>
+          <p className="relative z-10 mt-3 max-w-[60%] text-sm font-medium leading-snug text-ink/70 sm:text-base">
+            See the full list of what AMREN builds and runs for clients.
+          </p>
           <span className="relative z-10 mt-auto inline-flex w-fit items-center gap-1.5 rounded-full bg-navy px-4 py-2 text-xs font-semibold uppercase tracking-wide text-cream transition-transform duration-300 ease-out group-hover:translate-x-1">
             Explore More
             <ArrowIcon className="h-3.5 w-3.5" />
           </span>
           <div className="pointer-events-none absolute bottom-0 right-0 h-[78%] w-[72%]">
             <Image
-              src="/allservices.webp"
+              src="/allservices.avif"
               alt=""
               fill
               sizes="(min-width: 1024px) 33vw, 90vw"

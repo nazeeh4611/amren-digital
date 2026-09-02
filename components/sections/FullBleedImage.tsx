@@ -19,7 +19,7 @@ export function FullBleedImage({
     <section className="relative h-[46vh] min-h-[340px] w-full overflow-hidden sm:h-[54vh]">
       <ParallaxImage speed={40} className="absolute inset-0 h-full w-full">
         <Image
-          src="/brands.webp"
+          src="/brands.avif"
           alt=""
           width={1983}
           height={793}

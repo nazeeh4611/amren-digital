@@ -49,7 +49,12 @@ export function SplitReveal({
     const ctx = gsap.context(() => {
       const tween = gsap.fromTo(
         targets,
-        { yPercent: 110, opacity: 0 },
+        // Travel distance kept under 100% so a sliding word's mask never
+        // has to clip content that visually overlaps the line above it —
+        // on wrapped multi-line headings (more likely on narrow screens)
+        // a larger distance could smear into the settled line above,
+        // especially combined with a heavy text-shadow blur.
+        { yPercent: 65, opacity: 0 },
         {
           yPercent: 0,
           opacity: 1,

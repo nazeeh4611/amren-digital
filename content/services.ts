@@ -42,7 +42,7 @@ export const serviceCategories: ServiceCategory[] = [
     description:
       "Paid search and paid social campaigns built around intent, audience and measurable return — not vanity impressions.",
     serviceSlugs: ["google-ads", "meta-ads"],
-    image: "/perfomance.webp",
+    image: "/perfomance.avif",
   },
   {
     key: "social",
@@ -52,47 +52,47 @@ export const serviceCategories: ServiceCategory[] = [
     description:
       "Content strategy, creative campaigns and day-to-day management that keep a brand present, consistent and worth following.",
     serviceSlugs: ["social-media-marketing"],
-    image: "/socialhero.webp",
+    image: "/socialhero.avif",
   },
   {
     key: "search",
     number: "03",
-    title: "Search",
+    title: "SEO",
     headline: "Show up first when it matters most.",
     description:
       "Technical, on-page and local SEO that builds organic visibility on Google — where most buying decisions now start.",
     serviceSlugs: ["seo", "local-seo"],
-    image: "/seohero.webp",
+    image: "/seohero.avif",
   },
   {
     key: "digital-experiences",
     number: "04",
-    title: "Digital Experiences",
+    title: "Web Development",
     headline: "A website built to convert, not just impress.",
     description:
       "Conversion-focused websites and landing pages engineered to turn traffic from every channel into enquiries.",
     serviceSlugs: ["web-design-development"],
-    image: "/webhero.webp",
+    image: "/webhero.avif",
   },
   {
     key: "content",
     number: "05",
-    title: "Content",
+    title: "Content Creation",
     headline: "Photo and video worth stopping for.",
     description:
       "Photography, video and creative direction that give every campaign, page and profile something worth stopping for.",
     serviceSlugs: ["content-creation", "video-production"],
-    image: "/contenthero.webp",
+    image: "/contenthero.avif",
   },
   {
     key: "systems",
     number: "06",
-    title: "Systems",
+    title: "Automation & CRM",
     headline: "Never lose a lead to bad follow-up again.",
     description:
       "CRM, WhatsApp automation and workflow tooling that make sure a lead is never followed up late, or not at all.",
     serviceSlugs: ["marketing-automation"],
-    image: "/crmauto.webp",
+    image: "/crmauto.avif",
   },
 ];
 

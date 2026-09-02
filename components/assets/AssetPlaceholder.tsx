@@ -46,14 +46,14 @@ function toSeed(...parts: (string | number | undefined)[]) {
 }
 
 /**
- * A predictable local path under /public/placeholders — drop a .webp with
+ * A predictable local path under /public/placeholders — drop an .avif with
  * this exact name in there and it replaces this slot everywhere it's
  * used, no code change needed. Until a file exists, next/image just fails
  * to load it and the tinted color wash + label underneath (below) still
  * shows, so the slot stays legible rather than breaking.
  */
 function placeholderPath(seed: string) {
-  return `/placeholders/${seed}.webp`;
+  return `/placeholders/${seed}.avif`;
 }
 
 /**
@@ -65,7 +65,7 @@ function placeholderPath(seed: string) {
  */
 function hasRealPlaceholderFile(seed: string) {
   try {
-    return existsSync(path.join(process.cwd(), "public", "placeholders", `${seed}.webp`));
+    return existsSync(path.join(process.cwd(), "public", "placeholders", `${seed}.avif`));
   } catch {
     return false;
   }
@@ -133,7 +133,7 @@ export function AssetPlaceholder({
               <path d="M21 15l-5-5L5 21" />
             </svg>
             <span className="break-all font-mono text-[10px] leading-relaxed text-navy/50">
-              public/placeholders/{seed}.webp
+              public/placeholders/{seed}.avif
             </span>
           </div>
         )
