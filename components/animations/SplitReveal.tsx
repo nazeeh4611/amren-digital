@@ -82,7 +82,14 @@ export function SplitReveal({
   return (
     <Tag ref={containerRef} className={className}>
       {words.map((word, i) => (
-        <span key={i} className="inline-block overflow-hidden pb-[0.15em] align-bottom">
+        // Word spacing is a margin on the mask, not a trailing space
+        // character in the text node — a literal `{" "}` here was
+        // silently dropped from the rendered HTML (adjacent text-only
+        // expression children), which ran every word together.
+        <span
+          key={i}
+          className={`inline-block overflow-hidden pb-[0.15em] align-bottom${i < words.length - 1 ? " mr-[0.25em]" : ""}`}
+        >
           <span
             data-word-inner
             className={
@@ -99,7 +106,6 @@ export function SplitReveal({
             }
           >
             {word}
-            {i < words.length - 1 ? " " : ""}
           </span>
         </span>
       ))}

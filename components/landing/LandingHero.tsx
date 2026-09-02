@@ -1,11 +1,10 @@
 import { site } from "@/content/site";
 import { Button } from "@/components/buttons/Button";
 import { Eyebrow } from "@/components/typography/Eyebrow";
-import { AssetPlaceholder } from "@/components/assets/AssetPlaceholder";
 import { ImageReveal } from "@/components/animations/ImageReveal";
 import { SplitReveal } from "@/components/animations/SplitReveal";
 import { LeadForm } from "@/components/landing/LeadForm";
-import type { Motif } from "@/components/assets/AssetPlaceholder";
+import { LandingHeroVisual } from "@/components/landing/visuals/LandingHeroVisual";
 
 /**
  * The lead form lives here, under the hero image, rather than further down
@@ -19,9 +18,8 @@ export function LandingHero({
   subheadline,
   leadMagnetLabel,
   leadMagnetDescription,
-  assetMotif,
-  assetTone,
-  assetLabel,
+  auditScope,
+  auditOutcome,
   serviceSlug,
   serviceTitle,
   goalOptions,
@@ -31,9 +29,8 @@ export function LandingHero({
   subheadline: string;
   leadMagnetLabel: string;
   leadMagnetDescription: string;
-  assetMotif: Motif;
-  assetTone: number;
-  assetLabel: string;
+  auditScope: string[];
+  auditOutcome: string;
   serviceSlug: string;
   serviceTitle: string;
   goalOptions: string[];
@@ -66,15 +63,7 @@ export function LandingHero({
 
       <div>
         <ImageReveal className="rounded-[var(--radius-lg)]">
-          <AssetPlaceholder
-            type="dashboard-screenshot"
-            label={assetLabel}
-            alt={`${assetLabel} — AMREN Digital`}
-            motif={assetMotif}
-            tone={assetTone}
-            aspectRatio="16/9"
-            priority
-          />
+          <LandingHeroVisual serviceSlug={serviceSlug} />
         </ImageReveal>
 
         <div className="mt-6">
@@ -84,6 +73,8 @@ export function LandingHero({
             goalOptions={goalOptions}
             leadMagnetLabel={leadMagnetLabel}
             leadMagnetDescription={leadMagnetDescription}
+            auditScope={auditScope}
+            auditOutcome={auditOutcome}
           />
         </div>
       </div>

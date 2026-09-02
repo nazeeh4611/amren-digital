@@ -467,9 +467,15 @@ body {
   }
 }
 
-/* Utility: container rhythm */
-.section {
-  padding-block: clamp(4rem, 9vw, 8rem);
+/* Utility: container rhythm — layered so Tailwind utilities (pt-0, pb-0,
+   used to pull a section flush against the one above/below it) can
+   actually override this. Unlayered CSS always beats layered CSS
+   regardless of source order or specificity, so an unlayered .section
+   here silently ate every pt-0/pb-0 override sitewide. */
+@layer base {
+  .section {
+    padding-block: clamp(4rem, 9vw, 8rem);
+  }
 }
 
 .wrap {

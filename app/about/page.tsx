@@ -58,7 +58,7 @@ export default function AboutPage() {
           </p>
         </div>
         <ParallaxImage speed={20}>
-          <AssetPlaceholder type="hero" label="AMREN Digital" aspectRatio="4/5" />
+          <AssetPlaceholder type="hero" label="AMREN Digital" aspectRatio="4/5" objectFit="contain" />
         </ParallaxImage>
       </section>
 

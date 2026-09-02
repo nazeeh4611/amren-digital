@@ -35,7 +35,7 @@ export default async function LandingThankYouPage({
         />
         <p className="mx-auto max-w-lg text-lg text-ink/70">
           {service
-            ? `We've received your ${service.title.toLowerCase()} request. A member of the AMREN team will review your details and get back to you shortly.`
+            ? `We've received your ${service.title} request. A member of the AMREN team will review your details and get back to you shortly.`
             : "We've received your request. A member of the AMREN team will review your details and get back to you shortly."}
         </p>
 

@@ -12,6 +12,20 @@ export type LandingPage = {
   solutionKicker: string;
   solutionHeadline: string;
   solutionStatement: string;
+  /** The specific workflow for this service — shown as a step diagram
+   * under the solution statement. Each service gets its own sequence
+   * (e.g. Google Ads goes Search intent → Keywords → ...; SEO goes
+   * Technical audit → Keyword research → ...) rather than one generic
+   * funnel reused across every page. */
+  funnelSteps: string[];
+  /** What the free review actually looks at — makes "Free Audit" concrete
+   * instead of a vague offer. Rendered as a checklist near the form. */
+  auditScope: string[];
+  /** What the visitor receives once the review is done. */
+  auditOutcome: string;
+  /** A short, clearly-labelled illustrative example of AMREN's thinking
+   * for this service — never a real client result. */
+  approachExample: { label: string; text: string; href?: string; hrefLabel?: string };
   trustBullets: string[];
   objections: LandingObjection[];
   leadMagnetLabel: string;
@@ -20,10 +34,6 @@ export type LandingPage = {
   finalCtaHeadline: string;
   finalCtaBody: string;
 };
-
-const funnelSteps = ["Traffic", "Landing Page", "Tracking", "Lead", "WhatsApp / CRM", "Follow-up", "Customer"];
-
-export const landingFunnel = funnelSteps;
 
 export const landingPages: LandingPage[] = [
   {
@@ -44,6 +54,13 @@ export const landingPages: LandingPage[] = [
     solutionHeadline: "We connect the entire growth system — not just the ad account.",
     solutionStatement:
       "AMREN doesn't stop at campaign setup. We plan Google Ads around real search intent, connect it to a landing page built to convert, wire up conversion tracking from day one, and route every enquiry into WhatsApp or your CRM so it gets followed up — not lost.",
+    funnelSteps: ["Search Intent", "Keywords", "Ad Groups", "Ads", "Landing Page", "Conversion Tracking", "Lead"],
+    auditScope: ["Campaign structure", "Keyword intent", "Ad relevance", "Conversion tracking", "Landing-page experience", "Obvious optimization opportunities"],
+    auditOutcome: "You'll receive a concise review highlighting the biggest opportunities we identify.",
+    approachExample: {
+      label: "Illustrative example",
+      text: "A search like \"emergency plumber dubai\" signals someone ready to book now; \"plumbing maintenance tips\" signals research, not urgency. Campaigns are structured so budget favors the searches closer to a decision, instead of treating every keyword the same.",
+    },
     trustBullets: [
       "UAE-focused campaign strategy, built around how Dubai's market actually searches",
       "Tracking-first setup — conversion tracking connected before campaigns go live",
@@ -57,6 +74,7 @@ export const landingPages: LandingPage[] = [
       { q: "Do you only manage the ad account, or more?", a: "More. AMREN can support the wider funnel — landing pages, conversion tracking, WhatsApp and CRM follow-up — so the ad account isn't working in isolation." },
       { q: "How quickly can a campaign launch?", a: "Once we understand your business, offer and goals, campaigns are typically built and launched within days — timelines depend on account access, creative approval and tracking setup." },
       { q: "Will I be able to see where leads come from?", a: "Yes. Conversion tracking is connected from day one so you can see which campaigns are actually generating enquiries, not just clicks." },
+      { q: "Do you guarantee a number of leads or a cost per lead?", a: "No. Advertising results depend on budget, competition, offer and landing page quality, so specific outcomes can't be guaranteed. We focus on continuous, measurable optimization instead." },
     ],
     leadMagnetLabel: "Free Google Ads Audit",
     leadMagnetDescription:
@@ -83,6 +101,13 @@ export const landingPages: LandingPage[] = [
     solutionHeadline: "Meta Ads as part of a connected system, not an isolated budget.",
     solutionStatement:
       "AMREN builds Meta campaigns around a defined audience and a specific business objective — traffic, leads or enquiries — with creative made for the placement, retargeting for people who didn't convert the first time, and a landing page or WhatsApp journey built to close the loop.",
+    funnelSteps: ["Audience", "Creative", "Ad", "Landing Page", "Lead", "Follow-Up"],
+    auditScope: ["Campaign structure", "Audience strategy", "Creative approach", "Funnel alignment", "Tracking", "Landing-page experience"],
+    auditOutcome: "You'll receive a concise review highlighting the biggest opportunities we identify.",
+    approachExample: {
+      label: "AMREN-created example",
+      text: "Offer: a free consultation. Hook: \"Still comparing options? Here's what most people get wrong.\" Creative is built around that specific hook and offer — not a generic product shot with a caption bolted on.",
+    },
     trustBullets: [
       "Audience research built around your actual customer profile, not the easiest one to target",
       "Creative produced specifically for feed, stories and reels — not repurposed from other channels",
@@ -122,6 +147,13 @@ export const landingPages: LandingPage[] = [
     solutionHeadline: "SEO built on a technically sound foundation, not just keywords.",
     solutionStatement:
       "AMREN builds organic visibility through technical health, on-page structure and content strategy aligned to how your customers actually search — so visibility compounds over time instead of resetting every month the ad budget pauses.",
+    funnelSteps: ["Technical Audit", "Keyword Research", "On-Page Optimization", "Content", "Internal Linking", "Measurement"],
+    auditScope: ["Technical foundation", "Keyword opportunities", "On-page optimization", "Content gaps", "Internal linking", "Search visibility opportunities"],
+    auditOutcome: "You'll receive a concise review highlighting the biggest opportunities we identify.",
+    approachExample: {
+      label: "Example keyword opportunity",
+      text: "A specific, commercially relevant search term with real monthly demand but weak on-page competition is often a more realistic near-term target than a broad, high-competition term — an achievable win before chasing harder keywords.",
+    },
     trustBullets: [
       "Technical and on-page SEO addressed together, not in isolation",
       "Keyword and intent strategy aligned to genuine search demand",
@@ -135,6 +167,7 @@ export const landingPages: LandingPage[] = [
       { q: "Do you work on technical SEO as well as content?", a: "Yes — sustainable SEO requires both a technically sound website and content aligned to real search intent. We address the technical foundation alongside on-page strategy." },
       { q: "Can you improve rankings for an existing website?", a: "Yes. Most SEO engagements start with a technical and content audit of the existing site before building the ongoing strategy." },
       { q: "Do you guarantee first-page rankings?", a: "No. No agency can honestly guarantee a specific ranking — search results depend on factors outside anyone's direct control. We focus on measurable, ongoing improvement instead." },
+      { q: "What actually happens in the first 90 days?", a: "Roughly: month 1 is the technical foundation and keyword research, month 2 is on-page optimization and content, month 3 is expansion and measurement against what's been published. Timelines shift with site size and competition, but that's the general shape." },
     ],
     leadMagnetLabel: "Free SEO Opportunity Audit",
     leadMagnetDescription:
@@ -161,6 +194,13 @@ export const landingPages: LandingPage[] = [
     solutionHeadline: "Local visibility managed as an ongoing system, not a one-time setup.",
     solutionStatement:
       "AMREN sets up or audits your Google Business Profile, aligns local search signals across your website and profile, and manages it on an ongoing basis — so your business shows up where, and when, a nearby decision is being made.",
+    funnelSteps: ["Google Business Profile", "Local Keywords", "Location Signals", "Reviews", "Local Landing Pages", "Measurement"],
+    auditScope: ["Google Business Profile", "Local search visibility", "Local landing pages", "Local keyword opportunities", "Review/reputation signals"],
+    auditOutcome: "You'll receive a concise review highlighting the biggest opportunities we identify.",
+    approachExample: {
+      label: "What this is measured by",
+      text: "Local SEO shows up as calls, direction requests, website visits and enquiries generated from map-pack visibility — not abstract ranking positions. We track those business outcomes, not just where a listing sits on a page.",
+    },
     trustBullets: [
       "Google Business Profile setup, category configuration and ongoing management",
       "Location-based keyword targeting aligned to how nearby customers actually search",
@@ -200,6 +240,13 @@ export const landingPages: LandingPage[] = [
     solutionHeadline: "Social media as part of a connected brand system.",
     solutionStatement:
       "AMREN handles content strategy, creative production and day-to-day management so your brand shows up with intention — and so organic content actively supports paid campaigns instead of running in isolation.",
+    funnelSteps: ["Strategy", "Content Pillars", "Creation", "Publishing", "Optimization", "Reporting"],
+    auditScope: ["Content consistency", "Profile positioning", "Content pillars", "Creative quality", "CTA opportunities", "Conversion path"],
+    auditOutcome: "You'll receive a concise review highlighting the biggest opportunities we identify.",
+    approachExample: {
+      label: "Illustrative example",
+      text: "A simple four-pillar rotation — educate, show the work, build trust, prompt action — repeated weekly so the feed doesn't collapse into one repeated post type, and every post still has a clear job to do.",
+    },
     trustBullets: [
       "Consistent brand presence across Instagram and Facebook",
       "Creative built for how people actually use each platform",
@@ -239,6 +286,15 @@ export const landingPages: LandingPage[] = [
     solutionHeadline: "A website built around one job: turning visitors into enquiries.",
     solutionStatement:
       "AMREN builds responsive, SEO-friendly websites with WhatsApp and enquiry-form integration from day one, analytics and Search Console connected at launch, and — where needed — dedicated landing pages for individual campaigns so paid traffic isn't sent to a generic page.",
+    funnelSteps: ["Discovery", "UX & Structure", "Design", "Build", "Conversion Setup", "Launch"],
+    auditScope: ["Mobile UX", "Page speed", "Conversion paths", "CTA placement", "Forms", "WhatsApp / contact flow", "Technical SEO foundation"],
+    auditOutcome: "You'll receive a concise review highlighting the biggest opportunities we identify.",
+    approachExample: {
+      label: "Real AMREN work",
+      text: "This website is AMREN's own build — a Next.js marketing site with a page for every service, a landing-page system for paid traffic, and one connected lead-capture flow, designed and built in-house.",
+      href: "/work/amren-digital-website",
+      hrefLabel: "See the full project",
+    },
     trustBullets: [
       "Responsive, mobile-friendly, modern interface as standard",
       "Lead-focused, SEO-friendly structure from the first page",
@@ -278,6 +334,13 @@ export const landingPages: LandingPage[] = [
     solutionHeadline: "Creative built for the platform it's going to run on.",
     solutionStatement:
       "AMREN produces graphic design, advertising creative and campaign visuals built specifically for the platform and placement they're going to run on — supporting ads, social and web as one consistent visual system instead of disconnected assets.",
+    funnelSteps: ["Brief", "Concept", "Design", "Review", "Delivery"],
+    auditScope: ["Existing creative", "Visual consistency", "Content formats", "Messaging", "Platform fit", "Campaign opportunities"],
+    auditOutcome: "You'll receive a concise review highlighting the biggest opportunities we identify.",
+    approachExample: {
+      label: "Illustrative example",
+      text: "One product photo shoot, cut three ways: a square feed post, a full-bleed story frame and a cropped ad creative — one shoot planned to produce all three formats instead of three separate briefs.",
+    },
     trustBullets: [
       "Creative built specifically for each platform and placement",
       "Consistent visual identity across ads, social and web",
@@ -317,6 +380,13 @@ export const landingPages: LandingPage[] = [
     solutionHeadline: "Video planned around a purpose, not just a shoot day.",
     solutionStatement:
       "AMREN plans, shoots and edits reels, promotional video and corporate content with the message and format defined before a single frame is shot — then delivers it in the exact formats each platform, ad placement and channel requires.",
+    funnelSteps: ["Concept", "Storyboard", "Production", "Editing", "Delivery"],
+    auditScope: ["Current video presence", "Content opportunities", "Platform suitability", "Creative direction", "Production opportunities"],
+    auditOutcome: "You'll receive a concise review highlighting the biggest opportunities we identify.",
+    approachExample: {
+      label: "Illustrative example",
+      text: "A single shoot delivered as a 9:16 vertical cut for Reels and Stories and a 16:9 horizontal cut for YouTube and web — the format is planned before filming, not decided in the edit.",
+    },
     trustBullets: [
       "Content built for short-form platforms and paid placements",
       "Studio and on-location production capability",
@@ -356,6 +426,13 @@ export const landingPages: LandingPage[] = [
     solutionHeadline: "The connective layer between your marketing and your sales team.",
     solutionStatement:
       "AMREN builds the automation, CRM and integration layer that connects your ads, website and WhatsApp — using approved WhatsApp Business tooling — so every enquiry is captured, tracked and followed up automatically, with a single connected view across channels.",
+    funnelSteps: ["Ad", "Website", "Lead", "CRM", "WhatsApp", "Follow-Up", "Sales Team"],
+    auditScope: ["Lead capture", "CRM flow", "WhatsApp process", "Follow-up timing", "Lead routing", "Automation opportunities"],
+    auditOutcome: "You'll receive a concise review highlighting the biggest opportunities we identify.",
+    approachExample: {
+      label: "Example automation workflow",
+      text: "A Meta lead-form entry creates a CRM record automatically, sends an instant WhatsApp acknowledgment to the enquirer, and flags the lead for a team follow-up within a set time window — no manual copy-paste between tools.",
+    },
     trustBullets: [
       "WhatsApp automation using approved WhatsApp Business tooling and APIs",
       "CRM setup and marketing automation, whether or not you already have a CRM",

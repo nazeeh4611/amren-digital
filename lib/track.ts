@@ -22,6 +22,7 @@ export type TrackEventName =
   | "waitlist_form_submit"
   | "generate_lead"
   | "form_start"
+  | "form_step_complete"
   | "landing_page_cta_click";
 
 export function trackEvent(name: TrackEventName, params?: Record<string, string>) {

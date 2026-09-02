@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { buildMetadata } from "@/lib/seo";
-import { getServiceBySlug, categoryMotif } from "@/content/services";
+import { getServiceBySlug } from "@/content/services";
 import { landingPages, getLandingPageBySlug } from "@/content/landingPages";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { serviceSchema, faqSchema } from "@/lib/structured-data";
@@ -15,6 +15,7 @@ import { BenefitsGrid } from "@/components/landing/BenefitsGrid";
 import { WhatWeDo } from "@/components/landing/WhatWeDo";
 import { ProcessTimeline } from "@/components/landing/ProcessTimeline";
 import { WhyAmren } from "@/components/landing/WhyAmren";
+import { LandingFit } from "@/components/landing/LandingFit";
 import { FinalCTA } from "@/components/landing/FinalCTA";
 import { StickyMobileCTA } from "@/components/landing/StickyMobileCTA";
 
@@ -45,7 +46,7 @@ export default async function LandingPagePage({ params }: { params: Promise<{ sl
       <JsonLd
         data={[
           serviceSchema({ name: service.title, description: service.metaDescription, path: `/lp/${slug}` }),
-          faqSchema([...lp.objections, ...service.faqs]),
+          faqSchema(lp.objections),
         ]}
       />
 
@@ -55,9 +56,8 @@ export default async function LandingPagePage({ params }: { params: Promise<{ sl
         subheadline={lp.heroSubheadline}
         leadMagnetLabel={lp.leadMagnetLabel}
         leadMagnetDescription={lp.leadMagnetDescription}
-        assetMotif={categoryMotif[service.category]}
-        assetTone={service.number ? Number(service.number) : 0}
-        assetLabel={service.assetLabel}
+        auditScope={lp.auditScope}
+        auditOutcome={lp.auditOutcome}
         serviceSlug={service.slug}
         serviceTitle={service.title}
         goalOptions={lp.formGoalOptions}
@@ -67,7 +67,13 @@ export default async function LandingPagePage({ params }: { params: Promise<{ sl
 
       <PainPoints kicker={lp.painKicker} headline={lp.painHeadline} points={lp.painPoints} />
 
-      <SolutionFlow kicker={lp.solutionKicker} headline={lp.solutionHeadline} statement={lp.solutionStatement} />
+      <SolutionFlow
+        kicker={lp.solutionKicker}
+        headline={lp.solutionHeadline}
+        statement={lp.solutionStatement}
+        funnelSteps={lp.funnelSteps}
+        example={lp.approachExample}
+      />
 
       <BenefitsGrid benefits={service.benefits} />
 
@@ -77,26 +83,16 @@ export default async function LandingPagePage({ params }: { params: Promise<{ sl
 
       <WhyAmren />
 
+      <LandingFit />
+
       <section className="section bg-white">
         <div className="wrap max-w-3xl">
-          <Eyebrow accent="blue">Common Questions</Eyebrow>
+          <Eyebrow accent="gold">FAQ</Eyebrow>
           <h2 className="mt-5 font-display text-3xl font-bold uppercase tracking-tight text-ink sm:text-4xl">
             Before you reach out
           </h2>
           <div className="mt-8">
             <FaqAccordion items={lp.objections} />
-          </div>
-        </div>
-      </section>
-
-      <section className="section bg-cream">
-        <div className="wrap max-w-3xl">
-          <Eyebrow accent="gold">FAQ</Eyebrow>
-          <h2 className="mt-5 font-display text-3xl font-bold uppercase tracking-tight text-ink sm:text-4xl">
-            {service.title} — frequently asked
-          </h2>
-          <div className="mt-8">
-            <FaqAccordion items={service.faqs} />
           </div>
         </div>
       </section>

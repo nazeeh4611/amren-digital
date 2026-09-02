@@ -86,6 +86,7 @@ export function AssetPlaceholder({
   decorative = false,
   showLabel = true,
   fillHeight = false,
+  objectFit = "cover",
 }: {
   type: PlaceholderType;
   label?: string;
@@ -102,6 +103,9 @@ export function AssetPlaceholder({
   showLabel?: boolean;
   /** Skip aspect-ratio sizing and just fill the parent's own height (for full-bleed bands). */
   fillHeight?: boolean;
+  /** "contain" for a logo/wordmark whose own aspect ratio shouldn't be
+   * cropped to fit the slot — pads with a neutral background instead. */
+  objectFit?: "cover" | "contain";
 }) {
   const ratio = aspectRatio || (type === "hero" ? "16/9" : type === "portfolio" ? "4/3" : "4/5");
   const seed = toSeed(type, label, motif || motifByType[type], tone);
@@ -119,6 +123,7 @@ export function AssetPlaceholder({
       className={clsx(
         "relative overflow-hidden",
         isPlaceholder ? "border border-dashed border-navy/20 bg-cream-2" : undefined,
+        !isPlaceholder && objectFit === "contain" && "bg-cream-2",
         rounded && "rounded-[var(--radius-card)]",
         className
       )}
@@ -144,7 +149,7 @@ export function AssetPlaceholder({
           fill
           priority={priority}
           sizes={sizes || "(min-width: 1024px) 50vw, 100vw"}
-          className="object-cover"
+          className={objectFit === "contain" ? "object-contain p-8" : "object-cover"}
         />
       )}
     </div>

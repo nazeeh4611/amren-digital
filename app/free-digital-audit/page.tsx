@@ -4,6 +4,7 @@ import { auditFaqs } from "@/content/faqs";
 import { Breadcrumbs } from "@/components/breadcrumbs/Breadcrumbs";
 import { Eyebrow } from "@/components/typography/Eyebrow";
 import { AssetPlaceholder } from "@/components/assets/AssetPlaceholder";
+import { Button } from "@/components/buttons/Button";
 import { AuditForm } from "@/components/forms/AuditForm";
 import { FaqSection } from "@/components/sections/FaqSection";
 import { SplitReveal } from "@/components/animations/SplitReveal";
@@ -58,8 +59,16 @@ export default function FreeDigitalAuditPage() {
             actual conversion rate or ad account performance unless you choose to share account access or data with
             us directly.
           </p>
+          <div className="mt-8 flex flex-wrap items-center gap-4">
+            <Button href="#audit-form" variant="primary">
+              Request Your Audit
+            </Button>
+            <Button href="/contact" variant="ghost">
+              Talk to Us Instead
+            </Button>
+          </div>
         </div>
-        <AssetPlaceholder type="dashboard-screenshot" label="Digital Audit" motif="chart" aspectRatio="4/5" />
+        <AssetPlaceholder type="dashboard-screenshot" label="Digital Audit" motif="chart" aspectRatio="4/5" priority />
       </section>
 
       <section className="section bg-white pt-0">
@@ -115,7 +124,7 @@ export default function FreeDigitalAuditPage() {
         </div>
       </section>
 
-      <section className="section bg-cream">
+      <section id="audit-form" className="section scroll-mt-24 bg-cream">
         <div className="wrap grid gap-14 lg:grid-cols-[1fr_1fr] lg:gap-20">
           <div>
             <Eyebrow accent="gold">Request Your Audit</Eyebrow>

@@ -21,18 +21,28 @@ type Errors = Partial<Record<"name" | "email" | "phone", string>>;
  * whatever the visitor picked there. `hidden` also keeps hidden-step
  * fields out of the tab order and a11y tree for free.
  */
+const afterSubmitSteps = [
+  { title: "We review your request", body: "We look at your goals and current setup." },
+  { title: "We identify opportunities", body: "We flag the most relevant areas to improve." },
+  { title: "We contact you", body: "We share what we found and any suggested next steps." },
+];
+
 export function LeadForm({
   serviceSlug,
   serviceTitle,
   goalOptions,
   leadMagnetLabel,
   leadMagnetDescription,
+  auditScope,
+  auditOutcome,
 }: {
   serviceSlug: string;
   serviceTitle: string;
   goalOptions: string[];
   leadMagnetLabel: string;
   leadMagnetDescription: string;
+  auditScope: string[];
+  auditOutcome: string;
 }) {
   const router = useRouter();
   const [step, setStep] = useState(1);
@@ -45,6 +55,11 @@ export function LeadForm({
     if (started.current) return;
     started.current = true;
     trackEvent("form_start", { service: serviceSlug });
+  }
+
+  function goToStep(next: number) {
+    trackEvent("form_step_complete", { service: serviceSlug, step: String(step) });
+    setStep(next);
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -104,9 +119,25 @@ export function LeadForm({
   }
 
   return (
-    <div id="lead-form" className="rounded-[var(--radius-lg)] border border-navy/10 bg-white p-6 shadow-[var(--shadow-card)] sm:p-8">
+    <div>
+      <div id="lead-form" className="scroll-mt-24 rounded-[var(--radius-lg)] border border-navy/10 bg-white p-6 shadow-[var(--shadow-card)] sm:p-8">
       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">{leadMagnetLabel}</p>
       <p className="mt-2 text-sm text-ink/65">{leadMagnetDescription}</p>
+
+      {step === 1 && (
+        <div className="mt-4 rounded-[var(--radius-sm)] bg-cream-2 p-4">
+          <p className="text-xs font-semibold uppercase tracking-wide text-ink/50">We&rsquo;ll review</p>
+          <ul className="mt-2 grid grid-cols-1 gap-x-4 gap-y-1.5 sm:grid-cols-2">
+            {auditScope.map((item) => (
+              <li key={item} className="flex items-start gap-2 text-xs text-ink/70">
+                <span aria-hidden="true" className="mt-1 h-1 w-1 shrink-0 rounded-full bg-gold" />
+                {item}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-3 text-xs text-ink/60">{auditOutcome}</p>
+        </div>
+      )}
 
       <div className="mt-6 flex items-center gap-2" role="progressbar" aria-valuenow={step} aria-valuemin={1} aria-valuemax={3}>
         {[1, 2, 3].map((s) => (
@@ -119,7 +150,7 @@ export function LeadForm({
 
         <div hidden={step !== 1}>
           <CheckboxGroupField label="What are you looking to improve? (select all that apply)" name="goal" options={goalOptions} />
-          <Button type="button" variant="primary" className="mt-6 w-full justify-center" onClick={() => setStep(2)}>
+          <Button type="button" variant="primary" className="mt-6 w-full justify-center" onClick={() => goToStep(2)}>
             Continue
           </Button>
         </div>
@@ -136,7 +167,7 @@ export function LeadForm({
             <Button type="button" variant="ghost" onClick={() => setStep(1)}>
               Back
             </Button>
-            <Button type="button" variant="primary" className="flex-1 justify-center" onClick={() => setStep(3)}>
+            <Button type="button" variant="primary" className="flex-1 justify-center" onClick={() => goToStep(3)}>
               Continue
             </Button>
           </div>
@@ -165,6 +196,23 @@ export function LeadForm({
           </div>
         </div>
       </form>
+      </div>
+
+      <div className="mt-5 rounded-[var(--radius-lg)] border border-navy/10 bg-cream-2 p-5 sm:p-6">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-ink/50">What happens after you submit</p>
+        <ol className="mt-3 space-y-3">
+          {afterSubmitSteps.map((item, i) => (
+            <li key={item.title} className="flex items-start gap-3">
+              <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-navy/10 text-[11px] font-semibold text-ink/60">
+                {i + 1}
+              </span>
+              <span className="text-sm text-ink/70">
+                <span className="font-semibold text-ink/85">{item.title}.</span> {item.body}
+              </span>
+            </li>
+          ))}
+        </ol>
+      </div>
     </div>
   );
 }
