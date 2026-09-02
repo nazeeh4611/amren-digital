@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitReveal } from "@/components/animations/SplitReveal";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
+import { scheduleRevealFailsafe } from "@/lib/reveal-failsafe";
 
 // Deep Blue and Cyan, alternating — the two "system indicator" colors
 // called for here, kept to small numbered nodes rather than the section
@@ -92,6 +93,12 @@ export function ProblemSection() {
           "-=0.1"
         )
         .to(".chain-pulse", { opacity: 0, duration: 0.35 });
+
+      // If either `once` ScrollTrigger above never fires (mis-measured
+      // layout, an extremely fast scroll past the trigger, very late JS),
+      // these targets would otherwise stay stuck at opacity:0 forever.
+      const failsafe = scheduleRevealFailsafe(".disconnect-item, .disconnect-badge, .chain-node");
+      tiltCleanups.push(() => failsafe.kill());
 
       // Subtle hover tilt on both comparison cards. Listeners aren't
       // GSAP animations, so ctx.revert() won't remove them — tracked

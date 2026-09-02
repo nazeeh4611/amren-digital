@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import clsx from "clsx";
@@ -49,12 +48,7 @@ export function Navbar() {
       <a href="#main-content" className="skip-link">
         Skip to content
       </a>
-      <motion.header
-        initial={{ opacity: 0, y: -24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed inset-x-0 top-0 z-50 flex justify-center px-3 pt-3 sm:px-6 sm:pt-4"
-      >
+      <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-3 pt-3 sm:px-6 sm:pt-4">
         <div
           className={clsx(
             "flex w-full max-w-6xl items-center justify-between rounded-full border transition-all duration-300 ease-out",
@@ -117,7 +111,7 @@ export function Navbar() {
             </span>
           </button>
         </div>
-      </motion.header>
+      </header>
 
       <MobileMenu open={open} onClose={() => setOpen(false)} />
     </>

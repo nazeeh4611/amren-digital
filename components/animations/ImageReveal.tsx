@@ -4,6 +4,7 @@ import { useLayoutEffect, useRef, type ReactNode } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
+import { scheduleRevealFailsafe } from "@/lib/reveal-failsafe";
 
 /**
  * Premium scroll-triggered image reveal: the image sits inside an
@@ -28,6 +29,7 @@ export function ImageReveal({
     if (reducedMotion || !maskRef.current || !innerRef.current) return;
     gsap.registerPlugin(ScrollTrigger);
 
+    let failsafe: gsap.core.Tween;
     const ctx = gsap.context(() => {
       gsap.fromTo(
         innerRef.current,
@@ -45,9 +47,13 @@ export function ImageReveal({
           },
         }
       );
+      failsafe = scheduleRevealFailsafe(innerRef.current);
     }, maskRef);
 
-    return () => ctx.revert();
+    return () => {
+      failsafe?.kill();
+      ctx.revert();
+    };
   }, [reducedMotion, delay]);
 
   return (

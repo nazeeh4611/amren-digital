@@ -4,6 +4,7 @@ import { useLayoutEffect, useRef, type CSSProperties, type ElementType } from "r
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
+import { scheduleRevealFailsafe } from "@/lib/reveal-failsafe";
 
 /**
  * Word-by-word mask reveal. Splits `text` into words on the server (so the
@@ -63,7 +64,9 @@ export function SplitReveal({
           },
         }
       );
+      const failsafe = scheduleRevealFailsafe(targets);
       return () => {
+        failsafe.kill();
         tween.kill();
       };
     }, containerRef);

@@ -1,6 +1,4 @@
-"use client";
-
-import { motion } from "framer-motion";
+import type { CSSProperties } from "react";
 import { Eyebrow } from "@/components/typography/Eyebrow";
 import { FadeIn } from "@/components/animations/FadeIn";
 
@@ -32,23 +30,13 @@ export function GrowthArc() {
             </div>
             {i < arc.length - 1 && (
               <span aria-hidden="true" className="mt-4 hidden items-center gap-1 lg:flex">
-                <motion.span
-                  className="block h-px w-8 bg-gold/40"
-                  style={{ transformOrigin: "left" }}
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 + 0.25, ease: [0.16, 1, 0.3, 1] }}
-                />
-                <motion.span
-                  className="text-cream/40"
-                  initial={{ opacity: 0, x: -4 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: i * 0.1 + 0.55 }}
+                <span className="reveal-line block h-px w-8 bg-gold/40" />
+                <span
+                  className="reveal-fade text-cream/40"
+                  style={{ "--reveal-x": "-4px", "--reveal-y": "0px" } as CSSProperties}
                 >
                   →
-                </motion.span>
+                </span>
               </span>
             )}
           </FadeIn>

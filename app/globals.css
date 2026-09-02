@@ -206,6 +206,56 @@ body {
   }
 }
 
+/* FadeIn / Stagger / StaggerItem reveal — pure CSS, zero JS.
+   Uses native scroll-driven animations (animation-timeline: view()) so the
+   element's own scroll position drives the reveal directly; no
+   IntersectionObserver, no Framer Motion, and nothing is ever baked into
+   server-rendered HTML as opacity:0. In browsers without view() support
+   the @supports block simply never applies, so the element stays at its
+   plain, fully-visible default — content visibility never depends on a
+   JS/CSS feature being available, only the reveal *animation* does. */
+.reveal-fade {
+  --reveal-x: 0px;
+  --reveal-y: 28px;
+  --reveal-start: 0%;
+  --reveal-end: 55%;
+}
+.reveal-line {
+  transform-origin: left;
+}
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal-fade {
+      animation: reveal-fade-in linear both;
+      animation-timeline: view();
+      animation-range: entry var(--reveal-start) entry var(--reveal-end);
+    }
+    .reveal-line {
+      animation: reveal-line-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+  }
+}
+@keyframes reveal-fade-in {
+  from {
+    opacity: 0;
+    transform: translate(var(--reveal-x), var(--reveal-y));
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+@keyframes reveal-line-in {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
 /* Visible focus states for accessibility */
 :focus-visible {
   outline: 2px solid var(--amren-gold);

@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { site } from "@/content/site";
 import { Logo } from "@/components/navigation/Logo";
 import { trackEvent } from "@/lib/track";
@@ -12,12 +11,7 @@ import { trackEvent } from "@/lib/track";
  */
 export function LandingHeader() {
   return (
-    <motion.header
-      initial={{ opacity: 0, y: -16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      className="sticky top-0 z-50 border-b border-navy/10 bg-cream/90 backdrop-blur-md"
-    >
+    <header className="sticky top-0 z-50 border-b border-navy/10 bg-cream/90 backdrop-blur-md">
       <div className="wrap flex items-center justify-between py-3 sm:py-4">
         <Logo tone="dark" />
         <div className="flex items-center gap-4 sm:gap-6">
@@ -39,6 +33,6 @@ export function LandingHeader() {
           </a>
         </div>
       </div>
-    </motion.header>
+    </header>
   );
 }

@@ -1,67 +1,65 @@
-"use client";
+import type { CSSProperties, ElementType, ReactNode } from "react";
 
-import { motion, type Variants } from "framer-motion";
-import type { ReactNode } from "react";
-
-const variants: Variants = {
-  hidden: { opacity: 0, y: 28 },
-  show: { opacity: 1, y: 0 },
-};
-
+// Pure CSS reveal (see .reveal-fade / animation-timeline: view() in
+// globals.css) — no Framer Motion, no client JS, no "use client".
+//
+// The previous implementation used `motion.div` with `initial="hidden"` /
+// `whileInView="show"`. Framer Motion bakes the `initial` variant's styles
+// (opacity:0, transform) directly into server-rendered HTML for SSR
+// consistency — so every section using these was invisible from the very
+// first byte of HTML, not just until an animation played. Visibility then
+// depended on hydration reaching that component *and* an
+// IntersectionObserver firing, which on a slow connection or a busy main
+// thread could leave whole sections (FAQ, CTA, Footer) blank for a long,
+// unbounded stretch.
+//
+// `--reveal-start`/`--reveal-end` approximate the old `delay` prop by
+// shifting how far into the element's scroll-entry the reveal begins,
+// since a real scroll-driven animation has no wall-clock "wait" to give it.
+// Content is always visible by default (the animation only ever runs in
+// browsers that support animation-timeline: view(), gated behind
+// @supports — everywhere else it's just a plain, visible element).
 export function FadeIn({
   children,
   delay = 0,
-  y,
+  x = 0,
+  y = 28,
   className,
-  as = "div",
+  as: Component = "div",
 }: {
   children: ReactNode;
   delay?: number;
+  x?: number;
   y?: number;
   className?: string;
-  as?: "div" | "span" | "li";
+  as?: ElementType;
 }) {
-  const Component = motion[as];
+  const startPct = Math.round(delay * 60);
   return (
     <Component
-      className={className}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
-      variants={y !== undefined ? { hidden: { opacity: 0, y }, show: { opacity: 1, y: 0 } } : variants}
-      transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
+      className={`reveal-fade${className ? ` ${className}` : ""}`}
+      style={
+        {
+          "--reveal-x": `${x}px`,
+          "--reveal-y": `${y}px`,
+          "--reveal-start": `${startPct}%`,
+          "--reveal-end": `${startPct + 55}%`,
+        } as CSSProperties
+      }
     >
       {children}
     </Component>
   );
 }
 
-export function Stagger({
-  children,
-  className,
-  staggerDelay = 0.08,
-}: {
-  children: ReactNode;
-  className?: string;
-  staggerDelay?: number;
-}) {
-  return (
-    <motion.div
-      className={className}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
-      transition={{ staggerChildren: staggerDelay }}
-    >
-      {children}
-    </motion.div>
-  );
+export function Stagger({ children, className }: { children: ReactNode; className?: string; staggerDelay?: number }) {
+  return <div className={className}>{children}</div>;
 }
 
 export function StaggerItem({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <motion.div className={className} variants={variants} transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}>
+    <div className={`reveal-fade${className ? ` ${className}` : ""}`}>
       {children}
-    </motion.div>
+    </div>
   );
 }

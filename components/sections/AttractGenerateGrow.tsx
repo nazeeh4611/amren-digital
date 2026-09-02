@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Eyebrow } from "@/components/typography/Eyebrow";
 import { SplitReveal } from "@/components/animations/SplitReveal";
 import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
+import { scheduleRevealFailsafe } from "@/lib/reveal-failsafe";
 
 type Stage = {
   key: string;
@@ -97,6 +98,11 @@ export function AttractGenerateGrow() {
         repeat: -1,
         stagger: 0.3,
       });
+
+      // If the `once` ScrollTrigger above never fires, don't leave the
+      // stage cards stuck at opacity:0 forever.
+      const failsafe = scheduleRevealFailsafe(".stage-card");
+      return () => failsafe.kill();
     }, sectionRef);
 
     return () => ctx.revert();
