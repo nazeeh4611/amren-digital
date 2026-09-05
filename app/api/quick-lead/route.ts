@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { resend, emailFrom, escapeHtml } from "@/lib/resend";
+import { getClientIp, isRateLimited } from "@/lib/rate-limit";
+import { FIELD_LIMITS, HONEYPOT_FIELD, normalizePhone, withinLimit } from "@/lib/validation";
 
 /**
  * Minimal lead capture for the homepage quick-contact form and the
@@ -14,13 +16,28 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, error: "Invalid request body" }, { status: 400 });
   }
 
+  if (typeof body[HONEYPOT_FIELD] === "string" && body[HONEYPOT_FIELD].length > 0) {
+    return NextResponse.json({ ok: true });
+  }
+
+  if (isRateLimited(`quick-lead:${getClientIp(request)}`)) {
+    return NextResponse.json({ ok: false, error: "Too many requests. Please try again shortly." }, { status: 429 });
+  }
+
   const str = (key: string) => (typeof body[key] === "string" ? (body[key] as string).trim() : "");
   const name = str("name");
-  const phone = str("phone");
+  const phoneRaw = str("phone");
   const pageSource = str("pageSource");
 
-  if (!name || !phone) {
+  if (!name || !phoneRaw) {
     return NextResponse.json({ ok: false, error: "Missing required fields" }, { status: 400 });
+  }
+  const phone = normalizePhone(phoneRaw);
+  if (!phone) {
+    return NextResponse.json({ ok: false, error: "Invalid phone number" }, { status: 400 });
+  }
+  if (!withinLimit(name, FIELD_LIMITS.short)) {
+    return NextResponse.json({ ok: false, error: "One or more fields is too long" }, { status: 400 });
   }
 
   const contactEmailTo = process.env.CONTACT_TO_EMAIL;

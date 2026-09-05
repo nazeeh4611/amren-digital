@@ -30,6 +30,28 @@ const nextConfig: NextConfig = {
       { source: "/services/video-production", destination: "/services/content-production", permanent: true },
     ];
   },
+  // Baseline hardening that's safe regardless of which analytics IDs end up
+  // configured. Deliberately no Content-Security-Policy here — GA4, Google
+  // Ads, and Meta Pixel each load their own third-party script/connect
+  // origins, and a CSP tight enough to matter would need to be authored and
+  // tested against whichever of those are actually enabled in production
+  // rather than guessed at here.
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=(), payment=(), usb=()",
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;

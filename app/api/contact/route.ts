@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { resend, emailFrom, escapeHtml } from "@/lib/resend";
+import { getClientIp, isRateLimited } from "@/lib/rate-limit";
+import { FIELD_LIMITS, HONEYPOT_FIELD, isValidEmail, normalizePhone, withinLimit } from "@/lib/validation";
 
 export async function POST(request: Request) {
   let body: Record<string, unknown>;
@@ -9,20 +11,40 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, error: "Invalid request body" }, { status: 400 });
   }
 
+  if (typeof body[HONEYPOT_FIELD] === "string" && body[HONEYPOT_FIELD].length > 0) {
+    return NextResponse.json({ ok: true });
+  }
+
+  if (isRateLimited(`contact:${getClientIp(request)}`)) {
+    return NextResponse.json({ ok: false, error: "Too many requests. Please try again shortly." }, { status: 429 });
+  }
+
   const name = typeof body.name === "string" ? body.name.trim() : "";
   const email = typeof body.email === "string" ? body.email.trim() : "";
   const message = typeof body.message === "string" ? body.message.trim() : "";
   const company = typeof body.company === "string" ? body.company.trim() : "";
-  const phone = typeof body.phone === "string" ? body.phone.trim() : "";
+  const phoneRaw = typeof body.phone === "string" ? body.phone.trim() : "";
   const website = typeof body.website === "string" ? body.website.trim() : "";
   const service = typeof body.service === "string" ? body.service.trim() : "";
 
   if (!name || !email || !message) {
     return NextResponse.json({ ok: false, error: "Missing required fields" }, { status: 400 });
   }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  if (!isValidEmail(email)) {
     return NextResponse.json({ ok: false, error: "Invalid email" }, { status: 400 });
   }
+  if (
+    !withinLimit(name, FIELD_LIMITS.short) ||
+    !withinLimit(company, FIELD_LIMITS.short) ||
+    !withinLimit(phoneRaw, FIELD_LIMITS.short) ||
+    !withinLimit(website, FIELD_LIMITS.short) ||
+    !withinLimit(service, FIELD_LIMITS.short) ||
+    !withinLimit(message, FIELD_LIMITS.long)
+  ) {
+    return NextResponse.json({ ok: false, error: "One or more fields is too long" }, { status: 400 });
+  }
+
+  const phone = phoneRaw ? normalizePhone(phoneRaw) ?? phoneRaw : "";
 
   const contactEmailTo = process.env.CONTACT_TO_EMAIL;
 
