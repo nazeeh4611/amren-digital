@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { QuickLeadForm } from "@/components/forms/QuickLeadForm";
 
 const STORAGE_KEY = "amren_welcome_modal_seen";
-const OPEN_DELAY_MS = 900;
+const OPEN_DELAY_MS = 7000;
 const CLOSING_DISPLAY_MS = 1400;
 
 type Phase = "hidden" | "open" | "closing";
