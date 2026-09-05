@@ -73,6 +73,11 @@ export function WelcomeModal() {
     setTimeout(() => setPhase("hidden"), CLOSING_DISPLAY_MS);
   }
 
+  /** After a successful submission the modal just closes — no "sorry to see you go" message, since the visitor didn't cancel. */
+  function handleSuccessClose() {
+    setPhase("hidden");
+  }
+
   if (phase === "hidden") return null;
 
   return (
@@ -108,7 +113,7 @@ export function WelcomeModal() {
             </p>
 
             <div className="mt-6">
-              <QuickLeadForm source="welcome_modal" layout="stacked" onSuccess={() => setTimeout(handleDismiss, 1200)} />
+              <QuickLeadForm source="welcome_modal" layout="stacked" onSuccess={() => setTimeout(handleSuccessClose, 1600)} />
             </div>
           </>
         )}
