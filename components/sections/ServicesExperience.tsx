@@ -60,7 +60,7 @@ function CategoryCard({ category, fullWidthPair }: { category: (typeof serviceCa
   const isWide = style.size === "wide";
 
   return (
-    <div className={clsx(isWide && !fullWidthPair && "sm:col-span-2")}>
+    <div className={clsx("shrink-0 w-[85%] snap-start sm:w-auto sm:shrink", isWide && !fullWidthPair && "sm:col-span-2")}>
       <Link
         href={firstHref}
         className={clsx(
@@ -75,9 +75,6 @@ function CategoryCard({ category, fullWidthPair }: { category: (typeof serviceCa
         <h3 className="relative z-10 mt-5 max-w-[65%] font-display text-2xl font-bold uppercase leading-[0.95] tracking-tight sm:text-3xl">
           {category.title}
         </h3>
-        <p className="relative z-10 mt-3 max-w-[60%] text-sm font-medium leading-snug opacity-80 sm:text-base">
-          {category.headline}
-        </p>
         <span
           className={clsx(
             "relative z-10 mt-auto inline-flex w-fit items-center gap-1.5 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-wide transition-transform duration-300 ease-out group-hover:translate-x-1",
@@ -141,20 +138,20 @@ export function ServicesExperience() {
         />
       </div>
 
-      <div className="wrap mt-12 grid gap-5 sm:mt-14 sm:grid-cols-2 lg:gap-6">
+      <div className="wrap mt-12 flex gap-5 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-2 sm:mt-14 sm:grid sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:snap-none sm:pb-0 lg:gap-6">
         {topPair.map((category) => (
           <CategoryCard key={category.key} category={category} fullWidthPair />
         ))}
       </div>
 
-      <div className="wrap mt-5 grid gap-5 sm:mt-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+      <div className="wrap mt-5 flex gap-5 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-2 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:snap-none sm:pb-0 lg:grid-cols-3 lg:gap-6">
         {rest.map((category) => (
           <CategoryCard key={category.key} category={category} />
         ))}
 
         <Link
           href="/services"
-          className="group relative flex h-[22rem] flex-col overflow-hidden rounded-[var(--radius-card)] bg-white p-7 shadow-[var(--shadow-card)] transition-transform duration-300 ease-out hover:-translate-y-1 sm:h-[26rem] sm:p-8"
+          className="group relative flex h-[22rem] shrink-0 w-[85%] flex-col overflow-hidden rounded-[var(--radius-card)] bg-white p-7 shadow-[var(--shadow-card)] transition-transform duration-300 ease-out snap-start hover:-translate-y-1 sm:h-[26rem] sm:w-auto sm:shrink sm:p-8"
         >
           <span className="relative z-10 inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-navy text-cream">
             <ArrowIcon className="h-6 w-6 -rotate-45" />
@@ -162,9 +159,6 @@ export function ServicesExperience() {
           <h3 className="relative z-10 mt-5 max-w-[65%] font-display text-2xl font-bold uppercase leading-[0.95] tracking-tight text-ink sm:text-3xl">
             Explore every service
           </h3>
-          <p className="relative z-10 mt-3 max-w-[60%] text-sm font-medium leading-snug text-ink/70 sm:text-base">
-            See the full list of what AMREN builds and runs for clients.
-          </p>
           <span className="relative z-10 mt-auto inline-flex w-fit items-center gap-1.5 rounded-full bg-navy px-4 py-2 text-xs font-semibold uppercase tracking-wide text-cream transition-transform duration-300 ease-out group-hover:translate-x-1">
             Explore More
             <ArrowIcon className="h-3.5 w-3.5" />

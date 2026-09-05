@@ -16,7 +16,7 @@ export function FullBleedImage({
   tone?: number;
 }) {
   return (
-    <section className="relative h-[46vh] min-h-[340px] w-full overflow-hidden sm:h-[54vh]">
+    <section className="relative h-[50vh] min-h-[380px] w-full overflow-hidden sm:h-[54vh]">
       <ParallaxImage speed={40} className="absolute inset-0 h-full w-full">
         <Image
           src="/brands.avif"
@@ -29,8 +29,13 @@ export function FullBleedImage({
       {/* This particular photo already has its own left-to-right dark
           gradient baked in (built for text on the left), so no flat color
           wash on top — just a soft shadow on the text itself as a safety
-          margin at very wide viewports. */}
-      <div className="wrap relative flex h-full flex-col justify-end pb-12 sm:pb-16">
+          margin at very wide viewports.
+          `absolute inset-0` (not a `relative h-full` flex child) so this
+          is always pinned exactly to the image's own box — on some mobile
+          viewports a taller wrapped 2-line heading could otherwise push
+          past the section's bottom edge onto the plain background below,
+          where the light text became unreadable. */}
+      <div className="wrap absolute inset-0 flex flex-col justify-end pb-12 sm:pb-16">
         <p
           className="text-xs font-semibold uppercase tracking-[0.3em] text-turquoise"
           style={{ textShadow: "0 2px 10px rgba(0,0,0,0.6)" }}
@@ -40,7 +45,7 @@ export function FullBleedImage({
         <SplitReveal
           as="h2"
           text={statement}
-          className="mt-4 max-w-3xl font-display text-3xl font-bold uppercase leading-[1.02] tracking-tight text-cream [text-shadow:0_4px_20px_rgba(0,0,0,0.6)] sm:text-5xl lg:text-6xl"
+          className="mt-4 max-w-3xl font-display text-2xl font-bold uppercase leading-[1.05] tracking-tight text-cream [text-shadow:0_4px_20px_rgba(0,0,0,0.6)] sm:text-5xl lg:text-6xl"
         />
       </div>
     </section>

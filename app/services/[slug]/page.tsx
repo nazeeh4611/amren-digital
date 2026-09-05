@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { buildMetadata } from "@/lib/seo";
 import { services, getServiceBySlug, categoryMotif } from "@/content/services";
+import { getPortfolioByCategory } from "@/content/portfolio";
 import { Breadcrumbs } from "@/components/breadcrumbs/Breadcrumbs";
 import { Eyebrow } from "@/components/typography/Eyebrow";
 import { AssetPlaceholder } from "@/components/assets/AssetPlaceholder";
@@ -12,6 +13,8 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { serviceSchema, faqSchema } from "@/lib/structured-data";
 import { site } from "@/content/site";
 import { CTASection } from "@/components/sections/CTASection";
+import { ServicePortfolio } from "@/components/sections/ServicePortfolio";
+import { TrustedBrands } from "@/components/sections/TrustedBrands";
 
 export function generateStaticParams() {
   return services.map((service) => ({ slug: service.slug }));
@@ -36,6 +39,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   const relatedServices = service.relatedSlugs
     .map((s) => getServiceBySlug(s))
     .filter((s): s is NonNullable<typeof s> => Boolean(s));
+  const portfolioProjects = getPortfolioByCategory(service.slug);
+  const hasPortfolio = portfolioProjects.length > 0;
 
   return (
     <>
@@ -51,16 +56,22 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
       <section className="wrap grid gap-10 pb-16 pt-8 sm:pt-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-16">
         <div>
           <Eyebrow>{service.eyebrow}</Eyebrow>
-          <h1 className="mt-5 font-display text-4xl font-bold uppercase leading-[1.02] tracking-tight text-ink sm:text-6xl">
+          <h1 className="mt-5 font-display text-4xl font-bold uppercase leading-[1.02] tracking-tight text-ink sm:text-6xl lg:text-7xl">
             {service.h1}
           </h1>
-          <p className="mt-5 font-editorial text-2xl italic text-blue">{service.headline}</p>
-          <p className="mt-5 max-w-xl text-ink/70">{service.intro}</p>
+          <p className="mt-5 font-editorial text-2xl italic text-blue sm:text-3xl">{service.headline}</p>
+          <p className="mt-5 max-w-xl text-lg text-ink/70">{service.intro}</p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Button href="/contact">Start a Project</Button>
-            <Button href={site.contact.whatsapp} variant="ghost">
-              WhatsApp AMREN
-            </Button>
+            {hasPortfolio ? (
+              <Button href="#portfolio" variant="ghost">
+                View Portfolio
+              </Button>
+            ) : (
+              <Button href={site.contact.whatsapp} variant="ghost">
+                WhatsApp AMREN
+              </Button>
+            )}
           </div>
         </div>
         <AssetPlaceholder
@@ -99,6 +110,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           </FadeIn>
         </div>
       </section>
+
+      {hasPortfolio && <ServicePortfolio category={service.slug} heading={`${service.title} Portfolio`} />}
 
       <section className="section bg-cream">
         <div className="wrap">
@@ -142,9 +155,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             <h2 className="mt-5 font-display text-3xl font-bold uppercase tracking-tight text-ink sm:text-4xl">
               Works well alongside
             </h2>
-            <div className="mt-10 grid gap-6 sm:grid-cols-3">
+            <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-2 sm:grid sm:grid-cols-3 sm:overflow-visible sm:snap-none sm:pb-0">
               {relatedServices.map((related, i) => (
-                <FadeIn key={related.slug} delay={i * 0.08}>
+                <FadeIn key={related.slug} delay={i * 0.08} className="shrink-0 w-[80%] snap-start sm:w-auto sm:shrink">
                   <Link
                     href={`/services/${related.slug}`}
                     className="group block h-full rounded-[var(--radius-card)] border border-navy/10 bg-white p-6 transition-[transform,border-color,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:border-blue/40 hover:shadow-[var(--shadow-card)]"
@@ -161,6 +174,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           </div>
         </section>
       )}
+
+      {hasPortfolio && <TrustedBrands />}
 
       <CTASection />
     </>

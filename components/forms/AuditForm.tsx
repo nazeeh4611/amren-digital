@@ -11,15 +11,6 @@ import { trackEvent } from "@/lib/track";
 
 type Errors = Partial<Record<"name" | "businessName" | "email", string>>;
 
-export const budgetRanges = [
-  "Not currently advertising",
-  "Under AED 5,000 / month",
-  "AED 5,000–15,000 / month",
-  "AED 15,000–50,000 / month",
-  "AED 50,000+ / month",
-  "Prefer not to say",
-];
-
 const contactMethods = ["Email", "Phone Call", "WhatsApp"];
 
 const channelOptions = ["Google Ads", "Meta Ads", "SEO", "Social Media", "Website Only", "None Yet"];
@@ -110,22 +101,8 @@ export function AuditForm() {
           </SelectField>
         </StaggerItem>
 
-        <StaggerItem>
-          <TextField label="Main service or product" name="mainService" />
-        </StaggerItem>
-
-        <StaggerItem>
-          <CheckboxGroupField label="Current marketing channels" name="channels" options={channelOptions} />
-        </StaggerItem>
-
         <StaggerItem className="grid gap-5 sm:grid-cols-2">
-          <SelectField label="Monthly advertising budget" name="budget">
-            {budgetRanges.map((range) => (
-              <option key={range} value={range}>
-                {range}
-              </option>
-            ))}
-          </SelectField>
+          <TextField label="Main service or product" name="mainService" />
           <SelectField label="Preferred contact method" name="contactMethod">
             {contactMethods.map((method) => (
               <option key={method} value={method}>
@@ -133,6 +110,10 @@ export function AuditForm() {
               </option>
             ))}
           </SelectField>
+        </StaggerItem>
+
+        <StaggerItem>
+          <CheckboxGroupField label="Current marketing channels" name="channels" options={channelOptions} />
         </StaggerItem>
 
         <StaggerItem>

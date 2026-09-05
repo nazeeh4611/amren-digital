@@ -128,11 +128,7 @@ export function SelectField({
   ...rest
 }: BaseProps & SelectHTMLAttributes<HTMLSelectElement>) {
   return (
-    <div>
-      <label htmlFor={name} className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-ink/50">
-        {label}
-        {required && <span aria-hidden="true"> *</span>}
-      </label>
+    <div className="relative">
       <select
         id={name}
         name={name}
@@ -140,10 +136,7 @@ export function SelectField({
         defaultValue=""
         aria-invalid={!!error}
         aria-describedby={error ? `${name}-error` : undefined}
-        className={clsx(
-          "w-full rounded-xl border bg-white/70 px-4 py-3.5 text-sm text-ink outline-none transition-colors focus:border-blue",
-          error ? "border-red-400" : "border-navy/15"
-        )}
+        className={clsx(fieldClasses, "appearance-none pr-9", error ? "border-red-400" : "border-navy/15")}
         {...rest}
       >
         <option value="" disabled>
@@ -151,6 +144,28 @@ export function SelectField({
         </option>
         {children}
       </select>
+      <label
+        htmlFor={name}
+        className={clsx(
+          "pointer-events-none absolute left-4 top-2 text-[11px] text-ink/50 transition-all duration-200",
+          error && "text-red-600"
+        )}
+      >
+        {label}
+        {required && <span aria-hidden="true"> *</span>}
+      </label>
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-ink/40"
+      >
+        <path d="m6 9 6 6 6-6" />
+      </svg>
       {error && (
         <p id={`${name}-error`} className="mt-1 text-xs text-red-600">
           {error}

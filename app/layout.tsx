@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, DM_Serif_Display, Inter } from "next/font/google";
+import { Space_Grotesk, DM_Serif_Display, Inter, Yellowtail } from "next/font/google";
 import "./globals.css";
 import { site } from "@/content/site";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -29,6 +29,15 @@ const dmSerif = DM_Serif_Display({
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+});
+
+// Brush-script accent — used only for the hero's rotating outcome word, to
+// give that one word a distinct, hand-lettered feel against the bold
+// uppercase display font around it.
+const yellowtail = Yellowtail({
+  variable: "--font-yellowtail",
+  subsets: ["latin"],
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -71,7 +80,10 @@ export const viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${dmSerif.variable} ${inter.variable} h-full antialiased`}>
+    <html
+      lang="en"
+      className={`${spaceGrotesk.variable} ${dmSerif.variable} ${inter.variable} ${yellowtail.variable} h-full antialiased`}
+    >
       <body className="min-h-full flex flex-col bg-cream text-ink">
         <MotionProvider>
           <JsonLd data={[organizationSchema(), websiteSchema()]} />

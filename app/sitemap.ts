@@ -2,7 +2,6 @@ import type { MetadataRoute } from "next";
 import { site } from "@/content/site";
 import { services } from "@/content/services";
 import { landingPages } from "@/content/landingPages";
-import { projects } from "@/content/projects";
 import { articles } from "@/content/insights";
 import { industries } from "@/content/industries";
 
@@ -12,7 +11,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/about",
     "/services",
     "/industries",
-    "/work",
     "/insights",
     "/free-digital-audit",
     "/contact",
@@ -55,15 +53,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.7,
-    });
-  }
-
-  for (const project of projects) {
-    entries.push({
-      url: `${site.url}/work/${project.slug}`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.6,
     });
   }
 

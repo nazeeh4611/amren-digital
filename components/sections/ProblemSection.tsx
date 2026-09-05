@@ -179,7 +179,7 @@ export function ProblemSection() {
               className="mt-6 font-editorial text-2xl italic leading-snug text-ink/70 sm:text-3xl lg:text-4xl"
             />
             <p className="mt-6 flex flex-wrap items-center gap-2 text-base font-semibold uppercase tracking-[0.15em] sm:text-lg">
-              <span className="text-ink/40 line-through decoration-2 decoration-coral/60">Less Noise.</span>
+              <span className="text-ink/75 line-through decoration-2 decoration-coral/70">Less Noise.</span>
               <span className="text-turquoise">More Results.</span>
             </p>
           </div>

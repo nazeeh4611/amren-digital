@@ -17,7 +17,6 @@ export async function POST(request: Request) {
   const website = str("website");
   const industry = str("industry");
   const mainService = str("mainService");
-  const budget = str("budget");
   const contactMethod = str("contactMethod");
   const challenge = str("challenge");
   const channels = Array.isArray(body.channels) ? body.channels.filter((c): c is string => typeof c === "string") : [];
@@ -48,7 +47,6 @@ export async function POST(request: Request) {
     ["Industry", industry],
     ["Main Service / Product", mainService],
     ["Current Channels", channels.join(", ")],
-    ["Monthly Ad Budget", budget],
     ["Preferred Contact Method", contactMethod],
   ].filter(([, value]) => value);
 

@@ -37,7 +37,7 @@ export default function ThankYouPage() {
           <Button href="/services" variant="ghost">
             Explore Services
           </Button>
-          <Button href="/work" variant="ghost">
+          <Button href="/services/web-design-development#portfolio" variant="ghost">
             View Our Work
           </Button>
           <Button href={site.contact.whatsapp} variant="secondary">

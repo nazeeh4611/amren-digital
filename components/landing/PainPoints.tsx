@@ -13,12 +13,12 @@ export function PainPoints({ kicker, headline, points }: { kicker: string; headl
           </h2>
         </FadeIn>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2">
+        <div className="mt-12 flex gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-2 sm:grid sm:grid-cols-2 sm:overflow-visible sm:snap-none sm:pb-0">
           {points.map((point, i) => (
             <FadeIn
               key={point.title}
               delay={Math.min(i * 0.08, 0.3)}
-              className="rounded-[var(--radius-card)] border border-navy/10 bg-cream p-6 sm:p-7"
+              className="shrink-0 w-[85%] rounded-[var(--radius-card)] border border-navy/10 bg-cream p-6 snap-start sm:w-auto sm:shrink sm:p-7"
             >
               <h3 className="font-display text-lg font-semibold text-ink">{point.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-ink/65">{point.description}</p>

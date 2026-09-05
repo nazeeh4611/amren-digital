@@ -3,23 +3,22 @@
 import { useRef, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import clsx from "clsx";
-import { budgetRanges } from "@/components/forms/AuditForm";
-import { TextField, CheckboxGroupField, SelectField } from "@/components/forms/FormField";
+import { TextField, CheckboxGroupField } from "@/components/forms/FormField";
 import { Button } from "@/components/buttons/Button";
 import { trackEvent, trackConversion } from "@/lib/track";
 
 type Errors = Partial<Record<"name" | "email" | "phone", string>>;
 
 /**
- * 3-step lead form: goal → budget → contact details. Kept short on
- * purpose — every extra field before "contact details" is a chance to
- * lose a paid-traffic visitor who was already close to converting.
+ * 2-step lead form: goal → contact details. Kept short on purpose — every
+ * extra field before "contact details" is a chance to lose a paid-traffic
+ * visitor who was already close to converting.
  *
- * All three steps stay mounted (visibility toggled via the `hidden`
- * attribute) rather than conditionally rendered — fields are uncontrolled,
- * read via FormData on submit, so unmounting an earlier step would lose
- * whatever the visitor picked there. `hidden` also keeps hidden-step
- * fields out of the tab order and a11y tree for free.
+ * Both steps stay mounted (visibility toggled via the `hidden` attribute)
+ * rather than conditionally rendered — fields are uncontrolled, read via
+ * FormData on submit, so unmounting an earlier step would lose whatever
+ * the visitor picked there. `hidden` also keeps hidden-step fields out of
+ * the tab order and a11y tree for free.
  */
 const afterSubmitSteps = [
   { title: "We review your request", body: "We look at your goals and current setup." },
@@ -86,7 +85,7 @@ export function LeadForm({
 
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) {
-      setStep(3);
+      setStep(2);
       return;
     }
 
@@ -139,8 +138,8 @@ export function LeadForm({
         </div>
       )}
 
-      <div className="mt-6 flex items-center gap-2" role="progressbar" aria-valuenow={step} aria-valuemin={1} aria-valuemax={3}>
-        {[1, 2, 3].map((s) => (
+      <div className="mt-6 flex items-center gap-2" role="progressbar" aria-valuenow={step} aria-valuemin={1} aria-valuemax={2}>
+        {[1, 2].map((s) => (
           <span key={s} className={clsx("h-1 flex-1 rounded-full transition-colors", s <= step ? "bg-gold" : "bg-navy/10")} />
         ))}
       </div>
@@ -155,25 +154,7 @@ export function LeadForm({
           </Button>
         </div>
 
-        <div hidden={step !== 2}>
-          <SelectField label="Approximate monthly marketing budget" name="budget">
-            {budgetRanges.map((range) => (
-              <option key={range} value={range}>
-                {range}
-              </option>
-            ))}
-          </SelectField>
-          <div className="mt-6 flex gap-3">
-            <Button type="button" variant="ghost" onClick={() => setStep(1)}>
-              Back
-            </Button>
-            <Button type="button" variant="primary" className="flex-1 justify-center" onClick={() => goToStep(3)}>
-              Continue
-            </Button>
-          </div>
-        </div>
-
-        <div hidden={step !== 3} className="space-y-4">
+        <div hidden={step !== 2} className="space-y-4">
           <div className="grid gap-4 sm:grid-cols-2">
             <TextField label="Name" name="name" required error={errors.name} />
             <TextField label="Business Name" name="businessName" />
@@ -187,7 +168,7 @@ export function LeadForm({
           {submitError && <p className="text-sm text-red-600">{submitError}</p>}
 
           <div className="flex gap-3 pt-2">
-            <Button type="button" variant="ghost" onClick={() => setStep(2)}>
+            <Button type="button" variant="ghost" onClick={() => setStep(1)}>
               Back
             </Button>
             <Button type="submit" variant="primary" className="flex-1 justify-center" arrow={!submitting}>

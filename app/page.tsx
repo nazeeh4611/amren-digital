@@ -7,11 +7,13 @@ import { Marquee } from "@/components/typography/Marquee";
 import { AttractGenerateGrow } from "@/components/sections/AttractGenerateGrow";
 import { ProblemSection } from "@/components/sections/ProblemSection";
 import { ServicesExperience } from "@/components/sections/ServicesExperience";
-// import { PortfolioTeaser } from "@/components/sections/PortfolioTeaser";
 import { FaqSection } from "@/components/sections/FaqSection";
 import { CTASection } from "@/components/sections/CTASection";
 import { FullBleedImage } from "@/components/sections/FullBleedImage";
 import { BrandMarquee } from "@/components/sections/BrandMarquee";
+import { TrustedBrands } from "@/components/sections/TrustedBrands";
+import { QuickLeadForm } from "@/components/forms/QuickLeadForm";
+import { WelcomeModal } from "@/components/modals/WelcomeModal";
 import { homeFaqs } from "@/content/faqs";
 
 export const metadata: Metadata = buildMetadata({
@@ -33,14 +35,21 @@ export default function HomePage() {
       <AttractGenerateGrow />
       <ServicesExperience />
       <FullBleedImage eyebrow="Real work, real growth" statement="Built for brands that mean business." tone={1} />
-      {/* Portfolio teaser intentionally off the homepage for now — real
-          completed work so far is video, posters and branding (shown on
-          /work) plus this website itself; no case-study-worthy web
-          projects to feature here yet. Re-add once there's real client
-          work to show alongside it: <PortfolioTeaser /> */}
+      <TrustedBrands />
       <FaqSection items={homeFaqs} title="Questions, answered." />
+
+      <section className="border-t border-navy/10 bg-cream-2 py-10">
+        <div className="wrap flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:justify-between">
+          <p className="font-display text-lg font-bold uppercase tracking-tight text-ink sm:text-xl">
+            Get a call back from AMREN
+          </p>
+          <QuickLeadForm source="home_top_strip" className="w-full sm:w-auto" />
+        </div>
+      </section>
+
       <BrandMarquee />
       <CTASection />
+      <WelcomeModal />
     </>
   );
 }

@@ -92,9 +92,13 @@ export default function AboutPage() {
           <h2 className="mt-5 max-w-2xl font-display text-3xl font-bold uppercase tracking-tight text-ink sm:text-5xl">
             How we work with UAE businesses.
           </h2>
-          <div className="mt-12 grid gap-8 sm:grid-cols-2">
+          <div className="mt-12 flex gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-2 sm:grid sm:grid-cols-2 sm:gap-8 sm:overflow-visible sm:snap-none sm:pb-0">
             {values.map((value, i) => (
-              <FadeIn key={value.title} delay={i * 0.08} className="rounded-[var(--radius-lg)] border border-navy/10 bg-white p-7">
+              <FadeIn
+                key={value.title}
+                delay={i * 0.08}
+                className="shrink-0 w-[85%] rounded-[var(--radius-lg)] border border-navy/10 bg-white p-7 snap-start sm:w-auto sm:shrink"
+              >
                 <h3 className="font-display text-xl font-semibold text-ink">{value.title}</h3>
                 <p className="mt-2 text-ink/65">{value.description}</p>
               </FadeIn>
@@ -113,9 +117,9 @@ export default function AboutPage() {
           <h2 className="mt-5 max-w-2xl font-display text-3xl font-bold uppercase tracking-tight text-ink sm:text-5xl">
             The people behind the system.
           </h2>
-          <div className="mt-10 grid gap-8 sm:grid-cols-3">
+          <div className="mt-10 flex gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-2 sm:grid sm:grid-cols-3 sm:gap-8 sm:overflow-visible sm:snap-none sm:pb-0">
             {team.map((member, i) => (
-              <FadeIn key={member.id} delay={i * 0.08} className="text-center">
+              <FadeIn key={member.id} delay={i * 0.08} className="shrink-0 w-[60%] text-center snap-start sm:w-auto sm:shrink">
                 <ImageReveal>
                   <AssetPlaceholder type="team-photo" label={member.id} aspectRatio="4/5" alt={member.name} />
                 </ImageReveal>

@@ -69,7 +69,11 @@ export function ParallaxImage({
 
   return (
     <div ref={wrapRef} className={className} style={{ overflow: "hidden" }}>
-      <div ref={innerRef} style={reducedMotion ? undefined : { willChange: "transform" }}>
+      <div
+        ref={innerRef}
+        className="h-full w-full"
+        style={reducedMotion ? undefined : { willChange: "transform" }}
+      >
         {children}
       </div>
     </div>

@@ -20,12 +20,12 @@ export function BenefitsGrid({ benefits }: { benefits: string[] }) {
           </h2>
         </FadeIn>
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2">
+        <div className="mt-12 flex gap-5 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-2 sm:grid sm:grid-cols-2 sm:overflow-visible sm:snap-none sm:pb-0">
           {benefits.map((benefit, i) => (
             <FadeIn
               key={benefit}
               delay={Math.min(i * 0.06, 0.3)}
-              className="flex items-start gap-4 rounded-[var(--radius-card)] border border-navy/10 bg-white p-6"
+              className="flex shrink-0 w-[85%] items-start gap-4 rounded-[var(--radius-card)] border border-navy/10 bg-white p-6 snap-start sm:w-auto sm:shrink"
             >
               <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gold/20 text-ink">
                 <CheckIcon />

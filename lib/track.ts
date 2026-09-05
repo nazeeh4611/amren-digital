@@ -21,6 +21,7 @@ export type TrackEventName =
   | "audit_form_submit"
   | "waitlist_form_submit"
   | "generate_lead"
+  | "quick_lead_form_submit"
   | "form_start"
   | "form_step_complete"
   | "landing_page_cta_click";

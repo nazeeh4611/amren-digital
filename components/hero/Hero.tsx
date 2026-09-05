@@ -10,9 +10,9 @@ import { RotatingWord, type RotatingWordSpec } from "@/components/hero/RotatingW
 // the one strong dark accent while reading clearly against the dark
 // photo overlay behind the heading.
 const rotatingWords: RotatingWordSpec[] = [
-  { text: "GROWTH", color: "#72E8EC" },
-  { text: "REACH", color: "#72E8EC" },
-  { text: "LEADS", color: "#72E8EC" },
+  { text: "Growth", color: "#72E8EC" },
+  { text: "Reach", color: "#72E8EC" },
+  { text: "Leads", color: "#72E8EC" },
 ];
 
 // Server Component: the LCP image and heading render straight from HTML
@@ -38,7 +38,8 @@ export function Hero() {
           style={{ textShadow: "0 4px 24px rgba(10,15,28,0.55)" }}
         >
           <span className="block">
-            DIGITAL <RotatingWord words={rotatingWords} />
+            DIGITAL{" "}
+            <RotatingWord words={rotatingWords} className="font-accent normal-case tracking-normal text-[1.15em]" />
           </span>
           <span className="block">BUILT TO MOVE.</span>
         </h1>

@@ -123,7 +123,6 @@ export function AssetPlaceholder({
       className={clsx(
         "relative overflow-hidden",
         isPlaceholder ? "border border-dashed border-navy/20 bg-cream-2" : undefined,
-        !isPlaceholder && objectFit === "contain" && "bg-cream-2",
         rounded && "rounded-[var(--radius-card)]",
         className
       )}

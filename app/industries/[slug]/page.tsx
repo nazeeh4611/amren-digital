@@ -73,9 +73,12 @@ export default async function IndustryDetailPage({ params }: { params: Promise<{
           <h2 className="mt-5 max-w-2xl font-display text-3xl font-bold uppercase tracking-tight text-ink sm:text-4xl">
             Common gaps in this category
           </h2>
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+          <ul className="mt-8 flex gap-4 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-2 sm:grid sm:grid-cols-2 sm:overflow-visible sm:snap-none sm:pb-0">
             {industry.problems.map((problem) => (
-              <li key={problem} className="flex gap-3 rounded-[var(--radius-card)] border border-navy/10 bg-cream p-5 text-ink/75">
+              <li
+                key={problem}
+                className="flex shrink-0 w-[85%] gap-3 rounded-[var(--radius-card)] border border-navy/10 bg-cream p-5 text-ink/75 snap-start sm:w-auto sm:shrink"
+              >
                 <span aria-hidden="true" className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-coral" />
                 {problem}
               </li>

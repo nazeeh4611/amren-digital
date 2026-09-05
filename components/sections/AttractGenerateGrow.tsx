@@ -1,12 +1,5 @@
-"use client";
-
-import { useLayoutEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Eyebrow } from "@/components/typography/Eyebrow";
 import { SplitReveal } from "@/components/animations/SplitReveal";
-import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
-import { scheduleRevealFailsafe } from "@/lib/reveal-failsafe";
 
 type Stage = {
   key: string;
@@ -65,51 +58,18 @@ const stages: Stage[] = [
  * fraction of the page height, and no per-stage stock image to load.
  * Neutral (Soft White) section and cards, per spec — the accent colors
  * live only in the number watermark, the small dot and the tag borders.
+ *
+ * No JS animation: this previously ran a GSAP staggered entrance plus an
+ * infinite yoyo pulse on each stage's accent dot, running continuously
+ * for as long as the section stayed mounted. Neither earned its cost —
+ * the cards are real content that should render immediately, and an
+ * animation with no stop condition is exactly the kind of thing that
+ * shows up as ongoing main-thread work. Server Component now, zero
+ * client JS for this section.
  */
 export function AttractGenerateGrow() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const reducedMotion = usePrefersReducedMotion();
-
-  useLayoutEffect(() => {
-    if (reducedMotion || !sectionRef.current) return;
-    gsap.registerPlugin(ScrollTrigger);
-
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        ".stage-card",
-        { opacity: 0, y: 32, scale: 0.9 },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.6,
-          ease: "back.out(1.6)",
-          stagger: 0.15,
-          scrollTrigger: { trigger: ".stage-row", start: "top 82%", once: true },
-        }
-      );
-
-      gsap.to(".stage-dot", {
-        scale: 1.4,
-        opacity: 0.5,
-        duration: 1.1,
-        ease: "sine.inOut",
-        yoyo: true,
-        repeat: -1,
-        stagger: 0.3,
-      });
-
-      // If the `once` ScrollTrigger above never fires, don't leave the
-      // stage cards stuck at opacity:0 forever.
-      const failsafe = scheduleRevealFailsafe(".stage-card");
-      return () => failsafe.kill();
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, [reducedMotion]);
-
   return (
-    <section ref={sectionRef} className="section bg-cream">
+    <section className="section bg-cream">
       <div className="wrap">
         <Eyebrow accent="gold">The AMREN Growth System</Eyebrow>
         <SplitReveal
@@ -118,13 +78,13 @@ export function AttractGenerateGrow() {
           className="mt-5 max-w-3xl font-display text-4xl font-bold uppercase leading-[1.02] tracking-tight text-ink sm:text-6xl"
         />
 
-        <div className="stage-row mt-14 flex flex-col gap-6 lg:flex-row lg:items-stretch lg:gap-6">
+        <div className="mt-14 flex gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-2 lg:overflow-visible lg:snap-none lg:pb-0 lg:items-stretch">
           {stages.map((stage) => (
-            <div key={stage.key} className="stage-card flex-1">
+            <div key={stage.key} className="shrink-0 w-[85%] snap-start lg:w-auto lg:shrink lg:flex-1">
               <div className="card-glossy relative flex h-full flex-col overflow-hidden rounded-[var(--radius-lg)] bg-white p-7 sm:p-8">
                 <span
                   aria-hidden="true"
-                  className={`stage-dot absolute right-7 top-7 h-2 w-2 rounded-full sm:right-8 sm:top-8 ${stage.accentBg}`}
+                  className={`absolute right-7 top-7 h-2 w-2 rounded-full sm:right-8 sm:top-8 ${stage.accentBg}`}
                 />
                 <span className={`font-display text-5xl font-bold ${stage.numberColor}`}>{stage.number}</span>
                 <h3 className="mt-2 font-display text-2xl font-bold uppercase tracking-tight text-ink">{stage.title}</h3>

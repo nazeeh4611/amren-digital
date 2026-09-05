@@ -37,9 +37,9 @@ export default function IndustriesPage() {
       </section>
 
       <section className="wrap pb-24">
-        <div className="grid gap-8 sm:grid-cols-2">
+        <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-2 sm:grid sm:grid-cols-2 sm:gap-8 sm:overflow-visible sm:snap-none sm:pb-0">
           {industries.map((industry, i) => (
-            <FadeIn key={industry.slug} delay={i * 0.08}>
+            <FadeIn key={industry.slug} delay={i * 0.08} className="shrink-0 w-[85%] snap-start sm:w-auto sm:shrink">
               <Link
                 href={`/industries/${industry.slug}`}
                 className="group block overflow-hidden rounded-[var(--radius-card)] border border-navy/10 bg-white p-6 transition-[transform,border-color,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:border-blue/40 hover:shadow-[var(--shadow-card)]"

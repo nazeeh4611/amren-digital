@@ -25,8 +25,10 @@ export const site = {
   contact: {
     phone: "+971 56 885 7443",
     phoneHref: "tel:+971568857443",
-    whatsapp: "https://wa.me/971568857443",
-    email: null as string | null, // TODO: client to supply a monitored inbox for form routing
+    phone2: "+971 50 368 2134",
+    phone2Href: "tel:+971503682134",
+    whatsapp: "https://wa.me/971503682134",
+    email: "hello@amren.ae",
     website: "digital.amren.ae",
     instagram: "@digital.amren",
     instagramUrl: "https://instagram.com/digital.amren",
@@ -40,7 +42,6 @@ export const site = {
     { label: "Home", href: "/" },
     { label: "About", href: "/about" },
     { label: "Services", href: "/services" },
-    { label: "Work", href: "/work" },
     { label: "Contact", href: "/contact" },
   ],
 
@@ -49,7 +50,6 @@ export const site = {
     { label: "About", href: "/about" },
     { label: "Services", href: "/services" },
     { label: "Industries", href: "/industries" },
-    { label: "Work", href: "/work" },
     { label: "Insights", href: "/insights" },
     { label: "Contact", href: "/contact" },
     { label: "Free Digital Audit", href: "/free-digital-audit" },
@@ -63,10 +63,10 @@ export const site = {
 
   cta: {
     primary: { label: "Let's Grow", href: "/contact" },
-    secondary: { label: "Explore Our Work", href: "/work" },
+    secondary: { label: "Explore Our Work", href: "/services/web-design-development#portfolio" },
     startProject: { label: "Free Digital Audit", href: "/free-digital-audit" },
     exploreServices: { label: "Explore Our Services", href: "/services" },
-    viewWork: { label: "View Our Work", href: "/work" },
+    viewWork: { label: "View Our Work", href: "/services/web-design-development#portfolio" },
     talkToAmren: { label: "Talk to AMREN", href: "/contact" },
     freeAudit: { label: "Free Digital Audit", href: "/free-digital-audit" },
     strategyCall: { label: "Request a Strategy Call", href: "/contact" },

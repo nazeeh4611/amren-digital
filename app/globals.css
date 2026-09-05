@@ -133,6 +133,7 @@
   --font-display: var(--font-space-grotesk), "Arial Black", sans-serif;
   --font-editorial: var(--font-dm-serif), Georgia, serif;
   --font-body: var(--font-inter), system-ui, sans-serif;
+  --font-accent: var(--font-yellowtail), cursive;
 
   --radius-card: var(--radius-lg);
   --radius-pill: var(--radius-pill);
@@ -487,4 +488,16 @@ body {
   .wrap {
     width: min(1320px, 100% - 5rem);
   }
+}
+
+/* Mobile card carousels: horizontal-scroll containers hide their
+   scrollbar so they read as a swipeable row instead of a visible
+   scrollbar strip. Layout itself (flex → grid at sm:) is set per call
+   site with ordinary Tailwind responsive classes. */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }

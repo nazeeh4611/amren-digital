@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import clsx from "clsx";
 import { site } from "@/content/site";
 import { services } from "@/content/services";
 import { Button } from "@/components/buttons/Button";
@@ -23,35 +24,49 @@ const footerColumns = [
   },
 ];
 
+// Pages that already end in their own full CTASection ("Let's Grow.")
+// right before the footer — showing Footer's own "Ready to grow?" block
+// there too would just repeat the same prompt back-to-back with no
+// separation. Every other page relies on this footer CTA as its only
+// closing prompt, so it stays for everything not in this list.
+function hasOwnCTASection(pathname: string | null) {
+  if (!pathname) return false;
+  return pathname === "/" || pathname === "/about" || pathname === "/services" || pathname === "/industries" || pathname.startsWith("/services/");
+}
+
 export function Footer() {
   const pathname = usePathname();
   if (pathname?.startsWith("/lp/")) {
     return <LandingFooter />;
   }
 
+  const showCTA = !hasOwnCTASection(pathname);
+
   return (
     <footer className="bg-petrol text-cream">
       <div className="wrap section">
-        <div className="flex flex-col items-start justify-between gap-8 border-b border-cream/12 pb-14 sm:flex-row sm:items-end">
-          <div>
-            <FadeIn>
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-turquoise">Ready to grow?</p>
+        {showCTA && (
+          <div className="flex flex-col items-start justify-between gap-8 border-b border-cream/12 pb-14 sm:flex-row sm:items-end">
+            <div>
+              <FadeIn>
+                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-turquoise">Ready to grow?</p>
+              </FadeIn>
+              <h2 className="mt-3 font-display text-4xl font-bold leading-[0.95] sm:text-6xl">
+                <SplitReveal as="span" text="Let’s build your" className="block" />
+                <SplitReveal as="span" text="digital growth system." className="block" delay={0.08} />
+              </h2>
+            </div>
+            <FadeIn delay={0.15}>
+              <Magnetic>
+                <Button href={site.cta.startProject.href} variant="warm">
+                  {site.cta.startProject.label}
+                </Button>
+              </Magnetic>
             </FadeIn>
-            <h2 className="mt-3 font-display text-4xl font-bold leading-[0.95] sm:text-6xl">
-              <SplitReveal as="span" text="Let’s build your" className="block" />
-              <SplitReveal as="span" text="digital growth system." className="block" delay={0.08} />
-            </h2>
           </div>
-          <FadeIn delay={0.15}>
-            <Magnetic>
-              <Button href={site.cta.startProject.href} variant="warm">
-                {site.cta.startProject.label}
-              </Button>
-            </Magnetic>
-          </FadeIn>
-        </div>
+        )}
 
-        <Stagger className="grid grid-cols-2 gap-10 py-14 sm:grid-cols-4" staggerDelay={0.06}>
+        <Stagger className={clsx("grid grid-cols-2 gap-10 sm:grid-cols-4", showCTA ? "py-14" : "pb-14")} staggerDelay={0.06}>
           {footerColumns.map((column) => (
             <StaggerItem key={column.heading}>
               <p className="text-xs font-semibold uppercase tracking-[0.25em] text-cream/50">{column.heading}</p>

@@ -17,7 +17,6 @@ export async function POST(request: Request) {
   const website = str("website");
   const serviceTitle = str("serviceTitle");
   const goal = str("goal");
-  const budget = str("budget");
   const pageSource = str("pageSource");
 
   if (!name || !email || !phone) {
@@ -46,7 +45,6 @@ export async function POST(request: Request) {
     ["Website", website],
     ["Service", serviceTitle],
     ["Goal", goal],
-    ["Monthly Budget", budget],
     ["Landing Page", pageSource],
   ].filter(([, value]) => value);
 

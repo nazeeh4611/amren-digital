@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import clsx from "clsx";
 import { buildMetadata } from "@/lib/seo";
 import { serviceCategories, services, categoryMotif } from "@/content/services";
 import { Breadcrumbs } from "@/components/breadcrumbs/Breadcrumbs";
@@ -39,6 +40,7 @@ export default function ServicesPage() {
         <div className="wrap divide-y divide-navy/10 border-y border-navy/10">
           {serviceCategories.map((category, index) => {
             const categoryServices = services.filter((s) => category.serviceSlugs.includes(s.slug));
+            const isSingle = categoryServices.length === 1;
             return (
               <FadeIn key={category.key} className="grid gap-8 py-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
                 <div>
@@ -50,12 +52,20 @@ export default function ServicesPage() {
                   <p className="mt-3 max-w-md font-medium text-ink/85">{category.description}</p>
                 </div>
 
-                <div className="grid gap-6 sm:grid-cols-2">
+                <div
+                  className={clsx(
+                    "flex gap-5 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-2 sm:overflow-visible sm:snap-none sm:pb-0",
+                    isSingle ? "sm:block" : "sm:grid sm:grid-cols-2 sm:gap-6"
+                  )}
+                >
                   {categoryServices.map((service) => (
                     <Link
                       key={service.slug}
                       href={`/services/${service.slug}`}
-                      className="group block overflow-hidden rounded-[var(--radius-card)] border border-navy/10 bg-white p-5 transition-colors hover:border-navy/40"
+                      className={clsx(
+                        "group block shrink-0 w-[85%] overflow-hidden rounded-[var(--radius-card)] border border-navy/10 bg-white p-5 snap-start transition-colors hover:border-navy/40 sm:w-auto sm:shrink",
+                        isSingle && "sm:max-w-sm"
+                      )}
                     >
                       <AssetPlaceholder
                         type="service"

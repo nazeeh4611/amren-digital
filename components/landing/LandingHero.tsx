@@ -1,14 +1,12 @@
 import { site } from "@/content/site";
 import { Button } from "@/components/buttons/Button";
 import { Eyebrow } from "@/components/typography/Eyebrow";
-import { ImageReveal } from "@/components/animations/ImageReveal";
 import { SplitReveal } from "@/components/animations/SplitReveal";
 import { LeadForm } from "@/components/landing/LeadForm";
-import { LandingHeroVisual } from "@/components/landing/visuals/LandingHeroVisual";
 
 /**
- * The lead form lives here, under the hero image, rather than further down
- * the page — a paid-traffic visitor should be able to enquire without
+ * The lead form lives here, right beside the pitch, rather than further
+ * down the page — a paid-traffic visitor should be able to enquire without
  * scrolling at all. Every other CTA on the page (#lead-form) just jumps
  * back up to this one form instead of a second copy further down.
  */
@@ -61,22 +59,16 @@ export function LandingHero({
         </p>
       </div>
 
-      <div>
-        <ImageReveal className="rounded-[var(--radius-lg)]">
-          <LandingHeroVisual serviceSlug={serviceSlug} />
-        </ImageReveal>
-
-        <div className="mt-6">
-          <LeadForm
-            serviceSlug={serviceSlug}
-            serviceTitle={serviceTitle}
-            goalOptions={goalOptions}
-            leadMagnetLabel={leadMagnetLabel}
-            leadMagnetDescription={leadMagnetDescription}
-            auditScope={auditScope}
-            auditOutcome={auditOutcome}
-          />
-        </div>
+      <div className="lg:pt-4">
+        <LeadForm
+          serviceSlug={serviceSlug}
+          serviceTitle={serviceTitle}
+          goalOptions={goalOptions}
+          leadMagnetLabel={leadMagnetLabel}
+          leadMagnetDescription={leadMagnetDescription}
+          auditScope={auditScope}
+          auditOutcome={auditOutcome}
+        />
       </div>
     </section>
   );

@@ -36,9 +36,9 @@ export default function InsightsPage() {
         </p>
       </section>
 
-      <section className="wrap grid gap-10 pb-24 sm:grid-cols-2 lg:grid-cols-3">
+      <section className="wrap flex gap-8 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-2 sm:grid sm:grid-cols-2 sm:gap-10 sm:overflow-visible sm:snap-none sm:pb-24 lg:grid-cols-3">
         {sorted.map((article, i) => (
-          <FadeIn key={article.slug} delay={(i % 3) * 0.08}>
+          <FadeIn key={article.slug} delay={(i % 3) * 0.08} className="shrink-0 w-[80%] snap-start sm:w-auto sm:shrink">
             <Link href={`/insights/${article.slug}`} className="group block">
               <div className="overflow-hidden rounded-[var(--radius-card)]">
                 <div className="transition-transform duration-500 group-hover:scale-[1.04]">
