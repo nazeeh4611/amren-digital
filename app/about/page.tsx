@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/seo";
 import { site } from "@/content/site";
-import { team } from "@/content/team";
 import { Breadcrumbs } from "@/components/breadcrumbs/Breadcrumbs";
 import { Eyebrow } from "@/components/typography/Eyebrow";
 import { AssetPlaceholder } from "@/components/assets/AssetPlaceholder";
@@ -110,26 +109,6 @@ export default function AboutPage() {
       <GrowthArc />
 
       <VenturesConnection />
-
-      <section className="section bg-cream">
-        <div className="wrap">
-          <Eyebrow accent="gold">Team</Eyebrow>
-          <h2 className="mt-5 max-w-2xl font-display text-3xl font-bold uppercase tracking-tight text-ink sm:text-5xl">
-            The people behind the system.
-          </h2>
-          <div className="mt-10 flex gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-2 sm:grid sm:grid-cols-3 sm:gap-8 sm:overflow-visible sm:snap-none sm:pb-0">
-            {team.map((member, i) => (
-              <FadeIn key={member.id} delay={i * 0.08} className="shrink-0 w-[60%] text-center snap-start sm:w-auto sm:shrink">
-                <ImageReveal>
-                  <AssetPlaceholder type="team-photo" label={member.id} aspectRatio="4/5" alt={member.name} />
-                </ImageReveal>
-                <p className="mt-3 font-semibold text-ink">{member.name}</p>
-                <p className="text-sm text-ink/60">{member.role}</p>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <CTASection />
     </>

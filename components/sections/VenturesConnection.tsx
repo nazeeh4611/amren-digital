@@ -12,7 +12,16 @@ export function VenturesConnection() {
           <div className="grid items-center gap-10 rounded-[var(--radius-lg)] border border-navy/10 bg-cream p-8 sm:p-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
             <ImageReveal className="rounded-[var(--radius-card)]">
               <TiltCard>
-                <AssetPlaceholder type="background" label={site.parent.name} motif="mark" tone={3} aspectRatio="4/5" decorative />
+                <AssetPlaceholder
+                  type="background"
+                  label={site.parent.name}
+                  src="/Amrenventures.avif"
+                  motif="mark"
+                  tone={3}
+                  aspectRatio="4/5"
+                  objectFit="contain"
+                  decorative
+                />
               </TiltCard>
             </ImageReveal>
             <div>
