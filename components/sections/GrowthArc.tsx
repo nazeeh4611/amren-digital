@@ -25,7 +25,7 @@ export function GrowthArc() {
           <FadeIn key={stage.word} delay={i * 0.1} className="flex min-w-[10rem] flex-1 items-start gap-4 sm:min-w-0">
             <span className="font-display text-2xl font-bold text-cream/20">0{i + 1}</span>
             <div>
-              <p className="font-display text-2xl font-bold uppercase tracking-tight text-gold-2 sm:text-3xl">{stage.word}</p>
+              <p className="font-display text-2xl font-bold uppercase tracking-tight text-white sm:text-3xl">{stage.word}</p>
               <p className="mt-2 max-w-[14rem] text-sm text-cream/60">{stage.note}</p>
             </div>
             {i < arc.length - 1 && (

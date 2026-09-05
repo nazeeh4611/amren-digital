@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/seo";
 import { site } from "@/content/site";
 import { Button } from "@/components/buttons/Button";
-import { AssetPlaceholder } from "@/components/assets/AssetPlaceholder";
 import { SplitReveal } from "@/components/animations/SplitReveal";
 
 export const metadata: Metadata = buildMetadata({
@@ -19,7 +18,7 @@ export default function ThankYouPage() {
       <div aria-hidden="true" className="accent-dot accent-dot-b absolute right-20 top-32 h-4 w-4 bg-coral" />
       <div aria-hidden="true" className="accent-dot accent-dot-a absolute bottom-20 left-1/4 h-2.5 w-2.5 bg-gold" />
       <div className="wrap relative flex flex-col items-center gap-10 py-24 text-center sm:py-32">
-        <AssetPlaceholder type="background" label="Thank You" motif="mark" aspectRatio="1/1" className="w-40" tone={0} />
+        <p className="font-editorial text-3xl italic text-navy/25 sm:text-4xl">Thank you</p>
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-blue">Enquiry received</p>
           <SplitReveal

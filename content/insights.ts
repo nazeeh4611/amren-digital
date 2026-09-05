@@ -11,6 +11,10 @@ export type Article = {
   body: string[]; // paragraphs; rendered as real HTML, not images
   relatedSlugs: string[];
   seoTopic: string;
+  /** Card thumbnail for the /insights listing — real photography, not the
+   * AssetPlaceholder scaffold, since a generic mark/motif card doesn't
+   * signal what each article is actually about at a glance. */
+  image: string;
 };
 
 export const articleCategories = [
@@ -45,6 +49,7 @@ export const articles: Article[] = [
     ],
     relatedSlugs: ["attract-generate-grow-explained", "google-ads-vs-seo-uae"],
     seoTopic: "digital marketing agency Dubai / connected marketing systems",
+    image: "/insights/why-uae-businesses-need-a-connected-digital-system.png",
   },
   {
     slug: "google-ads-vs-seo-uae",
@@ -66,6 +71,7 @@ export const articles: Article[] = [
     ],
     relatedSlugs: ["why-uae-businesses-need-a-connected-digital-system", "local-seo-google-business-profile-dubai"],
     seoTopic: "Google Ads / SEO / paid search vs organic / Dubai",
+    image: "/insights/website-that-converts-not-just-looks-good.png",
   },
   {
     slug: "local-seo-google-business-profile-dubai",
@@ -86,6 +92,7 @@ export const articles: Article[] = [
     ],
     relatedSlugs: ["google-ads-vs-seo-uae", "why-uae-businesses-need-a-connected-digital-system"],
     seoTopic: "Local SEO / Google Business Profile / Dubai",
+    image: "/insights/local-seo-google-business-profile-dubai.png",
   },
   {
     slug: "website-that-converts-not-just-looks-good",
@@ -106,6 +113,7 @@ export const articles: Article[] = [
     ],
     relatedSlugs: ["why-uae-businesses-need-a-connected-digital-system", "whatsapp-automation-lead-followup"],
     seoTopic: "web design / website development / conversion-focused websites / Dubai",
+    image: "/insights/website-that-converts-not-just-looks-good.png",
   },
   {
     slug: "social-media-content-vs-social-media-ads",
@@ -126,6 +134,7 @@ export const articles: Article[] = [
     ],
     relatedSlugs: ["why-uae-businesses-need-a-connected-digital-system", "google-ads-vs-seo-uae"],
     seoTopic: "social media marketing / social media advertising / Dubai",
+    image: "/insights/social-media-content-vs-social-media-ads.png",
   },
   {
     slug: "whatsapp-automation-lead-followup",
@@ -146,6 +155,7 @@ export const articles: Article[] = [
     ],
     relatedSlugs: ["website-that-converts-not-just-looks-good", "why-uae-businesses-need-a-connected-digital-system"],
     seoTopic: "marketing automation / CRM / WhatsApp automation / lead follow-up",
+    image: "/insights/whatsapp-automation-lead-followup.png",
   },
   {
     slug: "attract-generate-grow-explained",
@@ -167,6 +177,7 @@ export const articles: Article[] = [
     ],
     relatedSlugs: ["why-uae-businesses-need-a-connected-digital-system", "whatsapp-automation-lead-followup"],
     seoTopic: "digital growth framework / attract generate grow / AMREN Digital",
+    image: "/insights/attract-generate-grow-explained.png",
   },
 ];
 
@@ -191,6 +202,7 @@ articles.push(
     ],
     relatedSlugs: ["google-ads-vs-seo-uae", "google-ads-landing-page-best-practices"],
     seoTopic: "Google Ads budget Dubai / PPC spend / cost per click",
+    image: "/insights/google-ads-budget-dubai-business.png",
   },
   {
     slug: "google-ads-landing-page-best-practices",
@@ -212,6 +224,7 @@ articles.push(
     ],
     relatedSlugs: ["website-that-converts-not-just-looks-good", "google-ads-budget-dubai-business"],
     seoTopic: "Google Ads landing pages / conversion rate optimization / Dubai",
+    image: "/insights/google-ads-landing-page-best-practices.png",
   },
   {
     slug: "seo-checklist-dubai-businesses",
@@ -234,6 +247,7 @@ articles.push(
     ],
     relatedSlugs: ["local-seo-google-business-profile-dubai", "google-ads-vs-seo-uae"],
     seoTopic: "SEO checklist / technical SEO / Dubai",
+    image: "/insights/seo-checklist-dubai-businesses.png",
   }
 );
 

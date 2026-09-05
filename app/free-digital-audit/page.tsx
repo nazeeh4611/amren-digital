@@ -3,7 +3,6 @@ import { buildMetadata } from "@/lib/seo";
 import { auditFaqs } from "@/content/faqs";
 import { Breadcrumbs } from "@/components/breadcrumbs/Breadcrumbs";
 import { Eyebrow } from "@/components/typography/Eyebrow";
-import { AssetPlaceholder } from "@/components/assets/AssetPlaceholder";
 import { Button } from "@/components/buttons/Button";
 import { AuditForm } from "@/components/forms/AuditForm";
 import { FaqSection } from "@/components/sections/FaqSection";
@@ -40,7 +39,7 @@ export default function FreeDigitalAuditPage() {
       <JsonLd data={faqSchema(auditFaqs)} />
       <Breadcrumbs items={[{ name: "Free Digital Audit", path: "/free-digital-audit" }]} />
 
-      <section className="wrap grid gap-10 pb-16 pt-8 sm:pt-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-16">
+      <section className="wrap grid gap-10 pb-16 pt-8 sm:pt-10 lg:grid-cols-[1fr_1fr] lg:items-start lg:gap-16">
         <div>
           <Eyebrow accent="gold">Free Digital Growth Audit</Eyebrow>
           <SplitReveal
@@ -60,15 +59,20 @@ export default function FreeDigitalAuditPage() {
             us directly.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
-            <Button href="#audit-form" variant="primary">
-              Request Your Audit
-            </Button>
             <Button href="/contact" variant="ghost">
               Talk to Us Instead
             </Button>
           </div>
         </div>
-        <AssetPlaceholder type="dashboard-screenshot" label="Digital Audit" motif="chart" aspectRatio="4/5" priority />
+        <div id="audit-form" className="scroll-mt-24 rounded-[var(--radius-lg)] border border-navy/10 bg-white p-6 shadow-[var(--shadow-card)] sm:p-8">
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-blue">Request Your Audit</p>
+          <h2 className="mt-3 font-display text-2xl font-bold uppercase tracking-tight text-ink">
+            Tell us about your business.
+          </h2>
+          <div className="mt-6">
+            <AuditForm />
+          </div>
+        </div>
       </section>
 
       <section className="section bg-white pt-0">
@@ -125,23 +129,6 @@ export default function FreeDigitalAuditPage() {
             page, or a good landing page with slow follow-up, produces the same result: enquiries that don&rsquo;t
             become customers.
           </p>
-        </div>
-      </section>
-
-      <section id="audit-form" className="section scroll-mt-24 bg-cream">
-        <div className="wrap grid gap-14 lg:grid-cols-[1fr_1fr] lg:gap-20">
-          <div>
-            <Eyebrow accent="gold">Request Your Audit</Eyebrow>
-            <h2 className="mt-5 font-display text-3xl font-bold uppercase leading-[1.02] tracking-tight text-ink sm:text-4xl">
-              Tell us about your business.
-            </h2>
-            <p className="mt-5 max-w-md text-ink/70">
-              A few details about where you are now — we&rsquo;ll take it from there.
-            </p>
-          </div>
-          <div className="rounded-[var(--radius-lg)] border border-navy/10 bg-white p-6 shadow-[var(--shadow-card)] sm:p-8">
-            <AuditForm />
-          </div>
         </div>
       </section>
 

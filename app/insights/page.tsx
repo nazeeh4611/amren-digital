@@ -42,7 +42,7 @@ export default function InsightsPage() {
             <Link href={`/insights/${article.slug}`} className="group block">
               <div className="overflow-hidden rounded-[var(--radius-card)]">
                 <div className="transition-transform duration-500 group-hover:scale-[1.04]">
-                  <AssetPlaceholder type="hero" label={article.category} alt={article.title} motif="mark" tone={i % 8} aspectRatio="16/9" />
+                  <AssetPlaceholder type="hero" label={article.category} src={article.image} alt={article.title} motif="mark" tone={i % 8} aspectRatio="16/9" />
                 </div>
               </div>
               <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-blue">{article.category}</p>

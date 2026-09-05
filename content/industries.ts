@@ -41,7 +41,7 @@ export const industries: Industry[] = [
       { step: "Enquire", description: "Booking, calling or WhatsApping — whichever is fastest and clearest on the site or profile." },
       { step: "Confirm", description: "Fast, clear follow-up turns the enquiry into a booked appointment." },
     ],
-    relevantServiceSlugs: ["local-seo", "google-ads", "web-design-development", "marketing-automation"],
+    relevantServiceSlugs: ["seo", "paid-advertising", "web-design-development", "marketing-automation"],
     measurement: [
       "Local map pack visibility for treatment + location searches",
       "Google Business Profile calls, direction requests and website clicks",
@@ -71,7 +71,7 @@ export const industries: Industry[] = [
       { step: "Enquire", description: "WhatsApp, a call or a form — usually to more than one agency at the same time." },
       { step: "Follow-up", description: "Whoever responds fastest, with the most relevant information, tends to stay in the conversation." },
     ],
-    relevantServiceSlugs: ["google-ads", "meta-ads", "marketing-automation", "web-design-development"],
+    relevantServiceSlugs: ["paid-advertising", "marketing-automation", "web-design-development"],
     measurement: [
       "Cost per qualified enquiry, not just per click",
       "Lead response time from first WhatsApp/form/call",
@@ -101,7 +101,7 @@ export const industries: Industry[] = [
       { step: "Decide", description: "A clear booking link, WhatsApp number or call button turns interest into a reservation." },
       { step: "Return", description: "Ongoing content and offers bring past guests back and support word-of-mouth." },
     ],
-    relevantServiceSlugs: ["local-seo", "social-media-marketing", "content-creation", "meta-ads"],
+    relevantServiceSlugs: ["seo", "social-media-marketing", "content-production", "paid-advertising"],
     measurement: [
       "Google Business Profile views, direction requests and website clicks",
       "Booking/reservation link clicks",
@@ -131,7 +131,7 @@ export const industries: Industry[] = [
       { step: "Book", description: "A direct booking link or WhatsApp message — friction here loses the enquiry fast." },
       { step: "Rebook", description: "Content and light retargeting keep the business visible for the next appointment." },
     ],
-    relevantServiceSlugs: ["social-media-marketing", "content-creation", "local-seo", "meta-ads"],
+    relevantServiceSlugs: ["social-media-marketing", "content-production", "seo", "paid-advertising"],
     measurement: [
       "Booking link clicks from Instagram bio, ads and Google profile",
       "Local map pack visibility for treatment + location searches",

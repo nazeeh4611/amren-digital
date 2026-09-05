@@ -29,7 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: path === "" ? 1 : 0.8,
   }));
 
-  for (const service of services) {
+  for (const service of services.filter((s) => !s.hidden)) {
     entries.push({
       url: `${site.url}/services/${service.slug}`,
       lastModified: now,

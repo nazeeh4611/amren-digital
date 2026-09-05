@@ -3,7 +3,6 @@ import { buildMetadata } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/breadcrumbs/Breadcrumbs";
 import { Eyebrow } from "@/components/typography/Eyebrow";
 import { WaitlistForm } from "@/components/forms/WaitlistForm";
-import { AssetPlaceholder } from "@/components/assets/AssetPlaceholder";
 import { SplitReveal } from "@/components/animations/SplitReveal";
 
 export const metadata: Metadata = buildMetadata({
@@ -31,8 +30,20 @@ export default function WaitlistPage() {
             Register your interest for an upcoming consultation slot with AMREN. Tell us what you want to grow, and
             we&rsquo;ll be in touch to schedule a conversation.
           </p>
-          <div className="mt-10">
-            <AssetPlaceholder type="background" label="Growth List" motif="chart" aspectRatio="4/3" tone={1} />
+          <div className="mt-10 space-y-6 border-t border-navy/10 pt-8">
+            {[
+              { step: "01", title: "You register", description: "Tell us what you want to grow and a bit about your business." },
+              { step: "02", title: "We review", description: "We look at your goals and match you to the right slot and specialist." },
+              { step: "03", title: "We reach out", description: "You'll hear from us to schedule a conversation, no obligation." },
+            ].map((item) => (
+              <div key={item.step} className="flex gap-4">
+                <span className="font-display text-2xl font-bold text-ink/15">{item.step}</span>
+                <div>
+                  <p className="font-display text-lg font-semibold text-ink">{item.title}</p>
+                  <p className="mt-1 text-sm text-ink/60">{item.description}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 

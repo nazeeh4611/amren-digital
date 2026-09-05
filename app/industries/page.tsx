@@ -4,7 +4,6 @@ import { buildMetadata } from "@/lib/seo";
 import { industries } from "@/content/industries";
 import { Breadcrumbs } from "@/components/breadcrumbs/Breadcrumbs";
 import { Eyebrow } from "@/components/typography/Eyebrow";
-import { AssetPlaceholder } from "@/components/assets/AssetPlaceholder";
 import { CTASection } from "@/components/sections/CTASection";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { SplitReveal } from "@/components/animations/SplitReveal";
@@ -37,18 +36,24 @@ export default function IndustriesPage() {
       </section>
 
       <section className="wrap pb-24">
-        <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-2 sm:grid sm:grid-cols-2 sm:gap-8 sm:overflow-visible sm:snap-none sm:pb-0">
+        <div className="flex flex-col divide-y divide-navy/10 border-y border-navy/10">
           {industries.map((industry, i) => (
-            <FadeIn key={industry.slug} delay={i * 0.08} className="shrink-0 w-[85%] snap-start sm:w-auto sm:shrink">
+            <FadeIn key={industry.slug} delay={i * 0.06}>
               <Link
                 href={`/industries/${industry.slug}`}
-                className="group block overflow-hidden rounded-[var(--radius-card)] border border-navy/10 bg-white p-6 transition-[transform,border-color,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:border-blue/40 hover:shadow-[var(--shadow-card)]"
+                className="group grid items-center gap-4 py-10 transition-colors sm:grid-cols-[3rem_1.3fr_1.7fr_auto] sm:gap-10"
               >
-                <AssetPlaceholder type="service" alt={industry.title} motif="chart" tone={i} aspectRatio="16/9" />
-                <h2 className="mt-5 font-display text-2xl font-bold uppercase tracking-tight text-ink transition-colors group-hover:text-blue">
+                <span className="font-display text-3xl font-bold text-ink/15">0{i + 1}</span>
+                <h2 className="font-display text-2xl font-bold uppercase tracking-tight text-ink transition-colors group-hover:text-blue sm:text-3xl">
                   {industry.title}
                 </h2>
-                <p className="mt-2 text-ink/65">{industry.headline}</p>
+                <p className="max-w-md text-ink/65">{industry.headline}</p>
+                <span
+                  aria-hidden="true"
+                  className="hidden h-12 w-12 shrink-0 items-center justify-center rounded-full border border-navy/15 text-xl text-ink/50 transition-all duration-300 group-hover:-rotate-45 group-hover:border-blue group-hover:text-blue sm:flex"
+                >
+                  →
+                </span>
               </Link>
             </FadeIn>
           ))}

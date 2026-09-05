@@ -21,6 +21,15 @@ export type Service = {
   aspectRatio: "4/5" | "16/9" | "1/1" | "3/4";
   assetLabel: string;
   recommendedAsset: string;
+  /** True for a slug that has been folded into a merged service page and
+   * no longer gets its own /services/[slug] route (redirected in
+   * next.config.ts) — the record stays here because /lp/[slug] landing
+   * pages still resolve their service data by this slug. */
+  hidden?: boolean;
+  /** Explicit image path, bypassing the AssetPlaceholder seed lookup —
+   * used when a merged service should keep reusing an already-shot asset
+   * from one of the services it replaced. */
+  assetSrc?: string;
 };
 
 export type ServiceCategory = {
@@ -41,7 +50,7 @@ export const serviceCategories: ServiceCategory[] = [
     headline: "Ads that pay for themselves.",
     description:
       "Paid search and paid social campaigns built around intent, audience and measurable return — not vanity impressions.",
-    serviceSlugs: ["google-ads", "meta-ads"],
+    serviceSlugs: ["paid-advertising"],
     image: "/perfomance.avif",
   },
   {
@@ -61,7 +70,7 @@ export const serviceCategories: ServiceCategory[] = [
     headline: "Show up first when it matters most.",
     description:
       "Technical, on-page and local SEO that builds organic visibility on Google — where most buying decisions now start.",
-    serviceSlugs: ["seo", "local-seo"],
+    serviceSlugs: ["seo"],
     image: "/seohero.avif",
   },
   {
@@ -81,7 +90,7 @@ export const serviceCategories: ServiceCategory[] = [
     headline: "Photo and video worth stopping for.",
     description:
       "Photography, video and creative direction that give every campaign, page and profile something worth stopping for.",
-    serviceSlugs: ["content-creation", "video-production"],
+    serviceSlugs: ["content-production"],
     image: "/contenthero.avif",
   },
   {
@@ -99,6 +108,7 @@ export const serviceCategories: ServiceCategory[] = [
 export const services: Service[] = [
   {
     slug: "google-ads",
+    hidden: true,
     category: "performance",
     number: "01",
     title: "Google Ads",
@@ -153,6 +163,7 @@ export const services: Service[] = [
   },
   {
     slug: "meta-ads",
+    hidden: true,
     category: "performance",
     number: "02",
     title: "Meta Ads",
@@ -204,29 +215,93 @@ export const services: Service[] = [
     recommendedAsset: "Real Instagram or Facebook advertising creative, campaign visual, or a phone mockup of a live ad placement.",
   },
   {
+    slug: "paid-advertising",
+    category: "performance",
+    number: "01",
+    title: "Paid Advertising",
+    eyebrow: "Performance / Google & Meta Ads",
+    h1: "Google & Meta Ads Management for UAE Businesses",
+    headline: "Show up exactly where your next customer is looking.",
+    metaTitle: "Paid Advertising Agency in Dubai | Google & Meta Ads | AMREN Digital",
+    metaDescription:
+      "Google Ads and Meta Ads management for UAE businesses — search campaigns, Facebook & Instagram advertising, retargeting and ongoing optimization from AMREN Digital, Dubai.",
+    intro:
+      "Search captures people already looking for what you sell. Social reaches people who match your customer profile before they've started searching. AMREN plans, builds and manages both as one connected paid media system — not two separate accounts run in isolation.",
+    benefits: [
+      "Reach people actively searching for your product or service, and precisely defined audiences on Facebook and Instagram",
+      "Full transparency on spend, placements and performance across both platforms",
+      "Campaigns structured around real intent and audience fit, not just keyword or follower volume",
+      "Creative built specifically for each platform and placement, not repurposed between them",
+      "Retargeting across search and social to bring back visitors who didn't convert the first time",
+      "One team managing both channels as a single strategy instead of two disconnected budgets",
+    ],
+    process: [
+      { title: "Research", description: "Business, competitor, keyword-intent and audience research to understand where demand actually exists." },
+      { title: "Build", description: "Campaign structure, ad copy, creative and targeting built around your specific offer for each platform." },
+      { title: "Launch", description: "Campaigns go live across search and social with conversion tracking connected from day one." },
+      { title: "Optimize", description: "Ongoing bid, budget, audience and creative optimization based on real performance data." },
+    ],
+    deliverables: [
+      "Google Ads campaign setup & search management",
+      "Meta Ads (Facebook & Instagram) campaign setup & management",
+      "Keyword research & audience targeting",
+      "Ad copywriting & platform-specific creative",
+      "Retargeting, where applicable",
+      "Ongoing monitoring & optimization",
+      "Monthly performance reporting",
+    ],
+    faqs: [
+      {
+        q: "How much should I budget for Google and Meta Ads?",
+        a: "Ad spend is separate from AMREN's management fee and is paid directly to Google or Meta. The right budget depends on your industry, competition and goals — we'll recommend a realistic starting point after reviewing your business.",
+      },
+      {
+        q: "Should I run Google Ads, Meta Ads, or both?",
+        a: "They serve different intent. Google captures people already searching; Meta reaches people who match your audience profile before they've started searching. Most businesses that come to AMREN benefit from running both as part of one connected strategy.",
+      },
+      {
+        q: "Do I need a large following before running Meta Ads?",
+        a: "No. Meta Ads reach people based on targeting criteria, not your existing follower count, so campaigns can perform well even for newer accounts.",
+      },
+      {
+        q: "Do you guarantee a number of leads or a cost per lead?",
+        a: "No. Advertising results depend on budget, competition, offer and landing page quality, so specific outcomes can't be guaranteed. We focus on continuous, measurable optimization instead.",
+      },
+    ],
+    seoTopic: "Google Ads / Meta Ads / paid advertising / PPC / Dubai",
+    relatedSlugs: ["seo", "web-design-development", "content-production"],
+    aspectRatio: "4/5",
+    assetLabel: "Google Ads",
+    assetSrc: "/placeholders/service-google-ads-search.avif",
+    recommendedAsset:
+      "Real Google Ads campaign visual, search advertising interface, or branded paid-search/social creative.",
+  },
+  {
     slug: "seo",
     category: "search",
     number: "03",
     title: "SEO",
-    eyebrow: "Search / Organic Visibility",
-    h1: "SEO Services for UAE Businesses",
-    headline: "Be found before they find someone else.",
-    metaTitle: "SEO Agency in Dubai | Search Engine Optimization | AMREN Digital",
+    eyebrow: "Search / Organic & Local Visibility",
+    h1: "SEO & Local SEO Services for UAE Businesses",
+    headline: "Be found before they find someone else — everywhere they search.",
+    metaTitle: "SEO Agency in Dubai | Search Engine Optimization & Local SEO | AMREN Digital",
     metaDescription:
-      "SEO services for UAE businesses — technical SEO, on-page optimization and keyword strategy built for sustainable organic growth, from AMREN Digital, Dubai.",
+      "SEO and Local SEO services for UAE businesses — technical SEO, on-page optimization, keyword strategy and Google Business Profile management from AMREN Digital, Dubai.",
     intro:
-      "SEO is the part of a digital system that keeps working after the ad budget is spent. AMREN builds organic visibility through technical health, on-page structure and content strategy aligned to how your customers actually search.",
+      "SEO is the part of a digital system that keeps working after the ad budget is spent. AMREN builds organic visibility through technical health, on-page structure and content strategy — and for businesses with a physical location or service area, optimizes the Google Business Profile and local signals that win the search that happens right before someone walks in.",
     benefits: [
       "Reduces long-term dependence on paid advertising alone",
       "Builds visibility that compounds over time rather than resetting each month",
       "Improves the technical foundation your other channels rely on",
       "Aligns content and structure to genuine search intent",
+      "Improves visibility in Google's local map results",
+      "Strengthens trust through a complete, accurate Google Business Profile",
     ],
     process: [
       { title: "Technical audit", description: "Reviewing site health, indexing, speed and structure for issues holding back visibility." },
-      { title: "Keyword & intent strategy", description: "Identifying the searches that matter most to your business, not just the highest-volume terms." },
-      { title: "On-page optimization", description: "Titles, meta descriptions, headings and internal linking aligned to strategy." },
-      { title: "Reporting", description: "Monthly Search Console reporting to track visibility and indexing over time." },
+      { title: "Keyword & intent strategy", description: "Identifying the searches that matter most to your business, including local, location-based terms." },
+      { title: "On-page & profile optimization", description: "Titles, meta descriptions, headings, internal linking and Google Business Profile setup aligned to strategy." },
+      { title: "Reporting", description: "Monthly Search Console and local visibility reporting to track progress over time." },
     ],
     deliverables: [
       "Keyword research & SEO strategy",
@@ -234,6 +309,9 @@ export const services: Service[] = [
       "Basic technical SEO & indexing",
       "Google Search Console setup & monthly reporting",
       "Internal linking strategy",
+      "Google Business Profile creation, setup & category configuration",
+      "Local search strategy & location-based keyword targeting",
+      "Support for multiple locations, where applicable",
     ],
     faqs: [
       {
@@ -245,18 +323,27 @@ export const services: Service[] = [
         a: "They serve different purposes. Paid advertising creates immediate visibility; SEO builds visibility that compounds over time. AMREN typically recommends both working together as part of one system.",
       },
       {
-        q: "Do you work on technical SEO as well as content?",
-        a: "Yes — sustainable SEO requires both a technically sound website and content aligned to real search intent. We address the technical foundation alongside on-page strategy.",
+        q: "Do I need a physical location for Local SEO?",
+        a: "A physical or service-area location strengthens local SEO, but service-area businesses without a public storefront can also benefit from an optimized Google Business Profile, subject to Google's eligibility requirements.",
+      },
+      {
+        q: "Can you manage more than one location?",
+        a: "Yes — AMREN supports multiple Google Business Profiles. Scope and pricing for additional locations are confirmed based on your specific requirements.",
+      },
+      {
+        q: "Is Google Business Profile verification guaranteed?",
+        a: "Verification is subject to Google's own policies and requirements, which are outside AMREN's control. We manage the setup and optimization within those requirements.",
       },
     ],
-    seoTopic: "SEO / search visibility / Dubai / UAE",
-    relatedSlugs: ["local-seo", "web-design-development", "google-ads"],
+    seoTopic: "SEO / Local SEO / Google Business Profile / search visibility / Dubai / UAE",
+    relatedSlugs: ["paid-advertising", "web-design-development", "social-media-marketing"],
     aspectRatio: "4/5",
     assetLabel: "SEO",
-    recommendedAsset: "Search results screenshot, ranking visualization, organic traffic chart, or a Search Console dashboard view.",
+    recommendedAsset: "Search results screenshot, ranking visualization, organic traffic chart, or a Google Business Profile / map pack result.",
   },
   {
     slug: "local-seo",
+    hidden: true,
     category: "search",
     number: "04",
     title: "Local SEO",
@@ -354,7 +441,7 @@ export const services: Service[] = [
       },
     ],
     seoTopic: "social media marketing / social media management / Dubai",
-    relatedSlugs: ["content-creation", "video-production", "meta-ads"],
+    relatedSlugs: ["content-production", "paid-advertising", "seo"],
     aspectRatio: "3/4",
     assetLabel: "Social Media",
     recommendedAsset: "Instagram feed grid, content tile mockup, reel cover frame, or a phone mockup showing a real social profile.",
@@ -407,13 +494,14 @@ export const services: Service[] = [
       },
     ],
     seoTopic: "web design / website development / Dubai",
-    relatedSlugs: ["seo", "marketing-automation", "content-creation"],
+    relatedSlugs: ["seo", "marketing-automation", "content-production"],
     aspectRatio: "1/1",
     assetLabel: "Websites",
     recommendedAsset: "Browser mockup of a real website, responsive multi-device screens, or an actual project screenshot.",
   },
   {
     slug: "content-creation",
+    hidden: true,
     category: "content",
     number: "07",
     title: "Content Creation",
@@ -462,6 +550,7 @@ export const services: Service[] = [
   },
   {
     slug: "video-production",
+    hidden: true,
     category: "content",
     number: "08",
     title: "Video Production",
@@ -508,6 +597,67 @@ export const services: Service[] = [
     recommendedAsset: "Production still, camera/behind-the-scenes photograph, or a real promotional video frame.",
   },
   {
+    slug: "content-production",
+    category: "content",
+    number: "07",
+    title: "Content & Video Production",
+    eyebrow: "Content / Creative & Video",
+    h1: "Content Creation & Video Production for Brands & Campaigns",
+    headline: "Make your brand worth stopping for.",
+    metaTitle: "Content & Video Production Agency in Dubai | AMREN Digital",
+    metaDescription:
+      "Creative content, graphic design, photography and video production for UAE brands — designed to perform across social, search and paid campaigns. AMREN Digital, Dubai.",
+    intro:
+      "Every channel in your digital system depends on creative that actually stops someone mid-scroll — static or moving. AMREN produces graphic design, advertising creative, photography and video built for the platform they're going to run on, from a single brief to final, platform-ready delivery.",
+    benefits: [
+      "Creative built specifically for each platform and placement — static and video",
+      "Consistent visual identity across ads, social and web",
+      "Studio and on-location production capability",
+      "Faster campaign turnaround with one dedicated creative process",
+      "Editing built around retention, not just aesthetics",
+      "Content that feeds both organic and paid channels",
+    ],
+    process: [
+      { title: "Creative brief", description: "Defining the message, audience, format and platform for each asset." },
+      { title: "Production", description: "Static creatives, photography and studio or on-location filming produced to brief." },
+      { title: "Edit & review", description: "Editing, sound, motion graphics and feedback rounds to refine before assets go live." },
+      { title: "Delivery", description: "Final assets delivered in the formats each platform requires." },
+    ],
+    deliverables: [
+      "Advertising & promotional creatives",
+      "Graphic design for social and campaigns",
+      "Reels & short-form video",
+      "Promotional and corporate videos",
+      "Studio & outdoor production, where scoped",
+      "Company profiles, brochures & presentations, where scoped",
+      "Product photography, where scoped",
+    ],
+    faqs: [
+      {
+        q: "Do you design ad creative as well as social content and video?",
+        a: "Yes — advertising creatives, organic social content and video are all part of AMREN's content and creative capability, produced with the platform and objective in mind.",
+      },
+      {
+        q: "Can you work from our existing brand guidelines?",
+        a: "Yes. If brand guidelines exist, we design within them. If not, we can also support logo design and brand identity as a separate scope.",
+      },
+      {
+        q: "Do you handle on-location filming?",
+        a: "Yes. On-location and site-visit production is available and is scoped separately based on location, travel and production requirements.",
+      },
+      {
+        q: "What video formats do you deliver?",
+        a: "Videos are delivered in the aspect ratios and formats required for the intended platform — vertical for reels and stories, horizontal for web and YouTube, and any specific ad-placement formats needed.",
+      },
+    ],
+    seoTopic: "content creation / video production / creative design / advertising creatives / Dubai",
+    relatedSlugs: ["social-media-marketing", "paid-advertising", "web-design-development"],
+    aspectRatio: "1/1",
+    assetLabel: "Content",
+    assetSrc: "/placeholders/service-content-play.avif",
+    recommendedAsset: "Real advertising creative, campaign design mockup, production still, or a graphic design portfolio piece.",
+  },
+  {
     slug: "marketing-automation",
     category: "systems",
     number: "09",
@@ -550,7 +700,7 @@ export const services: Service[] = [
       },
     ],
     seoTopic: "marketing automation / CRM / WhatsApp automation / Dubai",
-    relatedSlugs: ["web-design-development", "seo", "google-ads"],
+    relatedSlugs: ["web-design-development", "seo", "paid-advertising"],
     aspectRatio: "4/5",
     assetLabel: "Automation",
     recommendedAsset: "CRM interface screenshot, WhatsApp Business automation flow, or a workflow/automation diagram.",

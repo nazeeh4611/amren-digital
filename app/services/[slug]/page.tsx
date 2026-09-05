@@ -17,7 +17,7 @@ import { ServicePortfolio } from "@/components/sections/ServicePortfolio";
 import { TrustedBrands } from "@/components/sections/TrustedBrands";
 
 export function generateStaticParams() {
-  return services.map((service) => ({ slug: service.slug }));
+  return services.filter((service) => !service.hidden).map((service) => ({ slug: service.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -34,11 +34,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function ServiceDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const service = getServiceBySlug(slug);
-  if (!service) notFound();
+  if (!service || service.hidden) notFound();
 
   const relatedServices = service.relatedSlugs
     .map((s) => getServiceBySlug(s))
-    .filter((s): s is NonNullable<typeof s> => Boolean(s));
+    .filter((s): s is NonNullable<typeof s> => Boolean(s) && !s?.hidden);
   const portfolioProjects = getPortfolioByCategory(service.slug);
   const hasPortfolio = portfolioProjects.length > 0;
 
@@ -77,6 +77,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         <AssetPlaceholder
           type="service"
           label={service.assetLabel}
+          src={service.assetSrc}
           alt={`${service.title} — AMREN Digital`}
           motif={categoryMotif[service.category]}
           aspectRatio={service.aspectRatio}

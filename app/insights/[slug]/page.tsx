@@ -6,12 +6,10 @@ import { articles, getArticleBySlug } from "@/content/insights";
 import { site } from "@/content/site";
 import { Breadcrumbs } from "@/components/breadcrumbs/Breadcrumbs";
 import { Eyebrow } from "@/components/typography/Eyebrow";
-import { AssetPlaceholder } from "@/components/assets/AssetPlaceholder";
 import { Button } from "@/components/buttons/Button";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { articleSchema } from "@/lib/structured-data";
 import { FadeIn } from "@/components/animations/FadeIn";
-import { ImageReveal } from "@/components/animations/ImageReveal";
 import { SplitReveal } from "@/components/animations/SplitReveal";
 
 export function generateStaticParams() {
@@ -72,11 +70,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           )}
         </FadeIn>
 
-        <div className="mt-8">
-          <ImageReveal>
-            <AssetPlaceholder type="hero" label={article.category} alt={article.title} motif="mark" aspectRatio="16/9" className="w-full" />
-          </ImageReveal>
-        </div>
+        <div aria-hidden="true" className="mt-8 h-px w-16 bg-gold" />
 
         <div className="prose-amren mt-10 space-y-6 text-lg leading-relaxed text-ink/80">
           {article.body.map((paragraph, i) => (

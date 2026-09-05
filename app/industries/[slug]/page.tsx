@@ -7,7 +7,6 @@ import { getServiceBySlug } from "@/content/services";
 import { site } from "@/content/site";
 import { Breadcrumbs } from "@/components/breadcrumbs/Breadcrumbs";
 import { Eyebrow } from "@/components/typography/Eyebrow";
-import { AssetPlaceholder } from "@/components/assets/AssetPlaceholder";
 import { Button } from "@/components/buttons/Button";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -49,14 +48,14 @@ export default async function IndustryDetailPage({ params }: { params: Promise<{
 
       <Breadcrumbs items={[{ name: "Industries", path: "/industries" }, { name: industry.title, path: `/industries/${industry.slug}` }]} />
 
-      <section className="wrap grid gap-10 pb-16 pt-8 sm:pt-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-16">
+      <section className="wrap grid gap-12 pb-16 pt-8 sm:pt-10 lg:grid-cols-[1.3fr_0.7fr] lg:items-start lg:gap-16">
         <div>
           <Eyebrow>Industry</Eyebrow>
-          <h1 className="mt-5 font-display text-4xl font-bold uppercase leading-[1.02] tracking-tight text-ink sm:text-6xl">
+          <h1 className="mt-5 font-display text-4xl font-bold uppercase leading-[1.02] tracking-tight text-ink sm:text-6xl lg:text-7xl">
             {industry.h1}
           </h1>
-          <p className="mt-5 font-editorial text-2xl italic text-blue">{industry.headline}</p>
-          <p className="mt-5 max-w-xl text-ink/70">{industry.intro}</p>
+          <p className="mt-6 max-w-xl font-editorial text-2xl italic text-blue">{industry.headline}</p>
+          <p className="mt-5 max-w-xl text-lg text-ink/70">{industry.intro}</p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Button href={site.cta.freeAudit.href}>{site.cta.freeAudit.label}</Button>
             <Button href={site.contact.whatsapp} variant="ghost">
@@ -64,7 +63,15 @@ export default async function IndustryDetailPage({ params }: { params: Promise<{
             </Button>
           </div>
         </div>
-        <AssetPlaceholder type="service" label={industry.title} alt={industry.title} motif="chart" aspectRatio="4/5" />
+        <div className="flex flex-col gap-5 border-t border-navy/10 pt-8 lg:border-t-0 lg:border-l lg:pl-10 lg:pt-0">
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-blue">What usually gets in the way</p>
+          {industry.problems.slice(0, 3).map((problem) => (
+            <div key={problem} className="flex gap-3 text-sm text-ink/70">
+              <span aria-hidden="true" className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-coral" />
+              {problem}
+            </div>
+          ))}
+        </div>
       </section>
 
       <section className="section bg-white pt-0">
