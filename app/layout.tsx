@@ -43,7 +43,7 @@ const yellowtail = Yellowtail({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "Digital Marketing Agency in Dubai, UAE | AMREN Digital",
+    default: "Digital Marketing Agency in Dubai | AMREN Digital",
     template: "%s",
   },
   description: site.description,
@@ -68,7 +68,6 @@ export const metadata: Metadata = {
   },
   twitter: { card: "summary_large_image" },
   icons: {
-    icon: "/icon",
     apple: "/apple-icon",
   },
   manifest: "/manifest.webmanifest",

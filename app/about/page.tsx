@@ -13,7 +13,7 @@ import { VenturesConnection } from "@/components/sections/VenturesConnection";
 import { CTASection } from "@/components/sections/CTASection";
 
 export const metadata: Metadata = buildMetadata({
-  title: "About AMREN Digital | Digital Growth Agency, Dubai",
+  title: "About Us | Digital Growth Agency in Dubai | AMREN Digital",
   description:
     "AMREN Digital is the digital growth arm of AMREN Ventures — a Dubai-based team building connected advertising, website, SEO and automation systems for UAE businesses.",
   path: "/about",
@@ -57,14 +57,27 @@ export default function AboutPage() {
           </p>
         </div>
         <ParallaxImage speed={20}>
-          <AssetPlaceholder type="hero" label="AMREN Digital" aspectRatio="4/5" objectFit="contain" />
+          <AssetPlaceholder
+            type="hero"
+            label="AMREN Digital"
+            alt="AMREN Digital team — Dubai digital marketing agency"
+            aspectRatio="4/5"
+            objectFit="contain"
+          />
         </ParallaxImage>
       </section>
 
       <section className="section bg-white pt-0">
         <div className="wrap grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
           <ImageReveal>
-            <AssetPlaceholder type="hero" label="Our Approach" motif="nodes" aspectRatio="4/3" tone={1} />
+            <AssetPlaceholder
+              type="hero"
+              label="Our Approach"
+              alt="AMREN Digital's connected approach to advertising, web and SEO"
+              motif="nodes"
+              aspectRatio="4/3"
+              tone={1}
+            />
           </ImageReveal>
           <FadeIn delay={0.1}>
             <Eyebrow accent="gold">Our Approach</Eyebrow>

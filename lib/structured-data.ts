@@ -10,6 +10,7 @@ export function organizationSchema() {
     alternateName: site.shortName,
     url: site.url,
     logo: absoluteUrl("/icon"),
+    image: absoluteUrl("/opengraph-image"),
     telephone: site.contact.phone,
     address: {
       "@type": "PostalAddress",

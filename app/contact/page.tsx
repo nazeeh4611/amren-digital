@@ -8,7 +8,7 @@ import { SplitReveal } from "@/components/animations/SplitReveal";
 import { FadeIn } from "@/components/animations/FadeIn";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Contact AMREN Digital | Dubai Digital Marketing Agency",
+  title: "Contact Us | Dubai Digital Marketing Agency | AMREN Digital",
   description:
     "Get in touch with AMREN Digital in Dubai, UAE — tell us about your business and goals, and we'll recommend the right combination of digital growth services.",
   path: "/contact",

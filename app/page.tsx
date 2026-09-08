@@ -17,7 +17,7 @@ import { WelcomeModal } from "@/components/modals/WelcomeModal";
 import { homeFaqs } from "@/content/faqs";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Digital Marketing Agency in Dubai, UAE | AMREN Digital",
+  title: "Digital Marketing Agency in Dubai | AMREN Digital",
   description:
     "AMREN Digital is a Dubai-based digital growth agency helping UAE businesses attract customers, generate qualified leads and build scalable digital systems.",
   path: "/",
