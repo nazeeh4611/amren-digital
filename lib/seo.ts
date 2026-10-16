@@ -24,8 +24,9 @@ export function buildMetadata({ title, description, path, noindex, ogImage }: Bu
     alternates: {
       canonical: url,
     },
+    // noindex pages still pass link equity through to the pages they link to.
     robots: noindex
-      ? { index: false, follow: false }
+      ? { index: false, follow: true }
       : { index: true, follow: true },
     openGraph: {
       title,

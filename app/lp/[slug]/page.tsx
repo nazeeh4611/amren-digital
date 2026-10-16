@@ -32,6 +32,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: `${lp.heroHeadline} | AMREN Digital`,
     description: service.metaDescription,
     path: `/lp/${slug}`,
+    // Paid-traffic landing pages share their service's content and schema,
+    // so they'd compete with /services/[slug] in search. Keep them out of
+    // the index and let the service page rank.
+    noindex: true,
   });
 }
 

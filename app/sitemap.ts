@@ -1,30 +1,21 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/content/site";
 import { services } from "@/content/services";
-import { landingPages } from "@/content/landingPages";
 import { articles } from "@/content/insights";
 import { industries } from "@/content/industries";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const staticRoutes = [
-    "",
-    "/about",
-    "/services",
-    "/industries",
-    "/insights",
-    "/free-digital-audit",
-    "/contact",
-    "/waitlist",
-    "/privacy-policy",
-    "/terms",
-    "/cookie-policy",
-  ];
+// Bump when page content changes. A lastModified of "now" on every build
+// tells Google every page changed every deploy, so it learns to ignore it.
+const CONTENT_UPDATED = new Date("2026-10-16");
 
-  const now = new Date();
+// /lp/* (noindex ad landing pages), legal pages and thank-you pages are left
+// out on purpose: the sitemap lists only the pages we want ranking.
+export default function sitemap(): MetadataRoute.Sitemap {
+  const staticRoutes = ["", "/about", "/services", "/industries", "/insights", "/free-digital-audit", "/contact"];
 
   const entries: MetadataRoute.Sitemap = staticRoutes.map((path) => ({
     url: `${site.url}${path}`,
-    lastModified: now,
+    lastModified: CONTENT_UPDATED,
     changeFrequency: path === "" ? "weekly" : "monthly",
     priority: path === "" ? 1 : 0.8,
   }));
@@ -32,16 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const service of services.filter((s) => !s.hidden)) {
     entries.push({
       url: `${site.url}/services/${service.slug}`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    });
-  }
-
-  for (const lp of landingPages) {
-    entries.push({
-      url: `${site.url}/lp/${lp.slug}`,
-      lastModified: now,
+      lastModified: CONTENT_UPDATED,
       changeFrequency: "monthly",
       priority: 0.9,
     });
@@ -50,7 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const industry of industries) {
     entries.push({
       url: `${site.url}/industries/${industry.slug}`,
-      lastModified: now,
+      lastModified: CONTENT_UPDATED,
       changeFrequency: "monthly",
       priority: 0.7,
     });

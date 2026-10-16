@@ -11,7 +11,9 @@ import { SplitReveal } from "@/components/animations/SplitReveal";
 import { FadeIn, Stagger, StaggerItem } from "@/components/animations/FadeIn";
 import { LandingFooter } from "@/components/landing/LandingFooter";
 
-const footerServices = services.slice(0, 7);
+// Hidden services are 301'd to their merged page (next.config.ts) — linking
+// them sitewide would point every page's footer at a redirect.
+const footerServices = services.filter((service) => !service.hidden);
 
 const footerColumns = [
   {

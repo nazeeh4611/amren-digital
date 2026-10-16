@@ -77,6 +77,45 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      <section className="section bg-white">
+        <div className="wrap max-w-3xl">
+          <h2 className="font-display text-3xl font-bold uppercase tracking-tight text-ink sm:text-4xl">
+            A digital marketing agency in Dubai, not six separate vendors
+          </h2>
+          <p className="mt-5 text-lg text-ink/75">
+            Most UAE businesses end up with one company running ads, another building the website and a freelancer
+            posting on Instagram — and nobody connecting the results. AMREN runs every channel as one system.{" "}
+            <Link href="/services/paid-advertising" className="text-blue underline-offset-4 hover:underline">
+              Google and Meta Ads
+            </Link>{" "}
+            bring in demand now,{" "}
+            <Link href="/services/seo" className="text-blue underline-offset-4 hover:underline">
+              SEO and local SEO
+            </Link>{" "}
+            build visibility that lasts, and{" "}
+            <Link href="/services/social-media-marketing" className="text-blue underline-offset-4 hover:underline">
+              social media marketing
+            </Link>{" "}
+            builds the trust that makes both convert.
+          </p>
+          <p className="mt-4 text-lg text-ink/75">
+            Underneath, a{" "}
+            <Link href="/services/web-design-development" className="text-blue underline-offset-4 hover:underline">
+              conversion-focused website
+            </Link>{" "}
+            turns that traffic into enquiries,{" "}
+            <Link href="/services/content-production" className="text-blue underline-offset-4 hover:underline">
+              content and video production
+            </Link>{" "}
+            supplies the creative every channel needs, and{" "}
+            <Link href="/services/marketing-automation" className="text-blue underline-offset-4 hover:underline">
+              marketing automation and WhatsApp CRM
+            </Link>{" "}
+            make sure no lead goes unanswered.
+          </p>
+        </div>
+      </section>
+
       <CTASection />
     </>
   );

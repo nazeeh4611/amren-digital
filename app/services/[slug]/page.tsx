@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { buildMetadata } from "@/lib/seo";
 import { services, getServiceBySlug, categoryMotif } from "@/content/services";
+import { serviceOverviews } from "@/content/serviceOverviews";
 import { getPortfolioByCategory } from "@/content/portfolio";
 import { Breadcrumbs } from "@/components/breadcrumbs/Breadcrumbs";
 import { Eyebrow } from "@/components/typography/Eyebrow";
@@ -41,13 +42,15 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     .filter((s): s is NonNullable<typeof s> => Boolean(s) && !s?.hidden);
   const portfolioProjects = getPortfolioByCategory(service.slug);
   const hasPortfolio = portfolioProjects.length > 0;
+  const overview = serviceOverviews[service.slug];
+  const faqs = [...service.faqs, ...(overview?.faqs ?? [])];
 
   return (
     <>
       <JsonLd
         data={[
           serviceSchema({ name: service.title, description: service.metaDescription, path: `/services/${service.slug}` }),
-          faqSchema(service.faqs),
+          faqSchema(faqs),
         ]}
       />
 
@@ -83,6 +86,25 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           aspectRatio={service.aspectRatio}
         />
       </section>
+
+      {overview && (
+        <section className="section bg-white pt-0">
+          <div className="wrap max-w-3xl space-y-12">
+            {overview.blocks.map((block) => (
+              <FadeIn key={block.heading}>
+                <h2 className="font-display text-2xl font-bold uppercase tracking-tight text-ink sm:text-3xl">
+                  {block.heading}
+                </h2>
+                {block.paragraphs.map((paragraph) => (
+                  <p key={paragraph.slice(0, 40)} className="mt-4 text-lg text-ink/75">
+                    {paragraph}
+                  </p>
+                ))}
+              </FadeIn>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="section bg-white pt-0">
         <div className="wrap grid gap-16 lg:grid-cols-2">
@@ -139,7 +161,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             Common questions
           </h2>
           <div className="mt-8 divide-y divide-navy/10 border-y border-navy/10">
-            {service.faqs.map((faq, i) => (
+            {faqs.map((faq, i) => (
               <FadeIn key={faq.q} delay={Math.min(i * 0.06, 0.3)} className="py-6">
                 <h3 className="font-display text-lg font-semibold text-ink">{faq.q}</h3>
                 <p className="mt-2 text-ink/70">{faq.a}</p>

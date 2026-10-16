@@ -60,6 +60,35 @@ export default function IndustriesPage() {
         </div>
       </section>
 
+      <section className="section bg-white pt-0">
+        <div className="wrap max-w-3xl">
+          <h2 className="font-display text-3xl font-bold uppercase tracking-tight text-ink sm:text-4xl">
+            Industry-specific digital marketing in the UAE
+          </h2>
+          <p className="mt-5 text-lg text-ink/75">
+            A dental or aesthetic clinic relies on local search, reviews and booking enquiries. A real estate developer
+            needs qualified buyer leads and fast follow-up. A restaurant lives on its Google Maps listing and Instagram,
+            while salons and beauty businesses depend on visual content and repeat bookings. AMREN combines{" "}
+            <Link href="/services/paid-advertising" className="text-blue underline-offset-4 hover:underline">
+              paid advertising
+            </Link>
+            ,{" "}
+            <Link href="/services/seo" className="text-blue underline-offset-4 hover:underline">
+              local SEO
+            </Link>
+            ,{" "}
+            <Link href="/services/social-media-marketing" className="text-blue underline-offset-4 hover:underline">
+              social media
+            </Link>{" "}
+            and{" "}
+            <Link href="/services/marketing-automation" className="text-blue underline-offset-4 hover:underline">
+              automation
+            </Link>{" "}
+            differently for each, based on how your customers actually search and decide.
+          </p>
+        </div>
+      </section>
+
       <CTASection />
     </>
   );
