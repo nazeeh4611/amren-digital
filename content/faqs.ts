@@ -30,7 +30,7 @@ export const homeFaqs: Faq[] = [
   },
   {
     q: "Does AMREN Digital work with businesses outside Dubai?",
-    a: "AMREN is based in Dubai and focuses primarily on UAE businesses, but campaigns and websites can be managed for businesses across the wider region depending on the service and scope required.",
+    a: "AMREN is registered in Sharjah Media City and focuses primarily on businesses in Dubai and the wider UAE, but campaigns and websites can be managed for businesses across the wider region depending on the service and scope required.",
   },
   {
     q: "How do Google Ads and SEO work together?",

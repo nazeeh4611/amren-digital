@@ -15,7 +15,7 @@ import { CTASection } from "@/components/sections/CTASection";
 export const metadata: Metadata = buildMetadata({
   title: "About Us | Digital Growth Agency in Dubai | AMREN Digital",
   description:
-    "AMREN Digital is the digital growth arm of AMREN Ventures — a Dubai team building connected advertising, website, SEO and automation systems for UAE businesses.",
+    "AMREN Digital, the digital growth arm of AMREN Ventures, builds connected advertising, website, SEO and automation systems for Dubai and UAE businesses.",
   path: "/about",
 });
 
@@ -51,7 +51,7 @@ export default function AboutPage() {
             <SplitReveal as="span" text="We build the system around their growth." trigger="mount" delay={0.25} className="block" />
           </h1>
           <p className="mt-6 max-w-xl text-lg text-ink/70">
-            AMREN Digital is the digital growth arm of {site.parent.name}, based in {site.location.label}. We connect
+            AMREN Digital is the digital growth arm of {site.parent.name}, serving businesses in {site.serviceArea.label}. We connect
             advertising, websites, SEO, content and automation into one system — built around Attract, Generate
             Leads, Grow.
           </p>

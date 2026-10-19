@@ -4,7 +4,7 @@ export const site = {
   legalName: "AMREN Digital",
   tagline: "Digital growth built to move.",
   description:
-    "AMREN Digital is a Dubai-based digital growth agency helping UAE businesses attract customers, generate qualified leads and build connected digital systems.",
+    "AMREN Digital is a UAE digital growth agency helping businesses in Dubai and across the Emirates attract customers, generate qualified leads and build connected digital systems.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://digital.amren.ae",
   locale: "en_AE",
   themeColor: "#1e2142",
@@ -15,11 +15,19 @@ export const site = {
     url: "https://amren.ae",
   },
 
+  // Registered (licensed) office with a workspace. The team works remotely,
+  // so no other address is published — the market served is `serviceArea`.
   location: {
-    city: "Dubai",
+    street: "Sharjah Media City",
+    city: "Sharjah",
+    region: "Sharjah",
     country: "United Arab Emirates",
     countryCode: "AE",
-    label: "Dubai, UAE",
+    label: "Sharjah Media City, UAE",
+  },
+  serviceArea: {
+    primaryCity: "Dubai",
+    label: "Dubai & the UAE",
   },
 
   contact: {

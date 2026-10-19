@@ -1,6 +1,21 @@
 import { site } from "@/content/site";
 import { absoluteUrl } from "@/lib/seo";
 
+// The licensed office. The team works remotely; Dubai is the market served,
+// so it goes in areaServed rather than being claimed as an address.
+const registeredAddress = {
+  "@type": "PostalAddress",
+  streetAddress: site.location.street,
+  addressLocality: site.location.city,
+  addressRegion: site.location.region,
+  addressCountry: site.location.countryCode,
+};
+
+const areaServed = [
+  { "@type": "City", name: site.serviceArea.primaryCity },
+  { "@type": "Country", name: site.location.country },
+];
+
 export function organizationSchema() {
   return {
     "@context": "https://schema.org",
@@ -13,11 +28,7 @@ export function organizationSchema() {
     logo: absoluteUrl("/apple-icon"),
     image: absoluteUrl("/opengraph-image"),
     telephone: site.contact.phone,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: site.location.city,
-      addressCountry: site.location.countryCode,
-    },
+    address: registeredAddress,
     sameAs: [site.social.instagram],
     parentOrganization: {
       "@type": "Organization",
@@ -42,8 +53,8 @@ export function websiteSchema() {
 
 /**
  * Only used where the underlying information (service area, telephone,
- * general locality) is genuinely accurate. No street address, geo
- * coordinates, ratings or review counts are fabricated.
+ * registered address) is genuinely accurate. No geo coordinates, opening
+ * hours, ratings or review counts are fabricated.
  */
 export function localBusinessSchema() {
   return {
@@ -53,15 +64,8 @@ export function localBusinessSchema() {
     name: site.name,
     url: site.url,
     telephone: site.contact.phone,
-    areaServed: {
-      "@type": "AdministrativeArea",
-      name: site.location.label,
-    },
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: site.location.city,
-      addressCountry: site.location.countryCode,
-    },
+    areaServed,
+    address: registeredAddress,
     parentOrganization: {
       "@type": "Organization",
       name: site.parent.name,
@@ -98,10 +102,7 @@ export function serviceSchema(input: {
     description: input.description,
     url: absoluteUrl(input.path),
     provider: { "@id": `${site.url}/#organization` },
-    areaServed: {
-      "@type": "AdministrativeArea",
-      name: site.location.label,
-    },
+    areaServed,
   };
 }
 

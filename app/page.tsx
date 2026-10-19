@@ -19,7 +19,7 @@ import { homeFaqs } from "@/content/faqs";
 export const metadata: Metadata = buildMetadata({
   title: "Digital Marketing Agency in Dubai | AMREN Digital",
   description:
-    "AMREN Digital is a Dubai-based digital growth agency helping UAE businesses attract customers, generate qualified leads and build scalable digital systems.",
+    "AMREN Digital is a digital growth agency for Dubai and UAE businesses — attract customers, generate qualified leads and build scalable digital systems.",
   path: "/",
 });
 

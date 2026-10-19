@@ -28,7 +28,7 @@ export default function PrivacyPolicyPage() {
 
           <h2 className="font-display text-xl font-bold text-ink">Who we are</h2>
           <p>
-            AMREN Digital is a Dubai-based digital growth agency and part of {site.parent.name}. For any privacy
+            AMREN Digital is a UAE digital growth agency, registered in {site.location.label}, and part of {site.parent.name}. For any privacy
             question, you can reach us through the contact details at the bottom of this page.
           </p>
 

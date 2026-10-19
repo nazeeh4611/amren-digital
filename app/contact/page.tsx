@@ -59,7 +59,8 @@ function InstagramIcon() {
 }
 
 const contactDetails = [
-  { icon: LocationIcon, label: "Location", value: site.location.label, wide: true },
+  { icon: LocationIcon, label: "Serving", value: site.serviceArea.label, wide: false },
+  { icon: LocationIcon, label: "Registered office", value: site.location.label, wide: false },
   { icon: PhoneIcon, label: "Phone", value: site.contact.phone, href: site.contact.phoneHref },
   { icon: WhatsAppIcon, label: "WhatsApp / Call", value: site.contact.phone2, href: site.contact.phone2Href },
   { icon: MailIcon, label: "Email", value: site.contact.email, href: `mailto:${site.contact.email}` },

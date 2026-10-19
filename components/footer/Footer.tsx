@@ -134,7 +134,8 @@ export function Footer() {
           <StaggerItem>
             <p className="text-xs font-semibold uppercase tracking-[0.25em] text-cream/50">Contact</p>
             <ul className="mt-4 space-y-2.5 text-sm text-cream/80">
-              <li>{site.location.label}</li>
+              <li>Serving {site.serviceArea.label}</li>
+              <li>Registered: {site.location.label}</li>
               <li>
                 <a href={site.contact.phoneHref} className="transition-colors hover:text-turquoise">
                   {site.contact.phone}
