@@ -27,6 +27,26 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   });
 }
 
+// Body entries are plain paragraphs, "## " subheadings, or "- " bullet lists
+// (one item per line) — real HTML structure so search engines can read the
+// article's outline.
+function ArticleBlock({ block }: { block: string }) {
+  if (block.startsWith("## ")) {
+    return <h2 className="pt-6 font-display text-2xl font-bold leading-snug text-ink sm:text-3xl">{block.slice(3)}</h2>;
+  }
+  const lines = block.split("\n");
+  if (lines.every((line) => line.startsWith("- "))) {
+    return (
+      <ul className="list-disc space-y-2 pl-6 marker:text-gold">
+        {lines.map((line, i) => (
+          <li key={i}>{line.slice(2)}</li>
+        ))}
+      </ul>
+    );
+  }
+  return <p>{block}</p>;
+}
+
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString("en-AE", { year: "numeric", month: "long", day: "numeric" });
 }
@@ -73,9 +93,9 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         <div aria-hidden="true" className="mt-8 h-px w-16 bg-gold" />
 
         <div className="prose-amren mt-10 space-y-6 text-lg leading-relaxed text-ink/80">
-          {article.body.map((paragraph, i) => (
+          {article.body.map((block, i) => (
             <FadeIn key={i} as="div" delay={Math.min(i * 0.04, 0.2)}>
-              <p>{paragraph}</p>
+              <ArticleBlock block={block} />
             </FadeIn>
           ))}
         </div>

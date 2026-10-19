@@ -23,6 +23,14 @@ const nextConfig: NextConfig = {
   // redirect.
   async redirects() {
     return [
+      // www served a full duplicate copy of the site; send it to the
+      // canonical host so Google only ever sees one version.
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.digital.amren.ae" }],
+        destination: "https://digital.amren.ae/:path*",
+        permanent: true,
+      },
       { source: "/services/google-ads", destination: "/services/paid-advertising", permanent: true },
       { source: "/services/meta-ads", destination: "/services/paid-advertising", permanent: true },
       { source: "/services/local-seo", destination: "/services/seo", permanent: true },
@@ -49,6 +57,11 @@ const nextConfig: NextConfig = {
             value: "camera=(), microphone=(), geolocation=(), payment=(), usb=()",
           },
         ],
+      },
+      // Generated icon routes were showing up in Search Console as pages.
+      {
+        source: "/:route(icon|apple-icon)",
+        headers: [{ key: "X-Robots-Tag", value: "noindex" }],
       },
     ];
   },
