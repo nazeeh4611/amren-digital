@@ -154,7 +154,8 @@ export function Footer() {
         <FadeIn className="flex flex-col items-start justify-between gap-6 border-t border-cream/12 pt-8 sm:flex-row sm:items-center">
           <p className="font-display text-3xl font-bold tracking-tight text-cream/90 sm:text-4xl">AMREN DIGITAL</p>
           <p className="text-xs text-cream/50">
-            © {new Date().getFullYear()} AMREN Digital. Part of {site.parent.name}. All rights reserved.
+            © {new Date().getFullYear()} AMREN Digital, a brand of {site.parent.legalName}. Licensed in {site.location.label}. All
+            rights reserved.
           </p>
         </FadeIn>
       </div>

@@ -11,6 +11,7 @@ export const site = {
 
   parent: {
     name: "AMREN VENTURES",
+    legalName: "AMREN VENTURES LLC",
     description: "The group behind AMREN Digital.",
     url: "https://amren.ae",
   },
@@ -24,6 +25,7 @@ export const site = {
     country: "United Arab Emirates",
     countryCode: "AE",
     label: "Sharjah Media City, UAE",
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=Sharjah+Media+City+(Shams)",
   },
   serviceArea: {
     primaryCity: "Dubai",

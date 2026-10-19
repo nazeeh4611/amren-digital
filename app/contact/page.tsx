@@ -60,7 +60,7 @@ function InstagramIcon() {
 
 const contactDetails = [
   { icon: LocationIcon, label: "Serving", value: site.serviceArea.label, wide: false },
-  { icon: LocationIcon, label: "Registered office", value: site.location.label, wide: false },
+  { icon: LocationIcon, label: "Registered office", value: site.location.label, href: site.location.mapUrl, external: true, wide: false },
   { icon: PhoneIcon, label: "Phone", value: site.contact.phone, href: site.contact.phoneHref },
   { icon: WhatsAppIcon, label: "WhatsApp / Call", value: site.contact.phone2, href: site.contact.phone2Href },
   { icon: MailIcon, label: "Email", value: site.contact.email, href: `mailto:${site.contact.email}` },
@@ -113,6 +113,26 @@ export default function ContactPage() {
               </div>
             ))}
           </FadeIn>
+
+          <div className="mt-10 rounded-[var(--radius-card)] border border-navy/10 bg-white p-6">
+            <h2 className="font-display text-xl font-bold text-ink">Where to find us</h2>
+            <p className="mt-3 text-ink/70">
+              {site.name} is a brand of {site.parent.legalName}, a company licensed in Sharjah Media City (Shams), UAE.
+              Our registered office and workspace are in Sharjah Media City, and our work is focused on businesses in{" "}
+              {site.serviceArea.label}.
+            </p>
+            <p className="mt-3 text-ink/70">
+              Meetings are by appointment — at our Sharjah Media City workspace or by video call.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm font-semibold">
+              <a href={site.contact.whatsapp} target="_blank" rel="noopener noreferrer" className="text-ink underline decoration-gold decoration-2 underline-offset-4 hover:text-blue">
+                Book a meeting on WhatsApp
+              </a>
+              <a href={site.location.mapUrl} target="_blank" rel="noopener noreferrer" className="text-ink underline decoration-gold decoration-2 underline-offset-4 hover:text-blue">
+                View Sharjah Media City on Google Maps
+              </a>
+            </div>
+          </div>
         </div>
 
         <div className="rounded-[var(--radius-lg)] border border-navy/10 bg-white p-6 shadow-[var(--shadow-card)] sm:p-8">

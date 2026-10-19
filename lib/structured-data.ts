@@ -33,6 +33,7 @@ export function organizationSchema() {
     parentOrganization: {
       "@type": "Organization",
       name: site.parent.name,
+      legalName: site.parent.legalName,
       url: site.parent.url,
     },
   };
@@ -69,6 +70,7 @@ export function localBusinessSchema() {
     parentOrganization: {
       "@type": "Organization",
       name: site.parent.name,
+      legalName: site.parent.legalName,
       url: site.parent.url,
     },
   };
