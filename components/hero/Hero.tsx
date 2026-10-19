@@ -21,7 +21,7 @@ const rotatingWords: RotatingWordSpec[] = [
 export function Hero() {
   return (
     <section className="relative overflow-hidden bg-ink pb-24 pt-36 text-cream sm:pb-32 sm:pt-44">
-      <Image src="/dbhero.avif" alt="" fill priority sizes="100vw" className="object-cover" />
+      <Image src="/dbhero.avif" alt="" fill loading="eager" fetchPriority="high" sizes="100vw" className="object-cover" />
       <div
         aria-hidden="true"
         className="absolute inset-0"

@@ -4,6 +4,17 @@ import { notFound } from "next/navigation";
 import { buildMetadata } from "@/lib/seo";
 import { articles, getArticleBySlug } from "@/content/insights";
 import { site } from "@/content/site";
+import { getServiceBySlug } from "@/content/services";
+
+// The service each article category supports, linked from the article body.
+const categoryService: Record<string, string> = {
+  "Google Ads": "paid-advertising",
+  "Meta Ads": "paid-advertising",
+  SEO: "seo",
+  "Social Media": "social-media-marketing",
+  Websites: "web-design-development",
+  Automation: "marketing-automation",
+};
 import { Breadcrumbs } from "@/components/breadcrumbs/Breadcrumbs";
 import { Eyebrow } from "@/components/typography/Eyebrow";
 import { Button } from "@/components/buttons/Button";
@@ -57,6 +68,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   if (!article) notFound();
 
   const related = article.relatedSlugs.map((s) => getArticleBySlug(s)).filter((a): a is NonNullable<typeof a> => Boolean(a));
+  const relatedServiceSlug = categoryService[article.category];
+  const relatedService = relatedServiceSlug ? getServiceBySlug(relatedServiceSlug) : undefined;
 
   return (
     <>
@@ -99,6 +112,19 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             </FadeIn>
           ))}
         </div>
+
+        {relatedService && (
+          <p className="mt-12 text-lg text-ink/80">
+            Want this done for you? See our{" "}
+            <Link
+              href={`/services/${relatedService.slug}`}
+              className="font-semibold text-ink underline decoration-gold decoration-2 underline-offset-4 hover:text-blue"
+            >
+              {relatedService.title} service
+            </Link>
+            .
+          </p>
+        )}
 
         <FadeIn className="mt-16 rounded-[var(--radius-lg)] bg-navy p-8 text-cream sm:p-10">
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-2">Want this reviewed for your business?</p>

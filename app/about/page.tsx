@@ -15,7 +15,7 @@ import { CTASection } from "@/components/sections/CTASection";
 export const metadata: Metadata = buildMetadata({
   title: "About Us | Digital Growth Agency in Dubai | AMREN Digital",
   description:
-    "AMREN Digital is the digital growth arm of AMREN Ventures — a Dubai-based team building connected advertising, website, SEO and automation systems for UAE businesses.",
+    "AMREN Digital is the digital growth arm of AMREN Ventures — a Dubai team building connected advertising, website, SEO and automation systems for UAE businesses.",
   path: "/about",
 });
 

@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import { site } from "@/content/site";
 import { services } from "@/content/services";
+import { industries } from "@/content/industries";
 import { Button } from "@/components/buttons/Button";
 import { Magnetic } from "@/components/animations/Magnetic";
 import { SplitReveal } from "@/components/animations/SplitReveal";
@@ -23,6 +24,11 @@ const footerColumns = [
   {
     heading: "Services",
     items: footerServices.map((service) => ({ href: `/services/${service.slug}`, label: service.title, external: false })),
+  },
+  {
+    // Industry pages were otherwise only linked from /industries.
+    heading: "Industries",
+    items: industries.map((industry) => ({ href: `/industries/${industry.slug}`, label: industry.title, external: false })),
   },
 ];
 
@@ -68,7 +74,7 @@ export function Footer() {
           </div>
         )}
 
-        <Stagger className={clsx("grid grid-cols-2 gap-10 sm:grid-cols-4", showCTA ? "py-14" : "pb-14")} staggerDelay={0.06}>
+        <Stagger className={clsx("grid grid-cols-2 gap-10 sm:grid-cols-3 lg:grid-cols-5", showCTA ? "py-14" : "pb-14")} staggerDelay={0.06}>
           {footerColumns.map((column) => (
             <StaggerItem key={column.heading}>
               <p className="text-xs font-semibold uppercase tracking-[0.25em] text-cream/50">{column.heading}</p>

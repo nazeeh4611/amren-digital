@@ -146,7 +146,9 @@ export function AssetPlaceholder({
           src={finalSrc}
           alt={decorative ? "" : alt || label || "AMREN Digital"}
           fill
-          priority={priority}
+          // `priority` is deprecated in Next 16 and no longer sets fetchpriority.
+          loading={priority ? "eager" : undefined}
+          fetchPriority={priority ? "high" : undefined}
           sizes={sizes || "(min-width: 1024px) 50vw, 100vw"}
           className={objectFit === "contain" ? "object-contain p-8" : "object-cover"}
         />

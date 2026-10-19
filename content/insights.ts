@@ -32,7 +32,7 @@ export const articles: Article[] = [
   {
     slug: "why-uae-businesses-need-a-connected-digital-system",
     title: "Why UAE Businesses Need a Connected Digital System, Not Just More Marketing",
-    metaTitle: "Connected Digital Marketing Systems for UAE Businesses | AMREN Digital",
+    metaTitle: "Connected Digital Marketing Systems for UAE Businesses",
     metaDescription:
       "Why running ads, social media and a website as separate efforts limits growth — and what a connected digital system looks like for UAE businesses.",
     category: "Digital Marketing",
@@ -73,7 +73,7 @@ export const articles: Article[] = [
     title: "Google Ads vs SEO: Which Should a UAE Business Invest in First?",
     metaTitle: "Google Ads vs SEO for UAE Businesses | AMREN Digital",
     metaDescription:
-      "A practical comparison of Google Ads and SEO for UAE businesses — when to prioritize paid search, when to invest in organic, and why most businesses eventually need both.",
+      "A practical comparison of Google Ads and SEO for UAE businesses — when to prioritize paid search, when to invest in organic, and why most need both.",
     category: "Google Ads",
     publishedAt: "2026-05-18",
     updatedAt: "2026-10-19",
@@ -142,7 +142,7 @@ export const articles: Article[] = [
   {
     slug: "website-that-converts-not-just-looks-good",
     title: "A Website That Looks Good Isn't the Same as a Website That Converts",
-    metaTitle: "Conversion-Focused Website Design for UAE Businesses | AMREN Digital",
+    metaTitle: "Conversion-Focused Website Design for UAE Businesses",
     metaDescription:
       "Why visual design alone doesn't turn website visitors into enquiries — and what actually needs to be true of a website built to convert.",
     category: "Websites",
@@ -212,7 +212,7 @@ export const articles: Article[] = [
   {
     slug: "whatsapp-automation-lead-followup",
     title: "Why Slow Lead Follow-Up Is Quietly Costing UAE Businesses Enquiries",
-    metaTitle: "WhatsApp Automation & Lead Follow-Up for UAE Businesses | AMREN Digital",
+    metaTitle: "WhatsApp Automation & Lead Follow-Up for UAE Businesses",
     metaDescription:
       "Why the speed and consistency of lead follow-up matters as much as the quality of the lead itself — and how WhatsApp automation and a CRM can close that gap.",
     category: "Automation",

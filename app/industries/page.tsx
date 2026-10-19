@@ -11,7 +11,7 @@ import { SplitReveal } from "@/components/animations/SplitReveal";
 export const metadata: Metadata = buildMetadata({
   title: "Industries We Work With | AMREN Digital",
   description:
-    "How AMREN Digital approaches digital marketing for clinics, real estate, restaurants and beauty businesses in Dubai — each with a different customer acquisition journey.",
+    "Digital marketing for clinics, real estate, restaurants and beauty businesses in Dubai — each built around how that industry's customers search and buy.",
   path: "/industries",
 });
 

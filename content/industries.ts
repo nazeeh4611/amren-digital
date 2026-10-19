@@ -22,9 +22,9 @@ export const industries: Industry[] = [
   {
     slug: "clinics-healthcare",
     title: "Dental, Medical & Aesthetic Clinics",
-    metaTitle: "Digital Marketing for Clinics in Dubai | AMREN Digital",
+    metaTitle: "Clinic & Aesthetic Marketing Agency Dubai | AMREN Digital",
     metaDescription:
-      "Digital marketing for dental, medical and aesthetic clinics in Dubai — local SEO, Google Ads and a booking-focused website built around how patients actually search and choose a clinic.",
+      "Digital marketing for dental, medical and aesthetic clinics in Dubai — local SEO, Google Ads and booking-focused websites built around how patients choose.",
     h1: "Digital Marketing for Clinics in Dubai",
     headline: "Patients search close to the decision. Local visibility matters more than volume.",
     intro:
@@ -52,9 +52,9 @@ export const industries: Industry[] = [
   {
     slug: "real-estate",
     title: "Real Estate",
-    metaTitle: "Digital Marketing for Real Estate Agencies in Dubai | AMREN Digital",
+    metaTitle: "Real Estate Digital Marketing in Dubai | AMREN Digital",
     metaDescription:
-      "Digital marketing for Dubai real estate agencies and brokers — Google Ads, Meta Ads and lead-capture systems built for a market where enquiries are high-value and follow-up speed decides the sale.",
+      "Digital marketing for Dubai real estate agencies and brokers — Google Ads, Meta Ads and lead-capture systems built for fast follow-up on high-value enquiries.",
     h1: "Digital Marketing for Real Estate in Dubai",
     headline: "Every enquiry is high-value. Losing one to slow follow-up is expensive.",
     intro:
@@ -82,9 +82,9 @@ export const industries: Industry[] = [
   {
     slug: "restaurants-hospitality",
     title: "Restaurants & Hospitality",
-    metaTitle: "Digital Marketing for Restaurants & Hospitality in Dubai | AMREN Digital",
+    metaTitle: "Restaurant & Hospitality Marketing Dubai | AMREN Digital",
     metaDescription:
-      "Digital marketing for Dubai restaurants, cafes and hospitality brands — local SEO, Google Business Profile management and social content built to drive covers and bookings.",
+      "Digital marketing for Dubai restaurants, cafes and hospitality brands — local SEO, Google Business Profile and social content built to drive bookings.",
     h1: "Digital Marketing for Restaurants & Hospitality in Dubai",
     headline: "Discovery happens on Maps and Instagram before it happens anywhere else.",
     intro:
@@ -112,7 +112,7 @@ export const industries: Industry[] = [
   {
     slug: "salons-beauty",
     title: "Salons & Beauty Businesses",
-    metaTitle: "Digital Marketing for Salons & Beauty Businesses in Dubai | AMREN Digital",
+    metaTitle: "Salon & Beauty Marketing in Dubai | AMREN Digital",
     metaDescription:
       "Digital marketing for Dubai salons, spas and beauty businesses — local SEO, Instagram-led content and Meta Ads built around visual discovery and booking.",
     h1: "Digital Marketing for Salons & Beauty Businesses in Dubai",

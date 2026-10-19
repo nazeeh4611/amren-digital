@@ -10,6 +10,9 @@ export const metadata: Metadata = buildMetadata({
   description:
     "Register your interest for an upcoming AMREN Digital consultation slot. Tell us what you want to grow and we'll reach out.",
   path: "/waitlist",
+  // A sign-up form with little content of its own; Google was showing it in
+  // results in place of the service pages.
+  noindex: true,
 });
 
 export default function WaitlistPage() {

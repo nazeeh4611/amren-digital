@@ -8,7 +8,7 @@ import clsx from "clsx";
 export function Logo({ className }: { tone?: "dark" | "light"; className?: string }) {
   return (
     <Link href="/" className={clsx("inline-flex items-center", className)} aria-label="AMREN Digital — Home">
-      <Image src="/amlogo.svg" alt="AMREN Digital" width={1897} height={632} priority className="h-11 w-auto sm:h-14" />
+      <Image src="/amlogo.svg" alt="AMREN Digital" width={1897} height={632} loading="eager" className="h-11 w-auto sm:h-14" />
     </Link>
   );
 }

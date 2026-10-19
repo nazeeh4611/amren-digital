@@ -11,7 +11,7 @@ import { SplitReveal } from "@/components/animations/SplitReveal";
 export const metadata: Metadata = buildMetadata({
   title: "Digital Marketing Services in Dubai | AMREN Digital",
   description:
-    "Explore AMREN Digital's connected digital growth services — Paid Advertising, SEO, social media, web design and development, content & video production, and marketing automation.",
+    "AMREN Digital's services in Dubai — paid advertising, SEO, social media, web design and development, content & video production, and marketing automation.",
   path: "/services",
 });
 

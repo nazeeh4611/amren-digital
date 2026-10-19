@@ -14,7 +14,7 @@ import { faqSchema } from "@/lib/structured-data";
 export const metadata: Metadata = buildMetadata({
   title: "Free Digital Growth Audit for Dubai Businesses | AMREN Digital",
   description:
-    "Request a free digital audit from AMREN Digital — a review of your website, Google Business Profile, visible ad activity and lead-capture setup, based on publicly available information.",
+    "Request a free digital audit from AMREN Digital — a review of your website, Google Business Profile, visible ad activity and lead-capture setup.",
   path: "/free-digital-audit",
 });
 

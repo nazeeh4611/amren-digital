@@ -9,7 +9,8 @@ export function organizationSchema() {
     name: site.name,
     alternateName: site.shortName,
     url: site.url,
-    logo: absoluteUrl("/icon"),
+    // Google requires a logo of at least 112x112px; /icon is only 32x32.
+    logo: absoluteUrl("/apple-icon"),
     image: absoluteUrl("/opengraph-image"),
     telephone: site.contact.phone,
     address: {

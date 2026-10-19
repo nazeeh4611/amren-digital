@@ -222,9 +222,9 @@ export const services: Service[] = [
     eyebrow: "Performance / Google & Meta Ads",
     h1: "Google & Meta Ads Management for UAE Businesses",
     headline: "Show up exactly where your next customer is looking.",
-    metaTitle: "Paid Advertising Agency in Dubai | Google & Meta Ads | AMREN Digital",
+    metaTitle: "Paid Advertising Agency Dubai | Google & Meta Ads",
     metaDescription:
-      "Google Ads and Meta Ads management for UAE businesses — search campaigns, Facebook & Instagram advertising, retargeting and ongoing optimization from AMREN Digital, Dubai.",
+      "Google Ads and Meta Ads management for UAE businesses — search campaigns, Facebook & Instagram ads, retargeting and ongoing optimization from Dubai.",
     intro:
       "Search captures people already looking for what you sell. Social reaches people who match your customer profile before they've started searching. AMREN plans, builds and manages both as one connected paid media system — not two separate accounts run in isolation.",
     benefits: [
@@ -284,9 +284,9 @@ export const services: Service[] = [
     eyebrow: "Search / Organic & Local Visibility",
     h1: "SEO & Local SEO Services for UAE Businesses",
     headline: "Be found before they find someone else — everywhere they search.",
-    metaTitle: "SEO Agency in Dubai | Search Engine Optimization & Local SEO | AMREN Digital",
+    metaTitle: "SEO Agency in Dubai | SEO & Local SEO | AMREN Digital",
     metaDescription:
-      "SEO and Local SEO services for UAE businesses — technical SEO, on-page optimization, keyword strategy and Google Business Profile management from AMREN Digital, Dubai.",
+      "SEO and Local SEO services for UAE businesses — technical SEO, on-page optimization, keyword strategy and Google Business Profile management, Dubai.",
     intro:
       "SEO is the part of a digital system that keeps working after the ad budget is spent. AMREN builds organic visibility through technical health, on-page structure and content strategy — and for businesses with a physical location or service area, optimizes the Google Business Profile and local signals that win the search that happens right before someone walks in.",
     benefits: [
@@ -606,7 +606,7 @@ export const services: Service[] = [
     headline: "Make your brand worth stopping for.",
     metaTitle: "Content & Video Production Agency in Dubai | AMREN Digital",
     metaDescription:
-      "Creative content, graphic design, photography and video production for UAE brands — designed to perform across social, search and paid campaigns. AMREN Digital, Dubai.",
+      "Creative content, graphic design, photography and video production for UAE brands — built to perform across social, search and paid campaigns.",
     intro:
       "Every channel in your digital system depends on creative that actually stops someone mid-scroll — static or moving. AMREN produces graphic design, advertising creative, photography and video built for the platform they're going to run on, from a single brief to final, platform-ready delivery.",
     benefits: [

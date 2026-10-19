@@ -13,9 +13,23 @@ import { FadeIn } from "@/components/animations/FadeIn";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { serviceSchema, faqSchema } from "@/lib/structured-data";
 import { site } from "@/content/site";
+import { articles } from "@/content/insights";
 import { CTASection } from "@/components/sections/CTASection";
 import { ServicePortfolio } from "@/components/sections/ServicePortfolio";
 import { TrustedBrands } from "@/components/sections/TrustedBrands";
+
+// Article categories (content/insights.ts) relevant to each service, so each
+// service page links the guides that support it — and each guide gets
+// internal links from the page it's most relevant to.
+const guideTopics: Record<string, string[]> = {
+  "paid-advertising": ["Google Ads", "Meta Ads"],
+  seo: ["SEO"],
+  "social-media-marketing": ["Social Media"],
+  "web-design-development": ["Websites"],
+  "content-production": ["Social Media"],
+  "marketing-automation": ["Automation"],
+};
+const generalTopics = ["Digital Marketing", "Business Growth"];
 
 export function generateStaticParams() {
   return services.filter((service) => !service.hidden).map((service) => ({ slug: service.slug }));
@@ -44,6 +58,11 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   const hasPortfolio = portfolioProjects.length > 0;
   const overview = serviceOverviews[service.slug];
   const faqs = [...service.faqs, ...(overview?.faqs ?? [])];
+  const topics = guideTopics[service.slug] ?? [];
+  const guides = [
+    ...articles.filter((a) => topics.includes(a.category)),
+    ...articles.filter((a) => !topics.includes(a.category) && generalTopics.includes(a.category)),
+  ].slice(0, 3);
 
   return (
     <>
@@ -170,6 +189,30 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           </div>
         </div>
       </section>
+
+      {guides.length > 0 && (
+        <section className="section bg-white pt-0">
+          <div className="wrap max-w-3xl">
+            <Eyebrow accent="gold">Insights</Eyebrow>
+            <h2 className="mt-5 font-display text-3xl font-bold uppercase tracking-tight text-ink sm:text-4xl">
+              Guides on this topic
+            </h2>
+            <ul className="mt-8 space-y-4">
+              {guides.map((guide) => (
+                <li key={guide.slug}>
+                  <Link
+                    href={`/insights/${guide.slug}`}
+                    className="font-display text-lg font-semibold text-ink underline decoration-gold decoration-2 underline-offset-4 hover:text-blue"
+                  >
+                    {guide.title}
+                  </Link>
+                  <p className="mt-1 text-ink/60">{guide.excerpt}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
 
       {relatedServices.length > 0 && (
         <section className="section bg-cream">
