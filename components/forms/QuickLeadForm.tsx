@@ -4,6 +4,7 @@ import { useState, type FormEvent } from "react";
 import clsx from "clsx";
 import { Button } from "@/components/buttons/Button";
 import { trackEvent } from "@/lib/track";
+import { reportLead } from "@/lib/collect";
 
 const UAE_CODE = "+971";
 
@@ -53,6 +54,7 @@ export function QuickLeadForm({ source, layout = "inline", className, onSuccess 
         body: JSON.stringify({ name: trimmedName, phone: `${UAE_CODE} ${digits}`, pageSource: source }),
       });
       if (!res.ok) throw new Error("Request failed");
+      reportLead("quick-lead", { name: trimmedName, phone: `${UAE_CODE} ${digits}`, pageSource: source });
       trackEvent("quick_lead_form_submit", { source });
       setDone(true);
       onSuccess?.();

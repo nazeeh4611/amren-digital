@@ -8,6 +8,7 @@ import { TextField, TextAreaField, SelectField, CheckboxGroupField } from "@/com
 import { Button } from "@/components/buttons/Button";
 import { Stagger, StaggerItem } from "@/components/animations/FadeIn";
 import { trackEvent } from "@/lib/track";
+import { reportLead } from "@/lib/collect";
 
 type Errors = Partial<Record<"name" | "businessName" | "email", string>>;
 
@@ -59,6 +60,7 @@ export function AuditForm() {
         body: JSON.stringify({ ...payload, channels }),
       });
       if (!res.ok) throw new Error("Request failed");
+      reportLead("audit", { ...payload, channels });
       trackEvent("audit_form_submit");
       router.push("/thank-you");
     } catch {

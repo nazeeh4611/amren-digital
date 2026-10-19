@@ -6,6 +6,7 @@ import clsx from "clsx";
 import { TextField, CheckboxGroupField } from "@/components/forms/FormField";
 import { Button } from "@/components/buttons/Button";
 import { trackEvent, trackConversion } from "@/lib/track";
+import { reportLead } from "@/lib/collect";
 
 type Errors = Partial<Record<"name" | "email" | "phone", string>>;
 
@@ -108,6 +109,7 @@ export function LeadForm({
         body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error("Request failed");
+      reportLead("landing-page", payload);
       trackEvent("generate_lead", { service: serviceSlug });
       trackConversion({ service: serviceSlug });
       router.push(`/lp/thank-you?service=${serviceSlug}`);

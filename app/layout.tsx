@@ -11,6 +11,7 @@ import { SmoothScroll } from "@/components/animations/SmoothScroll";
 import { ScrollProgressBar } from "@/components/animations/ScrollProgressBar";
 import { CookieConsent } from "@/components/cookie-consent/CookieConsent";
 import { AnalyticsScripts } from "@/components/seo/AnalyticsScripts";
+import { PageViewTracker } from "@/components/analytics/PageViewTracker";
 import { ChromeExtras } from "@/components/layout/ChromeExtras";
 
 const spaceGrotesk = Space_Grotesk({
@@ -97,6 +98,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <ChromeExtras />
           <CookieConsent />
           <AnalyticsScripts />
+          <PageViewTracker />
         </MotionProvider>
       </body>
     </html>

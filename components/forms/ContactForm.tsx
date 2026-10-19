@@ -8,6 +8,7 @@ import { TextField, TextAreaField, SelectField } from "@/components/forms/FormFi
 import { Button } from "@/components/buttons/Button";
 import { Stagger, StaggerItem } from "@/components/animations/FadeIn";
 import { trackEvent } from "@/lib/track";
+import { reportLead } from "@/lib/collect";
 
 type Errors = Partial<Record<"name" | "email" | "message", string>>;
 
@@ -53,6 +54,7 @@ export function ContactForm() {
         body: JSON.stringify(Object.fromEntries(data.entries())),
       });
       if (!res.ok) throw new Error("Request failed");
+      reportLead("contact", Object.fromEntries(data.entries()));
       trackEvent("contact_form_submit");
       router.push("/thank-you");
     } catch {

@@ -1,3 +1,5 @@
+import { collect } from "@/lib/collect";
+
 /**
  * Thin wrapper around gtag/fbq for conversion-relevant interactions
  * (WhatsApp click, phone click, form submissions, CTA clicks). No-ops
@@ -28,6 +30,7 @@ export type TrackEventName =
 
 export function trackEvent(name: TrackEventName, params?: Record<string, string>) {
   if (typeof window === "undefined") return;
+  collect({ name, params });
   try {
     window.gtag?.("event", name, params);
     window.fbq?.("trackCustom", name, params);
