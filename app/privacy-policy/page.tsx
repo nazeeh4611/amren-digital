@@ -7,6 +7,8 @@ export const metadata: Metadata = buildMetadata({
   title: "Privacy Policy | AMREN Digital",
   description: "How AMREN Digital collects, uses and protects information submitted through digital.amren.ae.",
   path: "/privacy-policy",
+  // Legal boilerplate: keep it out of the index so it doesn't dilute site quality.
+  noindex: true,
 });
 
 export default function PrivacyPolicyPage() {

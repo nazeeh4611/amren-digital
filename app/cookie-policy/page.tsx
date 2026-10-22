@@ -7,6 +7,8 @@ export const metadata: Metadata = buildMetadata({
   title: "Cookie Policy | AMREN Digital",
   description: "How AMREN Digital uses cookies on digital.amren.ae, and how to manage your preferences.",
   path: "/cookie-policy",
+  // Legal boilerplate: keep it out of the index so it doesn't dilute site quality.
+  noindex: true,
 });
 
 export default function CookiePolicyPage() {

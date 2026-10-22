@@ -7,6 +7,8 @@ export const metadata: Metadata = buildMetadata({
   title: "Terms & Conditions | AMREN Digital",
   description: "Terms and conditions for using digital.amren.ae and engaging AMREN Digital's services.",
   path: "/terms",
+  // Legal boilerplate: keep it out of the index so it doesn't dilute site quality.
+  noindex: true,
 });
 
 export default function TermsPage() {
